@@ -1,0 +1,65 @@
+{
+  "name": "Annyversary",
+  "description": "Annyversary",
+  "author": "Fernando García <fergardi@gmail.com>",
+  "private": true,
+  "scripts": {
+    "watchify": "watchify -vd -p [ browserify-hmr -p 12345 -u localhost:12345 ] -e src/main.js -o dist/build.js -t [ eslintify --extension js --extension vue --formatter stylish --quiet-ignored ]",
+    "serve": "http-server -p 56789 -o -s -c 1",
+    "dev": "npm-run-all --parallel watchify serve",
+    "test": "karma start karma.config.js",
+    "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js",
+    "cordova": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../cordova/www/js/build.js && cp -R img/* ../cordova/www/img/ && cp -R fonts/* ../cordova/www/fonts/ && cp -R css/* ../cordova/www/css/ && cp node_modules/vue-material/dist/vue-material.css ../cordova/www/css/"
+  },
+  "dependencies": {
+    "moment": "^2.17.1",
+    "vue": "^2.0.1",
+    "vue-loader": "^10.0.2",
+    "vue-material": "*",
+    "vue-router": "^2.1.1",
+    "vuex": "^2.1.2"
+  },
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.13.0",
+    "axis": "^0.6.1",
+    "babel-core": "^6.0.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.1",
+    "browserify-hmr": "^0.3.1",
+    "cross-env": "^1.0.6",
+    "css-loader": "^0.26.1",
+    "envify": "^3.4.1",
+    "eslint": "^3.13.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-vue": "^2.0.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-html": "^1.7.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "eslint-plugin-vue": "^1.0.0",
+    "eslintify": "^3.1.0",
+    "http-server": "^0.9.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-browserify": "^5.1.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.26",
+    "npm-run-all": "^2.1.2",
+    "proxyquireify": "^3.2.1",
+    "pug": "^2.0.0-beta6",
+    "stylus": "^0.54.5",
+    "uglify-js": "^2.5.0",
+    "vue-template-compiler": "^2.1.8",
+    "vueify": "^9.4.0",
+    "watchify": "^3.4.0"
+  },
+  "browserify": {
+    "transform": [
+      "vueify",
+      "babelify"
+    ]
+  }
+}
