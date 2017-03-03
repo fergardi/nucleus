@@ -1,0 +1,13 @@
+{
+  "name": "Nucleus",
+  "description": "Nucleus",
+  "author": "@fergardi",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "update": "cordova platform add android && cordova platform update android && cordova platform add ios && cordova platform update ios",
+    "android": "cordova run android",
+    "ios": "cordova run ios",
+  },
+  "license": "MIT"
+}

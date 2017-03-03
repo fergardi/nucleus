@@ -1,0 +1,62 @@
+{
+  "name": "Nucleus",
+  "productName": "Nucleus",
+  "version": "1.0.0",
+  "description": "Nucleus",
+  "main": "src/index.js",
+  "scripts": {
+    "electron": "electron-forge start",
+    "build": "electron-forge make"
+  },
+  "author": "@fergardi",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "electronVersion": "^1.4.4",
+        "icon": "src/img/favicon/favicon.ico",
+        "asar": true
+      },
+      "electronWinstallerConfig": {
+        "name": "forge",
+        "setupExe": "Nucleus.exe",
+        "description": "Nucleus",
+        "setupIcon": "src/img/favicon/favicon.ico",
+        "noMsi": true
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "windowsStoreConfig": {
+        "packageName": "Nucleus",
+        "name": "forge"
+      }
+    }
+  },
+  "dependencies": {
+    "electron-compile": "^6.1.2",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-env": "^1.1.11",
+    "babel-preset-react": "^6.23.0",
+    "electron-prebuilt-compile": "1.4.15",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
+  }
+}
