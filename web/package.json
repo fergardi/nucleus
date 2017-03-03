@@ -1,15 +1,18 @@
 {
-  "name": "Annyversary",
-  "description": "Annyversary",
-  "author": "Fernando García <fergardi@gmail.com>",
-  "private": true,
+  "name": "Nucleus",
+  "description": "Nucleus",
+  "author": "@fergardi",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "watchify": "watchify -vd -p [ browserify-hmr -p 12345 -u localhost:12345 ] -e src/main.js -o dist/build.js -t [ eslintify --extension js --extension vue --formatter stylish --quiet-ignored ]",
     "serve": "http-server -p 56789 -o -s -c 1",
     "dev": "npm-run-all --parallel watchify serve",
     "test": "karma start karma.config.js",
     "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js",
-    "cordova": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../cordova/www/js/build.js && cp -R img/* ../cordova/www/img/ && cp -R fonts/* ../cordova/www/fonts/ && cp -R css/* ../cordova/www/css/ && cp node_modules/vue-material/dist/vue-material.css ../cordova/www/css/"
+    "cordova": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../cordova/www/js/build.js && cp -R img/* ../cordova/www/img/ && cp -R fonts/* ../cordova/www/fonts/ && cp -R css/* ../cordova/www/css/ && cp node_modules/vue-material/dist/vue-material.css ../cordova/www/css/",
+    "electron": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../electron/js/build.js && cp -R img/* ../electron/img/ && cp -R fonts/* ../electron/fonts/ && cp -R css/* ../electron/css/ && cp node_modules/vue-material/dist/vue-material.css ../electron/css/"
   },
   "dependencies": {
     "moment": "^2.17.1",
