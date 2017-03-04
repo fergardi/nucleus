@@ -1,9 +1,9 @@
 #Project Nucleus
 
 <p align="center">
-  <img src="https://img.shields.io/badge/nodejs-6.5.0-brightgreen.svg">
+  <img src="https://img.shields.io/badge/nodejs-6.9.1-brightgreen.svg">
   <img src="https://img.shields.io/badge/npm-4.3.0-brightgreen.svg">
-  <img src="https://img.shields.io/badge/vuejs-6.5.0-brightgreen.svg">
+  <img src="https://img.shields.io/badge/vuejs-2.1.1-brightgreen.svg">
   <img src="https://img.shields.io/badge/vuematerial-0.7.1-brightgreen.svg">
   <img src="https://img.shields.io/badge/cordova-6.5.0-brightgreen.svg">
   <img src="https://img.shields.io/badge/electron-1.6.1-brightgreen.svg">
