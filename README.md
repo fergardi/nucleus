@@ -1,9 +1,5 @@
 #Project Nucleus
 
-A starter scaffolded project to quickstart HTML5 + CSS3 + JS apps using [NodeJS](https://nodejs.org/), [Browserify](http://browserify.org/), [ESLint](http://eslint.org/), [VueJS](https://vuejs.org/) and [VueMaterial](https://vuematerial.github.io/#/).
-
-It also can build and publish your app into Web, Mobile (using [Cordova](https://cordova.apache.org/)) and Desktop (using [Electron](https://electron.atom.io/)).
-
 <p align="center">
   <img src="https://img.shields.io/badge/nodejs-6.5.0-brightgreen.svg">
   <img src="https://img.shields.io/badge/npm-4.3.0-brightgreen.svg">
@@ -12,6 +8,14 @@ It also can build and publish your app into Web, Mobile (using [Cordova](https:/
   <img src="https://img.shields.io/badge/cordova-6.5.0-brightgreen.svg">
   <img src="https://img.shields.io/badge/electron-1.6.1-brightgreen.svg">
 </p>
+
+A starter scaffolded project to quickstart HTML5 + CSS3 + JS apps using [NodeJS](https://nodejs.org/), [Browserify](http://browserify.org/), [ESLint](http://eslint.org/), [VueJS](https://vuejs.org/) and [VueMaterial](https://vuematerial.github.io/#/).
+
+It also can build and publish your app into Web, Mobile (using [Cordova](https://cordova.apache.org/)) and Desktop (using [Electron](https://electron.atom.io/)).
+
+![Web](web.png?raw=true)
+![Mobile](mobile.png?raw=true)
+![Desktop](desktop.png?raw=true)
 
 ### Dependencies
 
