@@ -1,37 +1,57 @@
 # Project Nucleus
 
-A starter VueJS scaffolding for Web, Cordova and Electron apps.
+A starter scaffolded project to quickstart web HTML5 + CSS3 + JS apps using [NodeJS](https://nodejs.org/), [Browserify](http://browserify.org/), [ESLint](http://eslint.org/), [VueJS](https://vuejs.org/) and [VueMaterial](https://vuematerial.github.io/#/).
 
-## Instructions
+It also can build and publish your web app into mobile (using [Cordova](https://cordova.apache.org/)) and desktop (using [Electron](https://electron.atom.io/)).
 
-### Common
+![Web](web.png?raw=true)
+![Mobile](mobile.png?raw=true)
+![Desktop](desktop.png?raw=true)
 
-cd /web
-npm install
+### Dependencies
+
+I assume you have already installed NodeJS and NPM. If not, do it. After that, you need to install the following dependencies globally:
+```
+npm install -g cordova
+npm install -g electron-forge
+```
 
 ### Web developing
 
+```
 cd /web
+npm install
 npm run dev
+```
 
 ### Web publishing
 
+```
 cd /web
+npm install
 npm run build
+```
 
-### Cordova publishing
+### Mobile publishing
 
+```
 cd /web
 npm run cordova
 cd /cordova
 cordova platform add android
-cordova run android
 cordova platform add ios
-cordova run ios
+cordova plugin add cordova-plugin-crosswalk-webview
+npm run android
+npm run ios
+```
 
-### Electron publishing
+### Desktop publishing
 
+```
 cd /web
 npm run electron
 cd /electron
-electron run
+npm install
+npm run dev
+npm run build
+```

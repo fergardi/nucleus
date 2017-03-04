@@ -5,7 +5,7 @@
   "description": "Nucleus",
   "main": "src/index.js",
   "scripts": {
-    "electron": "electron-forge start",
+    "dev": "electron-forge start",
     "build": "electron-forge make"
   },
   "author": "@fergardi",
