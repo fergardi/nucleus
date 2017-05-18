@@ -25,6 +25,9 @@ Vue.use(MuseUI)
 Vue.filter('date', (timestamp) => {
   return moment(parseInt(timestamp)).format('D/M/YYYY HH:mm:ss')
 })
+Vue.filter('i18n', (string) => {
+  return string // TODO
+})
 
 // main app
 let Main = Vue.component('app', App) // eslint-disable-line

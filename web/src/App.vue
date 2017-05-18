@@ -1,44 +1,53 @@
 <template lang="pug">
   .app
-    mu-appbar(:title="i18n('lbl_navbar')")
-      mu-icon-button(icon="menu", slot="left", @click="toggleSidebar()")
-      mu-text-field.appbar-search-field(icon="search", slot="right", :hintText="i18n('lbl_search')")
+    mu-appbar {{ 'lbl_navbar' | i18n }}
+      mu-icon-button(icon="menu", slot="left", @click="toggle()")
+      mu-text-field.appbar-search-field.search(icon="search", slot="right", :hintText="i18n('lbl_search')")
       mu-icon-button(icon="lock_open", slot="right")
-    mu-drawer(:open="open", :docked="false", @close="toggleSidebar()")
-      mu-appbar(:title="i18n('lbl_sidebar')")
-        mu-icon-button(icon="menu", slot="left", @click="toggleSidebar()")
+    mu-drawer(:open="open", :docked="false", @close="toggle()", :width="percent")
+      mu-appbar {{ 'lbl_navbar' | i18n }}
+        mu-icon-button(icon="menu", slot="left", @click="toggle()")
       mu-list
-        mu-sub-header {{ 'lbl_layers' | i18n }}
-        mu-list-item(v-for="category in layers", :title="category.name", :open="category.open", toggleNested)
-          mu-list-item(v-for="layer in category.layers", disableRipple, @click="toggleLayer(layer)", :title="layer.name", slot="nested")
-            mu-switch(v-model="layer.checked", slot="right")
+        layer-list(:layers="layers")
     .main
       router-view.animation.fadeIn
 </template>
 
 <script>
+  import layerList from './components/LayerList.vue'
+
   export default {
+    name: 'App',
+    components: { layerList },
     data () {
       return {
         open: false,
         layers: [
-          { name: 'lbl_operational_layers', opened: true, layers: [
-            { name: 'lbl_incidents', checked: true },
-            { name: 'lbl_resources', checked: true },
-            { name: 'lbl_infrastructures', checked: true }
+          { name: 'Categoría', radio: true, checked: true, layers: [
+            { name: 'Subcategoría', radio: true, checked: true, layers: [
+              { name: 'Un radio', radio: true, checked: true },
+              { name: 'Otro radio', radio: true, checked: true }
+            ] }
+          ] },
+          { name: 'Capa suelta', radio: false, checked: true },
+          { name: 'Categoría', radio: false, checked: true, layers: [
+            { name: 'Un checkbox', radio: false, checked: true },
+            { name: 'Otro checkbox', radio: false, checked: true }
           ] }
         ]
       }
     },
     methods: {
-      toggleSidebar (flag) {
+      toggle (flag) {
         this.open = !this.open
-      },
-      toggleLayer (layer) {
-        layer.checked = !layer.checked
       },
       i18n (string) {
         return string // TODO
+      }
+    },
+    computed: {
+      percent () {
+        return window.innerWidth <= 768 ? '85%' : '30%'
       }
     }
   }
@@ -86,4 +95,8 @@
   .fadeIn
     -webkit-animation-name fadeIn
     animation-name fadeIn
+  /* MEDIA QUERIES */
+  @media (max-width 768px)
+    .search
+      display none
 </style>
