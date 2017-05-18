@@ -1,48 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueMaterial from 'vue-material'
+import MuseUI from 'muse-ui'
 
 import moment from 'moment'
 
 import App from './App.vue'
-import Home from './views/Home.vue'
+import Map from './views/Map.vue'
 
 // router
 Vue.use(VueRouter)
 // routes
 var router = new VueRouter({
   routes: [
-    { path: '/', redirect: '/home' },
-    { path: '/home', component: Home },
+    { path: '/', redirect: '/map' },
+    { path: '/map', component: Map },
     { path: '*', redirect: '/' }
   ]
 })
 
 // material
-Vue.use(VueMaterial)
-Vue.material.registerTheme({
-  // fallback
-  default: {
-    primary: 'green'
-  }
-})
+Vue.use(MuseUI)
 
 // filter
 Vue.filter('date', (timestamp) => {
   return moment(parseInt(timestamp)).format('D/M/YYYY HH:mm:ss')
 })
 
-// scroll to top and close sidebar
-router.beforeEach((to, from, next) => {
-  Vue.nextTick(() => {
-    if (document.getElementById('scroll')) document.getElementById('scroll').scrollIntoView(true)
-    Main.close()
-    next()
-  })
-})
-
 // main app
-let Main = Vue.component('app', App)
+let Main = Vue.component('app', App) // eslint-disable-line
 Main = new Main({
   el: '#app',
   router

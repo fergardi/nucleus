@@ -11,15 +11,17 @@
     "dev": "npm-run-all --parallel watchify serve",
     "test": "karma start karma.config.js",
     "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js",
-    "cordova": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../cordova/www/js/build.js && cp -R img/* ../cordova/www/img/ && cp -R fonts/* ../cordova/www/fonts/ && cp -R css/* ../cordova/www/css/ && cp node_modules/vue-material/dist/vue-material.css ../cordova/www/css/",
-    "electron": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../electron/js/build.js && cp -R img/* ../electron/img/ && cp -R fonts/* ../electron/fonts/ && cp -R css/* ../electron/css/ && cp node_modules/vue-material/dist/vue-material.css ../electron/css/"
+    "cordova": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../cordova/www/js/build.js && cp -R img/* ../cordova/www/img/ && cp -R fonts/* ../cordova/www/fonts/ && cp -R css/* ../cordova/www/css/ && cp node_modules/muse-ui/dist/muse-ui.css ../cordova/www/css/",
+    "electron": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../electron/js/build.js && cp -R img/* ../electron/img/ && cp -R fonts/* ../electron/fonts/ && cp -R css/* ../electron/css/ && cp node_modules/muse-ui/dist/muse-ui.css ../electron/css/"
   },
   "dependencies": {
+    "leaflet": "^1.0.3",
     "moment": "^2.17.1",
+    "muse-ui": "^2.0.2",
     "vue": "^2.0.1",
     "vue-loader": "^10.0.2",
-    "vue-material": "*",
     "vue-router": "^2.1.1",
+    "vue2-leaflet": "0.0.49",
     "vuex": "^2.1.2"
   },
   "devDependencies": {

@@ -1,45 +1,53 @@
 <template lang="pug">
   .app
-    md-whiteframe
-      md-toolbar.md-dense(v-once, v-if="!fullscreen")
-        md-button.md-icon-button(v-on:click.native="toggle()")
-          md-icon menu
-        .flex
-        h2.md-title Nucleus
-        .flex
-        md-button.md-icon-button
-          md-icon search
-    md-sidenav.md-left.md-fixed(ref="sidebar", md-swipeable, v-once, v-if="!fullscreen")
-      md-whiteframe
-        md-toolbar.md-account-header
-          md-list.md-transparent
-            md-list-item
-              .flex
-              h2.md-title Nucleus
-              .flex
-      small.flex.center.signature &copy;fergardi2017
+    mu-appbar(:title="i18n('lbl_navbar')")
+      mu-icon-button(icon="menu", slot="left", @click="toggleSidebar()")
+      mu-text-field.appbar-search-field(icon="search", slot="right", :hintText="i18n('lbl_search')")
+      mu-icon-button(icon="lock_open", slot="right")
+    mu-drawer(:open="open", :docked="false", @close="toggleSidebar()")
+      mu-appbar(:title="i18n('lbl_sidebar')")
+        mu-icon-button(icon="menu", slot="left", @click="toggleSidebar()")
+      mu-list
+        mu-sub-header {{ 'lbl_layers' | i18n }}
+        mu-list-item(v-for="category in layers", :title="category.name", :open="category.open", toggleNested)
+          mu-list-item(v-for="layer in category.layers", disableRipple, @click="toggleLayer(layer)", :title="layer.name", slot="nested")
+            mu-switch(v-model="layer.checked", slot="right")
     .main
-      router-view#scroll.content.animation.fadeIn
+      router-view.animation.fadeIn
 </template>
 
 <script>
-  import vuex from './vuex/vuex.js'
   export default {
-    methods: {
-      toggle () {
-        if (this.$refs.sidebar) this.$refs.sidebar.toggle()
-      },
-      close () {
-        if (this.$refs.sidebar) this.$refs.sidebar.close()
+    data () {
+      return {
+        open: false,
+        layers: [
+          { name: 'lbl_operational_layers', opened: true, layers: [
+            { name: 'lbl_incidents', checked: true },
+            { name: 'lbl_resources', checked: true },
+            { name: 'lbl_infrastructures', checked: true }
+          ] }
+        ]
       }
     },
-    computed: {
-      fullscreen () {
-        return vuex.state.fullscreen
+    methods: {
+      toggleSidebar (flag) {
+        this.open = !this.open
+      },
+      toggleLayer (layer) {
+        layer.checked = !layer.checked
+      },
+      i18n (string) {
+        return string // TODO
       }
     }
   }
 </script>
+
+<style src="../css/font.css"></style>
+<style src="../css/icon.css"></style>
+<style src="../node_modules/muse-ui/dist/muse-ui.css"></style>
+<style src="../node_modules/muse-ui/dist/theme-carbon.css"></style>
 
 <style lang="stylus">
   html
@@ -53,42 +61,6 @@
   .main
     overflow auto
     height 100%
-  .content
-    margin 0 !important
-    height: 100%
-  .md-chip
-    margin-right 5px
-    margin-bottom 5px
-  .md-toolbar.md-account-header
-    a:not(.md-button)
-      color inherit
-    .md-avatar-list
-      .md-list-item-container
-        align-items center
-  .router-link-active
-    background-color rgba(153, 153, 153, 0.2)
-  .flex
-    display flex
-    flex 1
-  .md-avatar-list
-    .md-avatar
-      .md-icon
-        border-radius 50%
-  .no-padding
-    padding 0 !important
-  .padding
-    padding 16px
-  .center
-    align-items center
-    text-align center
-    justify-content center
-  .hidden
-    visibility hidden
-  .signature
-    width 100%
-    position absolute
-    bottom 0
-    margin-bottom 1em
   /* ANIMATION TRANSITION */
   /*base code*/
   .animation
