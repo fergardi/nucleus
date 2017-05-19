@@ -9,15 +9,17 @@
         mu-icon-button(icon="menu", slot="left", @click="toggle()")
       side-bar
     .main
+      snack-bar
       router-view.animation.fadeIn
 </template>
 
 <script>
   import SideBar from './components/SideBar.vue'
+  import SnackBar from './components/SnackBar.vue'
 
   export default {
     name: 'App',
-    components: { SideBar },
+    components: { SideBar, SnackBar },
     data () {
       return {
         open: false

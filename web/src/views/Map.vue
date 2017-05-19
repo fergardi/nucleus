@@ -11,7 +11,7 @@
   import Vue from 'vue'
   import Vue2Leaflet from 'vue2-leaflet'
   import LoadingProgress from '../components/LoadingProgress.vue'
-
+  import store from '../vuex/store'
   Vue.component('v-map', Vue2Leaflet.Map)
   Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
   Vue.component('v-marker', Vue2Leaflet.Marker)
@@ -40,8 +40,10 @@
       }
     },
     mounted () {
+      store.state.message = 'Loading data...'
       setTimeout(() => {
         this.loading = false
+        store.state.message = 'Data loaded succesfully!'
       }, this.timeout)
     },
     methods: {

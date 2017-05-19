@@ -1,6 +1,7 @@
 <template lang="pug">
   .side-bar
     mu-list(v-if="toc")
+      mu-slider.slider(v-model='transparency')
       layer-list(:layers="layers")
     mu-list(v-if="card")
       info-card(:info="info")
@@ -16,7 +17,8 @@
     data () {
       return {
         toc: false,
-        card: true,
+        card: false,
+        transparency: 50,
         layers: [
           { name: 'Categoría', radio: true, checked: true, layers: [
             { name: 'Subcategoría', radio: true, checked: true, layers: [

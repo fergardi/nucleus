@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
   state: {
-    fullscreen: false
+    message: ''
   }
 })
 
