@@ -1,5 +1,6 @@
 <template lang="pug">
   .leaflet-map
+    loading-progress(:loading="loading")
     v-map#map(:zoom="zoom", :center="center")
       v-tilelayer(url="http://{s}.tile.osm.org/{z}/{x}/{y}.png")
       v-marker(v-for="marker in markers", :lat-lng="marker.coordinates", :icon="marker.url")
@@ -9,6 +10,7 @@
 <script>
   import Vue from 'vue'
   import Vue2Leaflet from 'vue2-leaflet'
+  import LoadingProgress from '../components/LoadingProgress.vue'
 
   Vue.component('v-map', Vue2Leaflet.Map)
   Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
@@ -16,8 +18,11 @@
 
   export default {
     name: 'Map',
+    components: { LoadingProgress },
     data () {
       return {
+        loading: true,
+        timeout: 5000,
         center: [47.413220, -1.219482],
         zoom: 13,
         icons: [
@@ -33,6 +38,11 @@
           { coordinates: this.coordinates(), icon: this.icon() }
         ]
       }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.loading = false
+      }, this.timeout)
     },
     methods: {
       float (min, max) {
