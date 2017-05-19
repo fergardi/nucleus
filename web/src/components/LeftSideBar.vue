@@ -6,15 +6,18 @@
       mu-sub-header {{ 'lbl_toc' | i18n }}
       mu-text-field.search(:label="i18n('lbl_search')", :hintText="i18n('lbl_search')", v-model="search", labelfloat)
       layer-list(:layers="filtered")
+    mu-list
+      info-card(:info="info")
 </template>
 
 <script>
   import store from '../vuex/store'
   import LayerList from '../components/LayerList.vue'
+  import InfoCard from '../components/InfoCard.vue'
 
   export default {
     name: 'LeftSideBar',
-    components: { LayerList },
+    components: { LayerList, InfoCard },
     data () {
       return {
         opacity: 50,
@@ -32,6 +35,9 @@
       },
       layers () {
         return store.state.layers
+      },
+      info () {
+        return store.state.info
       }
     }
   }

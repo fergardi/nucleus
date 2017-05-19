@@ -7,14 +7,14 @@
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
       mu-appbar {{ 'lbl_navbar' | i18n }}
-        mu-icon-button.hidden(icon="menu", slot="left", @click="toggleLeft")
-        mu-icon-button(icon="close", slot="right", @click="toggleLeft")
+        mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
+        mu-icon-button.hidden(icon="close", slot="right", @click="toggleLeft")
       left-side-bar
 
     mu-drawer.sidebar(:open="right", :docked="docked", @close="toggleRight", right)
       mu-appbar {{ 'lbl_navbar' | i18n }}
-        mu-icon-button(icon="close", slot="left", @click="toggleRight")
-        mu-icon-button.hidden(icon="menu", slot="right", @click="toggleRight")
+        mu-icon-button.hidden(icon="close", slot="left", @click="toggleRight")
+        mu-icon-button(icon="menu", slot="right", @click="toggleRight")
       right-side-bar
 
     .main
@@ -80,6 +80,11 @@
     display flex
     justify-content center
     align-items center
+  .mu-drawer
+    overflow hidden
+    .side-bar
+      height calc(100% - 64px)
+      overflow-y auto
   /* ANIMATION TRANSITION */
   /*base code*/
   .animation

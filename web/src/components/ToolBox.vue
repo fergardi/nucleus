@@ -1,8 +1,11 @@
 <template lang="pug">
   .tool-box
-    mu-icon-button(icon="menu")
-    mu-icon-button(icon="menu")
-    mu-icon-button(icon="menu")
+    mu-icon-button(icon="home")
+    mu-icon-button(icon="fast_rewind")
+    mu-icon-button(icon="play_arrow")
+    mu-icon-button(icon="fast_forward")
+    mu-icon-button(icon="border_clear")
+    mu-icon-button(icon="map")
 </template>
 
 <script>
@@ -16,4 +19,9 @@
     display inline-flex
     justify-content center
     align-items center
+  @media and (max-height 768px)
+    .mu-icon-button
+    .mu-icon
+      width 32px
+      height 32px
 </style>
