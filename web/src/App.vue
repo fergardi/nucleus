@@ -1,41 +1,52 @@
 <template lang="pug">
   .app
-    mu-appbar {{ 'lbl_navbar' | i18n }}
-      mu-icon-button(icon="menu", slot="left", @click="toggle()")
-      mu-text-field.appbar-search-field.search(icon="search", slot="right", :hintText="i18n('lbl_search')")
-      mu-icon-button(icon="lock_open", slot="right")
-    mu-drawer(:open="open", :docked="false", @close="toggle()", :width="percent")
+    mu-appbar
+      mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
+      tool-box
+      mu-icon-button(icon="menu", slot="right", @click="toggleRight")
+
+    mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
       mu-appbar {{ 'lbl_navbar' | i18n }}
-        mu-icon-button(icon="menu", slot="left", @click="toggle()")
-      side-bar
+        mu-icon-button.hidden(icon="menu", slot="left", @click="toggleLeft")
+        mu-icon-button(icon="close", slot="right", @click="toggleLeft")
+      left-side-bar
+
+    mu-drawer.sidebar(:open="right", :docked="docked", @close="toggleRight", right)
+      mu-appbar {{ 'lbl_navbar' | i18n }}
+        mu-icon-button(icon="close", slot="left", @click="toggleRight")
+        mu-icon-button.hidden(icon="menu", slot="right", @click="toggleRight")
+      right-side-bar
+
     .main
       snack-bar
       router-view.animation.fadeIn
 </template>
 
 <script>
-  import SideBar from './components/SideBar.vue'
+  import LeftSideBar from './components/LeftSideBar.vue'
+  import RightSideBar from './components/RightSideBar.vue'
   import SnackBar from './components/SnackBar.vue'
+  import ToolBox from './components/ToolBox.vue'
 
   export default {
     name: 'App',
-    components: { SideBar, SnackBar },
+    components: { LeftSideBar, RightSideBar, SnackBar, ToolBox },
     data () {
       return {
-        open: false
+        left: false,
+        right: false,
+        docked: true
       }
     },
     methods: {
-      toggle (flag) {
-        this.open = !this.open
+      toggleLeft (flag) {
+        this.left = !this.left
+      },
+      toggleRight (flag) {
+        this.right = !this.right
       },
       i18n (string) {
         return string // TODO
-      }
-    },
-    computed: {
-      percent () {
-        return window.innerWidth <= 768 ? '85%' : '30%'
       }
     }
   }
@@ -58,6 +69,17 @@
   .main
     overflow auto
     height 100%
+  .flex
+    display flex
+  .center
+    justify-content center
+    align-items center
+  .hidden
+    visibility hidden
+  .mu-appbar-title
+    display flex
+    justify-content center
+    align-items center
   /* ANIMATION TRANSITION */
   /*base code*/
   .animation
@@ -84,7 +106,12 @@
     -webkit-animation-name fadeIn
     animation-name fadeIn
   /* MEDIA QUERIES */
+  @media (min-width 769px)
+    .sidebar
+      width 25%
   @media (max-width 768px)
+    .sidebar
+      width: 90%
     .search
       display none
 </style>

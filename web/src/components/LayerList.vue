@@ -3,13 +3,7 @@
     mu-list-item(v-for="layer in layers", :title="layer.name", slot="nested")
       mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right")
       mu-checkbox(v-else, v-model="layer.checked", slot="right")
-      //layer-list(:layers="layer.layers")
-      mu-list-item(v-for="l in layer.layers", :title="l.name", slot="nested")
-        mu-switch(v-if="l.radio", v-model="l.checked", slot="right")
-        mu-checkbox(v-else, v-model="l.checked", slot="right")
-        mu-list-item(v-for="la in l.layers", :title="la.name", slot="nested")
-          mu-switch(v-if="la.radio", v-model="la.checked", slot="right")
-          mu-checkbox(v-else, v-model="la.checked", slot="right")
+      layer-list(:layers="layer.layers")
 </template>
 
 <script>

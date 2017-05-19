@@ -1,6 +1,6 @@
 <template lang="pug">
   .snack-bar
-    mu-snackbar(v-if="snackbar", :message="message", action="OK", @actionclick="close", @close="close")
+    mu-snackbar(v-if="snackbar", :message="message", action="OK", @actionClick="close", @close="close")
 </template>
 
 <script>
@@ -11,7 +11,7 @@
     data () {
       return {
         snackbar: false,
-        timeout: 3000
+        timeout: 2000
       }
     },
     created () {
