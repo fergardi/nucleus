@@ -45,7 +45,14 @@
             title: 'title',
             subtitle: 'subtitle',
             text: 'text'
-          }
+          },
+          metadata: [
+            { key: 'key', value: 'value' },
+            { key: 'key', value: 'value' },
+            { key: 'key', value: 'value' },
+            { key: 'key', value: 'value' },
+            { key: 'key', value: 'value' }
+          ]
         }
       }
     },
