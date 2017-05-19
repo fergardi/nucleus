@@ -5,11 +5,6 @@
       v-tilelayer(:url="map.url")
       v-marker(v-for="marker in map.markers", :lat-lng="marker.coordinates", :icon="marker.url")
     mu-float-button.float-button(icon="add")
-    //mu-popup(position="bottom", popupClass="popup", :open="popup", @close="close")
-      mu-appbar(:title="i18n('lbl_info')")
-        mu-icon-button(icon="close", slot="right", @click="close")
-      mu-content-block
-        info-card(:info="info")
 </template>
 
 <script>
@@ -29,12 +24,12 @@
     data () {
       return {
         loading: true,
-        timeout: 1000,
+        timeout: 2000,
         popup: true,
         map: {
           center: [47.413220, -1.219482],
           url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-          zoom: 13,
+          zoom: 7,
           icons: [
             'https://image.flaticon.com/icons/svg/307/307034.svg',
             'https://image.flaticon.com/icons/svg/307/307003.svg',

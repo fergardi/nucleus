@@ -28,6 +28,8 @@
     width 100%
     height 100%
     pointer-events all
+    .mu-circular-progress
+      margin-top -50px
   .fade-enter-active, .fade-leave-active
     transition opacity 1s
   .fade-enter, .fade-leave-to
