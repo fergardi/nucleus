@@ -7,34 +7,20 @@
     mu-drawer(:open="open", :docked="false", @close="toggle()", :width="percent")
       mu-appbar {{ 'lbl_navbar' | i18n }}
         mu-icon-button(icon="menu", slot="left", @click="toggle()")
-      mu-list
-        layer-list(:layers="layers")
+      side-bar
     .main
       router-view.animation.fadeIn
 </template>
 
 <script>
-  import layerList from './components/LayerList.vue'
+  import SideBar from './components/SideBar.vue'
 
   export default {
     name: 'App',
-    components: { layerList },
+    components: { SideBar },
     data () {
       return {
-        open: false,
-        layers: [
-          { name: 'Categoría', radio: true, checked: true, layers: [
-            { name: 'Subcategoría', radio: true, checked: true, layers: [
-              { name: 'Un radio', radio: true, checked: true },
-              { name: 'Otro radio', radio: true, checked: true }
-            ] }
-          ] },
-          { name: 'Capa suelta', radio: false, checked: true },
-          { name: 'Categoría', radio: false, checked: true, layers: [
-            { name: 'Un checkbox', radio: false, checked: true },
-            { name: 'Otro checkbox', radio: false, checked: true }
-          ] }
-        ]
+        open: false
       }
     },
     methods: {
