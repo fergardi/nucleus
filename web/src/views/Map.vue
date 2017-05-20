@@ -3,45 +3,37 @@
     loading-progress(:loading="loading")
     v-map#map(:zoom="map.zoom", :center="map.center")
       v-tilelayer(:url="map.url")
-      v-marker(v-for="marker in map.markers", :lat-lng="marker.coordinates", :icon="marker.url")
+      v-group(v-for="markers in groups")
+        v-marker(v-for="marker in markers", :lat-lng="coordinates()", :icon="icon(marker.icon, marker.class)")
     mu-float-button.float-button(icon="add")
 </template>
 
 <script>
-  import Vue from 'vue'
   import Vue2Leaflet from 'vue2-leaflet'
   import store from '../vuex/store'
   import LoadingProgress from '../components/LoadingProgress.vue'
   import InfoCard from '../components/InfoCard.vue'
 
-  Vue.component('v-map', Vue2Leaflet.Map)
-  Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
-  Vue.component('v-marker', Vue2Leaflet.Marker)
-
   export default {
     name: 'Map',
-    components: { LoadingProgress, InfoCard },
+    components: {
+      LoadingProgress,
+      InfoCard,
+      'v-map': Vue2Leaflet.Map,
+      'v-tilelayer': Vue2Leaflet.TileLayer,
+      'v-marker': Vue2Leaflet.Marker,
+      'v-group': Vue2Leaflet.LayerGroup
+    },
     data () {
       return {
         loading: true,
         timeout: 2000,
         popup: true,
         map: {
-          center: [47.413220, -1.219482],
           url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-          zoom: 7,
-          icons: [
-            'https://image.flaticon.com/icons/svg/307/307034.svg',
-            'https://image.flaticon.com/icons/svg/307/307003.svg',
-            'https://image.flaticon.com/icons/svg/122/122492.svg',
-            'https://image.flaticon.com/icons/svg/307/307021.svg'
-          ],
-          markers: [
-            { coordinates: this.coordinates(), icon: this.icon() },
-            { coordinates: this.coordinates(), icon: this.icon() },
-            { coordinates: this.coordinates(), icon: this.icon() },
-            { coordinates: this.coordinates(), icon: this.icon() }
-          ]
+          center: [42.5804942, -5.599022500000046],
+          zoom: 11,
+          iconSize: 32 // px, even
         }
       }
     },
@@ -63,13 +55,14 @@
         return min + Math.random() * (max - min)
       },
       coordinates () {
-        return [this.float(46, 47), this.float(-2, -1)]
+        return [this.float(42.5, 42.7), this.float(-5.5, -5.7)]
       },
-      icon () {
-        return new L.icon({ // eslint-disable-line
-          iconUrl: 'https://image.flaticon.com/icons/svg/307/307034.svg',
-          iconSize: [26, 26],
-          iconAnchor: [13, 13]
+      icon (url, className) {
+        return L.icon({ // eslint-disable-line
+          iconUrl: url,
+          iconSize: [this.map.iconSize, this.map.iconSize],
+          iconAnchor: [this.map.iconSize / 2, this.map.iconSize / 2],
+          className: 'marker ' + className
         })
       },
       i18n (string) {
@@ -79,12 +72,32 @@
     computed: {
       info () {
         return store.state.info
+      },
+      layers () {
+        return store.state.layers
+      },
+      groups () {
+        return store.state.groups
       }
     }
   }
 </script>
 
 <style src="../../node_modules/leaflet/dist/leaflet.css"></style>
+
+<style lang="stylus">
+  .marker
+    border-radius 50%
+    padding 2px
+    border 2px solid
+    background-color rgba(255,255,255,0.8)
+    &.red
+      border-color red
+    &.green
+      border-color green
+    &.blue
+      border-color blue
+</style>
 
 <style lang="stylus" scoped>
   .leaflet-map

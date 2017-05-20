@@ -19,9 +19,4 @@
     display inline-flex
     justify-content center
     align-items center
-  @media and (max-height 768px)
-    .mu-icon-button
-    .mu-icon
-      width 32px
-      height 32px
 </style>

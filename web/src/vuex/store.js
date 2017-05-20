@@ -19,6 +19,30 @@ const vuex = new Vuex.Store({
         { name: 'Otro checkbox', radio: false, checked: true }
       ] }
     ],
+    groups: [
+      [
+        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' }
+      ],
+      [
+        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
+        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' }
+      ],
+      [
+        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
+        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' }
+      ]
+    ],
     info: {
       avatar: {
         title: 'title',
