@@ -29,7 +29,7 @@
     .metadata
       display flex
       flex-direction row
-      justify-content center
+      justify-content space-between
       align-items center
       flex-wrap wrap
       .chip
@@ -40,7 +40,10 @@
           background-color grey
           color white
           border-radius inherit
-          padding 0 10px
+        .value
+          font-weight bold
+        .key
         .value
           padding 0 10px
+          font-size 12px
 </style>

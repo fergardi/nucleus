@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+const float = (min, max) => {
+  return min + Math.random() * (max - min)
+}
+const coordinates = () => {
+  return [float(42.5, 42.7), float(-5.5, -5.7)]
+}
+
 Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
@@ -14,14 +21,15 @@ const vuex = new Vuex.Store({
         { name: 'Incidentes', radio: false, checked: true, layers: [
           { name: 'Activos', radio: false, checked: true, items: [
             {
+              coordinates: coordinates(),
               avatar: {
                 color: 'red',
-                title: 'Incendio',
-                subtitle: 'Mandando efectivos',
+                title: 'Nombre',
+                subtitle: 'Lugar',
                 image: 'https://image.flaticon.com/icons/svg/307/307003.svg'
               },
               media: {
-                title: 'Muy peligroso',
+                title: 'Estado',
                 subtitle: '01/01/1971 00:00',
                 image: 'https://images.unsplash.com/photo-1481121871234-1f3fb96a5f45'
               },
@@ -42,6 +50,7 @@ const vuex = new Vuex.Store({
           ] },
           { name: 'Inactivos', radio: false, checked: true, items: [
             {
+              coordinates: coordinates(),
               avatar: {
                 color: 'red',
                 title: 'Incendio descomunal',
@@ -72,6 +81,7 @@ const vuex = new Vuex.Store({
         { name: 'Recursos', radio: false, checked: true, layers: [
           { name: 'Activos', radio: false, checked: true, items: [
             {
+              coordinates: coordinates(),
               avatar: {
                 color: 'orange',
                 title: 'title',
@@ -100,6 +110,7 @@ const vuex = new Vuex.Store({
           ] },
           { name: 'Inactivos', radio: false, checked: true, items: [
             {
+              coordinates: coordinates(),
               avatar: {
                 color: 'green',
                 title: 'title',
@@ -130,6 +141,7 @@ const vuex = new Vuex.Store({
         { name: 'Infraestructuras', radio: false, checked: true, layers: [
           { name: 'Bases', radio: false, checked: true, items: [
             {
+              coordinates: coordinates(),
               avatar: {
                 color: 'blue',
                 title: 'title',

@@ -6,13 +6,13 @@
       v-tilelayer(:url="map.url")
 
       v-group(v-for="category in layers")
-        v-marker(v-for="marker1 in category.items", :lat-lng="coordinates()", :icon="icon(marker1.avatar.image, marker1.avatar.color)", @l-click="select($event, marker1)")
+        v-marker(v-for="marker1 in category.items", :lat-lng="marker1.coordinates", :icon="icon(marker1.avatar.image, marker1.avatar.color)", @l-click="select(marker1)")
 
         v-group(v-for="subcategory in category.layers")
-          v-marker(v-for="marker2 in subcategory.items", :lat-lng="coordinates()", :icon="icon(marker2.avatar.image, marker2.avatar.color)", @l-click="select($event, marker2)")
+          v-marker(v-for="marker2 in subcategory.items", :lat-lng="marker2.coordinates", :icon="icon(marker2.avatar.image, marker2.avatar.color)", @l-click="select(marker2)")
 
           v-group(v-for="layer in subcategory.layers")
-            v-marker(v-for="marker3 in layer.items", :lat-lng="coordinates()", :icon="icon(marker3.avatar.image, marker3.avatar.color)", @l-click="select($event, marker3)")
+            v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.image, marker3.avatar.color)", @l-click="select(marker3)")
 
     mu-float-button.float-button(icon="add")
 </template>
@@ -55,22 +55,10 @@
       }, this.timeout)
     },
     methods: {
-      select (event, item) {
-        store.commit('setInfo', item)
+      select (marker) {
+        store.commit('setInfo', marker)
         if (!store.state.right) store.commit('toggleRight')
-        this.map.center = [event.latlng.lat, event.latlng.lng]
-      },
-      open () {
-        this.popup = true
-      },
-      close () {
-        this.popup = false
-      },
-      float (min, max) {
-        return min + Math.random() * (max - min)
-      },
-      coordinates () {
-        return [this.float(42.5, 42.7), this.float(-5.5, -5.7)]
+        this.map.center = [marker.coordinates[0], marker.coordinates[1]]
       },
       icon (url, className) {
         return L.icon({ // eslint-disable-line
