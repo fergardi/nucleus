@@ -6,66 +6,169 @@ Vue.use(Vuex)
 const vuex = new Vuex.Store({
   state: {
     message: null,
+    info: null,
+    left: false,
+    right: false,
     layers: [
-      { name: 'Categoría', radio: true, checked: true, layers: [
-        { name: 'Subcategoría', radio: true, checked: true, layers: [
-          { name: 'Un radio', radio: true, checked: true },
-          { name: 'Otro radio', radio: true, checked: true }
+      { name: 'Capas Operacionales', radio: false, checked: true, layers: [
+        { name: 'Incidentes', radio: false, checked: true, layers: [
+          { name: 'Activos', radio: false, checked: true, items: [
+            {
+              avatar: {
+                color: 'red',
+                title: 'Incendio',
+                subtitle: 'Mandando efectivos',
+                image: 'https://image.flaticon.com/icons/svg/307/307003.svg'
+              },
+              media: {
+                title: 'Muy peligroso',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://images.unsplash.com/photo-1481121871234-1f3fb96a5f45'
+              },
+              content: [
+                {
+                  title: 'General',
+                  subtitle: 'Datos generales del incendio',
+                  metadata: [
+                    { key: 'Hectáreas', value: 1000 },
+                    { key: 'Personas', value: 100 },
+                    { key: 'Vehículos', value: 3 },
+                    { key: 'Viviendas', value: 94 },
+                    { key: 'Árboles', value: 0 }
+                  ]
+                }
+              ]
+            }
+          ] },
+          { name: 'Inactivos', radio: false, checked: true, items: [
+            {
+              avatar: {
+                color: 'red',
+                title: 'Incendio descomunal',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://image.flaticon.com/icons/svg/307/307003.svg'
+              },
+              media: {
+                title: 'title',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://images.unsplash.com/photo-1481121871234-1f3fb96a5f45'
+              },
+              content: [
+                {
+                  title: 'General',
+                  subtitle: 'Datos generales del incendio',
+                  metadata: [
+                    { key: 'Hectáreas', value: 234 },
+                    { key: 'Personas', value: 22 },
+                    { key: 'Vehículos', value: 33 },
+                    { key: 'Viviendas', value: 945 },
+                    { key: 'Árboles', value: 230 }
+                  ]
+                }
+              ]
+            }
+          ] }
+        ] },
+        { name: 'Recursos', radio: false, checked: true, layers: [
+          { name: 'Activos', radio: false, checked: true, items: [
+            {
+              avatar: {
+                color: 'orange',
+                title: 'title',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://image.flaticon.com/icons/svg/307/307021.svg'
+              },
+              media: {
+                title: 'title',
+                subtitle: 'subtitle',
+                image: 'https://images.unsplash.com/photo-1455817626763-72371127d324'
+              },
+              content: [
+                {
+                  title: 'title',
+                  subtitle: 'subtitle',
+                  metadata: [
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' }
+                  ]
+                }
+              ]
+            }
+          ] },
+          { name: 'Inactivos', radio: false, checked: true, items: [
+            {
+              avatar: {
+                color: 'green',
+                title: 'title',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://image.flaticon.com/icons/svg/307/307021.svg'
+              },
+              media: {
+                title: 'title',
+                subtitle: 'subtitle',
+                image: 'https://images.unsplash.com/photo-1455817626763-72371127d324'
+              },
+              content: [
+                {
+                  title: 'title',
+                  subtitle: 'subtitle',
+                  metadata: [
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' }
+                  ]
+                }
+              ]
+            }
+          ] }
+        ] },
+        { name: 'Infraestructuras', radio: false, checked: true, layers: [
+          { name: 'Bases', radio: false, checked: true, items: [
+            {
+              avatar: {
+                color: 'blue',
+                title: 'title',
+                subtitle: '01/01/1971 00:00',
+                image: 'https://image.flaticon.com/icons/svg/307/307034.svg'
+              },
+              media: {
+                title: 'title',
+                subtitle: 'subtitle',
+                image: 'https://images.unsplash.com/photo-1418439317068-f5666cbb23a3'
+              },
+              content: [
+                {
+                  title: 'title',
+                  subtitle: 'subtitle',
+                  metadata: [
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' },
+                    { key: 'key', value: 'value' }
+                  ]
+                }
+              ]
+            }
+          ] }
         ] }
-      ] },
-      { name: 'Capa suelta', radio: false, checked: true },
-      { name: 'Categoría', radio: false, checked: true, layers: [
-        { name: 'Un checkbox', radio: false, checked: true },
-        { name: 'Otro checkbox', radio: false, checked: true }
       ] }
-    ],
-    groups: [
-      [
-        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307003.svg', class: 'red' }
-      ],
-      [
-        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/122/122492.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' },
-        { icon: 'https://image.flaticon.com/icons/svg/186/186696.svg', class: 'green' }
-      ],
-      [
-        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' },
-        { icon: 'https://image.flaticon.com/icons/svg/307/307034.svg', class: 'blue' }
-      ]
-    ],
-    info: {
-      avatar: {
-        title: 'title',
-        subtitle: 'subtitle',
-        image: 'http://www.muse-ui.org/images/sun.jpg'
-      },
-      media: {
-        title: 'title',
-        subtitle: 'subtitle',
-        image: 'http://www.muse-ui.org/images/sun.jpg'
-      },
-      content: {
-        title: 'title',
-        subtitle: 'subtitle',
-        text: 'text'
-      },
-      metadata: [
-        { key: 'key', value: 'value' },
-        { key: 'key', value: 'value' },
-        { key: 'key', value: 'value' },
-        { key: 'key', value: 'value' },
-        { key: 'key', value: 'value' }
-      ]
+    ]
+  },
+  mutations: {
+    setInfo (state, info) {
+      state.info = info
+    },
+    toggleLeft (state) {
+      state.left = !state.left
+    },
+    toggleRight (state) {
+      state.right = !state.right
     }
   }
 })

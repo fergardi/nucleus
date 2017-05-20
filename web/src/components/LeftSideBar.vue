@@ -6,7 +6,8 @@
       mu-sub-header {{ 'lbl_toc' | i18n }}
       mu-text-field.search(:label="i18n('lbl_search')", :hintText="i18n('lbl_search')", v-model="search", labelfloat)
       layer-list(:layers="filtered")
-    mu-list
+      
+    //mu-list
       info-card(:info="info")
 </template>
 

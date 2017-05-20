@@ -1,7 +1,6 @@
 <template lang="pug">
   .side-bar
-    mu-list
-      info-card(:info="info")
+    info-card(v-if="info", :info="info")
 </template>
 
 <script>

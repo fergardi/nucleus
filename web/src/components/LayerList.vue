@@ -1,9 +1,16 @@
 <template lang="pug">
   .layer-list
-    mu-list-item(v-for="layer in layers", :title="layer.name", slot="nested")
-      mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right")
-      mu-checkbox(v-else, v-model="layer.checked", slot="right")
-      layer-list(:layers="layer.layers")
+    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true")
+      mu-switch(v-if="category.radio", v-model="category.checked", slot="right")
+      mu-checkbox(v-else, v-model="category.checked", slot="right")
+
+      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true")
+        mu-switch(v-if="subcategory.radio", v-model="subcategory.checked", slot="right")
+        mu-checkbox(v-else, v-model="subcategory.checked", slot="right")
+        
+        mu-list-item.layer(v-for="layer in subcategory.layers", :title="layer.name", slot="nested")
+          mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right")
+          mu-checkbox(v-else, v-model="layer.checked", slot="right")
 </template>
 
 <script>
@@ -23,4 +30,10 @@
 </script>
 
 <style lang="stylus">
+  .category
+    padding-left 0px
+    .subcategory
+      padding-left 10px
+      .layer
+        padding-left 20px
 </style>

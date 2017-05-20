@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import store from './vuex/store'
   import LeftSideBar from './components/LeftSideBar.vue'
   import RightSideBar from './components/RightSideBar.vue'
   import SnackBar from './components/SnackBar.vue'
@@ -33,20 +34,26 @@
     components: { LeftSideBar, RightSideBar, SnackBar, ToolBox },
     data () {
       return {
-        left: false,
-        right: false,
         docked: true
       }
     },
     methods: {
-      toggleLeft (flag) {
-        this.left = !this.left
+      toggleLeft () {
+        store.commit('toggleLeft')
       },
-      toggleRight (flag) {
-        this.right = !this.right
+      toggleRight () {
+        store.commit('toggleRight')
       },
       i18n (string) {
         return string // TODO
+      }
+    },
+    computed: {
+      left () {
+        return store.state.left
+      },
+      right () {
+        return store.state.right
       }
     }
   }

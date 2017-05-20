@@ -1,10 +1,19 @@
 <template lang="pug">
   .leaflet-map
     loading-progress(:loading="loading")
+
     v-map#map(:zoom="map.zoom", :center="map.center")
       v-tilelayer(:url="map.url")
-      v-group(v-for="markers in groups")
-        v-marker(v-for="marker in markers", :lat-lng="coordinates()", :icon="icon(marker.icon, marker.class)")
+
+      v-group(v-for="category in layers")
+        v-marker(v-for="marker1 in category.items", :lat-lng="coordinates()", :icon="icon(marker1.avatar.image, marker1.avatar.color)", @l-click="select($event, marker1)")
+
+        v-group(v-for="subcategory in category.layers")
+          v-marker(v-for="marker2 in subcategory.items", :lat-lng="coordinates()", :icon="icon(marker2.avatar.image, marker2.avatar.color)", @l-click="select($event, marker2)")
+
+          v-group(v-for="layer in subcategory.layers")
+            v-marker(v-for="marker3 in layer.items", :lat-lng="coordinates()", :icon="icon(marker3.avatar.image, marker3.avatar.color)", @l-click="select($event, marker3)")
+
     mu-float-button.float-button(icon="add")
 </template>
 
@@ -29,11 +38,12 @@
         loading: true,
         timeout: 2000,
         popup: true,
+        selected: null,
         map: {
           url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
           center: [42.5804942, -5.599022500000046],
           zoom: 11,
-          iconSize: 32 // px, even
+          iconSize: 40 // px, even
         }
       }
     },
@@ -45,6 +55,11 @@
       }, this.timeout)
     },
     methods: {
+      select (event, item) {
+        store.commit('setInfo', item)
+        if (!store.state.right) store.commit('toggleRight')
+        this.map.center = [event.latlng.lat, event.latlng.lng]
+      },
       open () {
         this.popup = true
       },
@@ -75,9 +90,6 @@
       },
       layers () {
         return store.state.layers
-      },
-      groups () {
-        return store.state.groups
       }
     }
   }
@@ -86,17 +98,31 @@
 <style src="../../node_modules/leaflet/dist/leaflet.css"></style>
 
 <style lang="stylus">
+  .leaflet-control-zoom
+    display none
   .marker
     border-radius 50%
     padding 2px
     border 2px solid
     background-color rgba(255,255,255,0.8)
+    &:hover
+      border-color black !important
     &.red
       border-color red
     &.green
       border-color green
     &.blue
       border-color blue
+    &.yellow
+      border-color yellow
+    &.orange
+      border-color orange
+    &.purple
+      border-color purple
+    &.pink
+      border-color pink
+    &.cyan
+      border-color cyan
 </style>
 
 <style lang="stylus" scoped>
