@@ -2,7 +2,7 @@
   .app
     mu-appbar
       mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
-      tool-box
+      tool-box(slot="default")
       mu-icon-button(icon="menu", slot="right", @click="toggleRight")
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")

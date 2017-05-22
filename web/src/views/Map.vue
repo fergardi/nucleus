@@ -41,8 +41,8 @@
         selected: null,
         map: {
           url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-          center: [42.5804942, -5.599022500000046],
-          zoom: 11,
+          center: [42.58, -5.60],
+          zoom: 12,
           iconSize: 40 // px, even
         }
       }
