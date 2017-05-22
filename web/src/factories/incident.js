@@ -53,16 +53,6 @@ const factory = {
       },
       content: [
         {
-          title: 'Galería',
-          subtitle: 'Imágenes adjuntas',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
-          ]
-        },
-        {
           title: 'General',
           subtitle: 'Información adicional',
           metadata: [
@@ -74,6 +64,16 @@ const factory = {
           ]
         },
         {
+          title: 'Galería',
+          subtitle: 'Imágenes adjuntas',
+          gallery: [
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
+          ]
+        },
+        {
           title: 'Documentos',
           subtitle: 'Ficheros adjuntos',
           files: [
@@ -82,6 +82,20 @@ const factory = {
             { src: 'https://image.flaticon.com/icons/svg/136/136545.svg', title: 'video.mp4', subtitle: '29/01/1523' },
             { src: 'https://image.flaticon.com/icons/svg/136/136543.svg', title: 'presentation.ppt', subtitle: '29/01/1523' }
           ]
+        },
+        {
+          title: 'Climatología',
+          subtitle: 'Datos en tiempo real',
+          weather: {
+            src: 'https://image.flaticon.com/icons/svg/414/414973.svg',
+            title: 'Nuboso',
+            subtitle: 'Probabilidad alta de lluvia',
+            metadata: [
+              { key: 'Grados', value: factory.number(30) + ' ºC' },
+              { key: 'Viento', value: factory.number(250) + ' km/h' },
+              { key: 'Humedad', value: factory.number(100) + ' %' }
+            ]
+          }
         }
       ]
     }

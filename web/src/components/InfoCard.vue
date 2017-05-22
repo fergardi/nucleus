@@ -30,6 +30,16 @@
             span(slot='title') {{ image.title }}
             span(slot='subTitle') {{ image.subtitle }}
             mu-icon-button(icon='remove_red_eye', slot='action')
+
+      mu-card.weather-card(v-if="block.weather")
+        mu-card-media(:title="block.weather.title", :subTitle="block.weather.subtitle")
+          img.weather(:src="block.weather.src")
+
+        mu-card-text
+          .metadata
+            mu-chip.chip(v-for="data in block.weather.metadata")
+              span.key {{ data.key }}
+              span.value {{ data.value }}
 </template>
 
 <script>
@@ -53,13 +63,16 @@
         display flex
         flex-wrap nowrap
         overflow-x auto
-      .mu-grid-tile-titlebar
-        background-color rgba(0, 0, 0, 0.6)
+        .mu-grid-tile-titlebar
+          background-color rgba(0, 0, 0, 0.6) !important
+    .weather-card
+      img.weather
+        padding 0 50px
     .metadata
       display flex
-      flex-direction row
-      justify-content space-between
-      align-items center
+      flex-direction column
+      justify-content flex-start
+      align-items left
       flex-wrap wrap
       .chip
         margin 1px

@@ -51,6 +51,15 @@ const factory = {
       },
       content: [
         {
+          title: 'General',
+          subtitle: 'Información adicional',
+          metadata: [
+            { key: 'Distancia', value: factory.number(1000) },
+            { key: 'Tiempo', value: factory.number(1000) },
+            { key: 'Gasolina', value: factory.number(1000) }
+          ]
+        },
+        {
           title: 'Galería',
           subtitle: 'Imágenes adjuntas',
           gallery: [
@@ -58,15 +67,6 @@ const factory = {
             { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
             { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
             { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
-          ]
-        },
-        {
-          title: 'General',
-          subtitle: 'Información adicional',
-          metadata: [
-            { key: 'Distancia', value: factory.number(1000) },
-            { key: 'Tiempo', value: factory.number(1000) },
-            { key: 'Gasolina', value: factory.number(1000) }
           ]
         },
         {
