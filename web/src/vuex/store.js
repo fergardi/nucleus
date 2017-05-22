@@ -10,6 +10,7 @@ Vue.use(Vuex)
 const vuex = new Vuex.Store({
   state: {
     message: null,
+    dialog: null,
     info: null,
     left: false,
     right: false,
@@ -32,6 +33,13 @@ const vuex = new Vuex.Store({
   mutations: {
     setInfo (state, info) {
       state.info = info
+    },
+    setMessage (state, message) {
+      state.message = message
+    },
+    setDialog (state, dialog) {
+      state.dialog = null
+      state.dialog = dialog
     },
     toggleLeft (state) {
       state.left = !state.left

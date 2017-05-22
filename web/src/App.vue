@@ -19,6 +19,7 @@
 
     .main
       snack-bar
+      pop-up(v-if="dialog")
       router-view.animation.fadeIn
 </template>
 
@@ -28,10 +29,11 @@
   import RightSideBar from './components/RightSideBar.vue'
   import SnackBar from './components/SnackBar.vue'
   import ToolBox from './components/ToolBox.vue'
+  import PopUp from './components/PopUp.vue'
 
   export default {
     name: 'App',
-    components: { LeftSideBar, RightSideBar, SnackBar, ToolBox },
+    components: { LeftSideBar, RightSideBar, SnackBar, ToolBox, PopUp },
     data () {
       return {
         docked: true
@@ -54,6 +56,9 @@
       },
       right () {
         return store.state.right
+      },
+      dialog () {
+        return store.state.dialog
       }
     }
   }

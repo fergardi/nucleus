@@ -33,16 +33,16 @@
             img(:src='image.src')
             span(slot='title') {{ image.title }}
             span(slot='subTitle') {{ image.subtitle }}
-            mu-icon-button(icon='remove_red_eye', slot='action')
+            mu-icon-button(icon='remove_red_eye', slot='action', @click="show(image)")
 
       // FILES
       .container(v-if="block.files")
         mu-grid-list.files
-          mu-grid-tile(v-for='image, index in block.files', :key='index')
-            img(:src='image.src')
-            span(slot='title') {{ image.title }}
-            span(slot='subTitle') {{ image.subtitle }}
-            mu-icon-button(icon='remove_red_eye', slot='action')
+          mu-grid-tile(v-for='file, index in block.files', :key='index')
+            img(:src='file.src')
+            span(slot='title') {{ file.title }}
+            span(slot='subTitle') {{ file.subtitle }}
+            mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
 
       // WEATHER
       mu-card.weather-card(v-if="block.weather")
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
 
   export default {
@@ -68,6 +69,11 @@
       'v-marker': Vue2Leaflet.Marker,
       'v-icondefault': Vue2Leaflet.IconDefault,
       'v-polyline': Vue2Leaflet.Polyline
+    },
+    methods: {
+      show (item) {
+        store.commit('setDialog', item)
+      }
     }
   }
 </script>

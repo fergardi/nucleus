@@ -1,6 +1,7 @@
 <template lang="pug">
   .side-bar
     info-card(v-if="info", :info="info")
+    p.padding(v-else) Seleccione un elemento para continuar
 </template>
 
 <script>

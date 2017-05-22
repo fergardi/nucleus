@@ -48,10 +48,10 @@
       }
     },
     mounted () {
-      store.state.message = 'Loading data...'
+      store.commit('setMessage', 'Loading data...')
       setTimeout(() => {
         this.loading = false
-        store.state.message = 'Data loaded succesfully!'
+        store.commit('setMessage', 'Ready!')
       }, this.timeout)
     },
     methods: {
