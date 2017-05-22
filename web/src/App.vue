@@ -92,6 +92,8 @@
     .side-bar
       height calc(100% - 64px)
       overflow-y auto
+  .mu-grid-tile-titlebar
+    background-color rgba(0, 0, 0, 0.6) !important
   /* ANIMATION TRANSITION */
   /*base code*/
   .animation

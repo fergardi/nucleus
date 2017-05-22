@@ -15,6 +15,15 @@ const factory = {
     'orange',
     'yellow'
   ],
+  weathers: [
+    'https://image.flaticon.com/icons/svg/414/414935.svg',
+    'https://image.flaticon.com/icons/svg/414/414934.svg',
+    'https://image.flaticon.com/icons/svg/414/414926.svg',
+    'https://image.flaticon.com/icons/svg/414/414936.svg',
+    'https://image.flaticon.com/icons/svg/414/414975.svg',
+    'https://image.flaticon.com/icons/svg/414/414973.svg'
+
+  ],
   float (min, max) {
     return min + Math.random() * (max - min)
   },
@@ -32,6 +41,9 @@ const factory = {
   },
   color () {
     return factory.colors[Math.floor(Math.random() * factory.colors.length)]
+  },
+  weather () {
+    return factory.weathers[Math.floor(Math.random() * factory.weathers.length)]
   },
   date () {
     return new Date(+(new Date()) - Math.floor(Math.random() * 10000000000)).toString()
@@ -87,9 +99,9 @@ const factory = {
           title: 'Climatología',
           subtitle: 'Datos en tiempo real',
           weather: {
-            src: 'https://image.flaticon.com/icons/svg/414/414973.svg',
-            title: 'Nuboso',
-            subtitle: 'Probabilidad alta de lluvia',
+            title: 'Tiempo',
+            subtitle: 'Datos actuales',
+            src: factory.weather(),
             metadata: [
               { key: 'Grados', value: factory.number(30) + ' ºC' },
               { key: 'Viento', value: factory.number(250) + ' km/h' },

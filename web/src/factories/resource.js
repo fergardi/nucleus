@@ -67,11 +67,6 @@ const factory = {
             factory.coordinates(),
             factory.coordinates(),
             factory.coordinates(),
-            factory.coordinates(),
-            factory.coordinates(),
-            factory.coordinates(),
-            factory.coordinates(),
-            factory.coordinates(),
             factory.coordinates()
           ]
         },

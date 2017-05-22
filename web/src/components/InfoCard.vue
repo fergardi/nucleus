@@ -86,8 +86,6 @@
         display flex
         flex-wrap nowrap
         overflow-x auto
-        .mu-grid-tile-titlebar
-          background-color rgba(0, 0, 0, 0.6) !important
     .positions
       height 250px
     .weather-card

@@ -51,7 +51,7 @@ const factory = {
           title: 'General',
           subtitle: 'Información adicional',
           metadata: [
-            { key: 'Personas', value: factory.number(1000) },
+            { key: 'Personal', value: factory.number(1000) },
             { key: 'Vehículos', value: factory.number(1000) }
           ]
         },
