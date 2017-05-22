@@ -51,13 +51,17 @@ const factory = {
         subtitle: factory.date(),
         src: type.image
       },
-      gallery: [
-        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
-        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
-      ],
       content: [
+        {
+          title: 'Galería',
+          subtitle: 'Imágenes adjuntas',
+          gallery: [
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+            { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
+          ]
+        },
         {
           title: 'General',
           subtitle: 'Información adicional',
@@ -67,6 +71,16 @@ const factory = {
             { key: 'Vehículos', value: factory.number(1000) },
             { key: 'Viviendas', value: factory.number(1000) },
             { key: 'Árboles', value: factory.number(1000) }
+          ]
+        },
+        {
+          title: 'Documentos',
+          subtitle: 'Ficheros adjuntos',
+          files: [
+            { src: 'https://image.flaticon.com/icons/svg/136/136522.svg', title: 'document.pdf', subtitle: '29/01/1523' },
+            { src: 'https://image.flaticon.com/icons/svg/136/136521.svg', title: 'file.docx', subtitle: '29/01/1523' },
+            { src: 'https://image.flaticon.com/icons/svg/136/136545.svg', title: 'video.mp4', subtitle: '29/01/1523' },
+            { src: 'https://image.flaticon.com/icons/svg/136/136543.svg', title: 'presentation.ppt', subtitle: '29/01/1523' }
           ]
         }
       ]

@@ -6,21 +6,30 @@
     mu-card-media(:title="info.media.title", :subTitle="info.media.subtitle")
       img(:src="info.media.src")
 
-    .container(v-if="info.gallery")
-      mu-grid-list.gallery
-        mu-grid-tile(v-for='image, index in info.gallery', :key='index')
-          img(:src='image.src')
-          span(slot='title') {{ image.title }}
-          span(slot='subTitle') {{ image.subtitle }}
-          mu-icon-button(icon='edit', slot='action')
-
     template(v-for="block in info.content")
       mu-card-title(:title="block.title", :subTitle="block.subtitle")
-      mu-card-text
+      
+      mu-card-text(v-if="block.metadata")
         .metadata
           mu-chip.chip(v-for="data in block.metadata")
             span.key {{ data.key }}
             span.value {{ data.value }}
+
+      .container(v-if="block.gallery")
+        mu-grid-list.gallery
+          mu-grid-tile(v-for='image, index in block.gallery', :key='index')
+            img(:src='image.src')
+            span(slot='title') {{ image.title }}
+            span(slot='subTitle') {{ image.subtitle }}
+            mu-icon-button(icon='remove_red_eye', slot='action')
+
+      .container(v-if="block.files")
+        mu-grid-list.files
+          mu-grid-tile(v-for='image, index in block.files', :key='index')
+            img(:src='image.src')
+            span(slot='title') {{ image.title }}
+            span(slot='subTitle') {{ image.subtitle }}
+            mu-icon-button(icon='remove_red_eye', slot='action')
 </template>
 
 <script>
@@ -39,10 +48,13 @@
       flex-wrap wrap
       justify-content space-around
       .gallery
+      .files
         margin 0 !important
         display flex
         flex-wrap nowrap
         overflow-x auto
+      .mu-grid-tile-titlebar
+        background-color rgba(0, 0, 0, 0.6)
     .metadata
       display flex
       flex-direction row
