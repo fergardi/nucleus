@@ -30,9 +30,11 @@
         this.popup = false
       },
       download () {
+        window.open(this.dialog.src, '_blank')
         this.popup = false
       },
       open () {
+        window.open(this.dialog.src, '_blank')
         this.popup = false
       }
     },

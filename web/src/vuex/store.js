@@ -10,7 +10,7 @@ Vue.use(Vuex)
 const vuex = new Vuex.Store({
   state: {
     message: null,
-    dialog: null,
+    dialog: {},
     info: null,
     left: false,
     right: false,
@@ -35,10 +35,11 @@ const vuex = new Vuex.Store({
       state.info = info
     },
     setMessage (state, message) {
+      state.message = null // to force a change for watchers
       state.message = message
     },
     setDialog (state, dialog) {
-      state.dialog = null
+      state.dialog = null // to force a change for watchers
       state.dialog = dialog
     },
     toggleLeft (state) {

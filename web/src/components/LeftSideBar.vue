@@ -1,14 +1,7 @@
 <template lang="pug">
   .side-bar
     mu-list.padding
-      mu-sub-header {{ 'lbl_opacity' | i18n }}
-      mu-slider.slider(v-model="opacity")
-      mu-sub-header {{ 'lbl_toc' | i18n }}
-      mu-text-field.search(:label="i18n('lbl_search')", :hintText="i18n('lbl_search')", v-model="search", labelfloat)
       layer-list(:layers="filtered")
-      
-    //mu-list
-      info-card(:info="info")
 </template>
 
 <script>
@@ -21,8 +14,7 @@
     components: { LayerList, InfoCard },
     data () {
       return {
-        opacity: 50,
-        search: ''
+        opacity: 50
       }
     },
     methods: {
@@ -36,9 +28,6 @@
       },
       layers () {
         return store.state.layers
-      },
-      info () {
-        return store.state.info
       }
     }
   }

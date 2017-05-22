@@ -1,10 +1,10 @@
 <template lang="pug">
   .layer-list
-    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true")
+    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested")
       mu-switch(v-if="category.radio", v-model="category.checked", slot="right")
       mu-checkbox(v-else, v-model="category.checked", slot="right")
 
-      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true")
+      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested")
         mu-switch(v-if="subcategory.radio", v-model="subcategory.checked", slot="right")
         mu-checkbox(v-else, v-model="subcategory.checked", slot="right")
         

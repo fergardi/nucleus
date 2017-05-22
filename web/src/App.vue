@@ -6,14 +6,14 @@
       mu-icon-button(icon="menu", slot="right", @click="toggleRight")
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
-      mu-appbar {{ 'lbl_navbar' | i18n }}
+      mu-appbar Capas
         mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
         mu-icon-button.hidden(icon="close", slot="right", @click="toggleLeft")
       left-side-bar
 
     mu-drawer.sidebar(:open="right", :docked="docked", @close="toggleRight", right)
-      mu-appbar {{ 'lbl_navbar' | i18n }}
-        mu-icon-button.hidden(icon="close", slot="left", @click="toggleRight")
+      mu-appbar Detalles
+        mu-icon-button(icon="chevron_left", slot="left", @click="clearInfo")
         mu-icon-button(icon="menu", slot="right", @click="toggleRight")
       right-side-bar
 
@@ -45,6 +45,9 @@
       },
       toggleRight () {
         store.commit('toggleRight')
+      },
+      clearInfo () {
+        store.commit('setInfo', null)
       },
       i18n (string) {
         return string // TODO
