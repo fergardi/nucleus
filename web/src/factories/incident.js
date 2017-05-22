@@ -44,13 +44,19 @@ const factory = {
         color: factory.color(),
         title: type.name,
         subtitle: factory.status(),
-        image: type.icon
+        src: type.icon
       },
       media: {
         title: factory.status(),
         subtitle: factory.date(),
-        image: type.image
+        src: type.image
       },
+      gallery: [
+        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' },
+        { src: 'https://images.unsplash.com/photo-1453060590797-2d5f419b54cb', title: 'Imagen', subtitle: 'Subtítulo' }
+      ],
       content: [
         {
           title: 'General',

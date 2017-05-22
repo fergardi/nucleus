@@ -6,13 +6,13 @@
       v-tilelayer(:url="map.url")
 
       v-group(v-for="category in layers")
-        v-marker(v-for="marker1 in category.items", :lat-lng="marker1.coordinates", :icon="icon(marker1.avatar.image, marker1.avatar.color)", @l-click="select(marker1)")
+        v-marker(v-for="marker1 in category.items", :lat-lng="marker1.coordinates", :icon="icon(marker1.avatar.src, marker1.avatar.color)", @l-click="select(marker1)")
 
         v-group(v-for="subcategory in category.layers")
-          v-marker(v-for="marker2 in subcategory.items", :lat-lng="marker2.coordinates", :icon="icon(marker2.avatar.image, marker2.avatar.color)", @l-click="select(marker2)")
+          v-marker(v-for="marker2 in subcategory.items", :lat-lng="marker2.coordinates", :icon="icon(marker2.avatar.src, marker2.avatar.color)", @l-click="select(marker2)")
 
           v-group(v-for="layer in subcategory.layers")
-            v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.image, marker3.avatar.color)", @l-click="select(marker3)")
+            v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
 
     mu-float-button.float-button(icon="add")
 </template>
@@ -58,7 +58,7 @@
       select (marker) {
         store.commit('setInfo', marker)
         if (!store.state.right) store.commit('toggleRight')
-        this.map.center = [marker.coordinates[0], marker.coordinates[1]]
+        // this.map.center = [marker.coordinates[0], marker.coordinates[1]]
       },
       icon (url, className) {
         return L.icon({ // eslint-disable-line
@@ -89,12 +89,10 @@
   .leaflet-control-zoom
     display none
   .marker
+  .avatar
     border-radius 50%
     padding 2px
     border 2px solid
-    background-color rgba(255,255,255,0.8)
-    &:hover
-      border-color black !important
     &.red
       border-color red
     &.green
@@ -111,6 +109,9 @@
       border-color pink
     &.cyan
       border-color cyan
+    background-color rgba(255,255,255,0.9)
+  .marker:hover
+    border-color black !important
 </style>
 
 <style lang="stylus" scoped>

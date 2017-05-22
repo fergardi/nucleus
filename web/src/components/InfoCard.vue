@@ -1,10 +1,18 @@
 <template lang="pug">
   mu-card.info-card
     mu-card-header(:title="info.avatar.title", :subTitle="info.avatar.subtitle")
-      mu-avatar.marker(:src="info.avatar.image", slot="avatar", :class="info.avatar.color")
+      mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     mu-card-media(:title="info.media.title", :subTitle="info.media.subtitle")
-      img(:src="info.media.image")
+      img(:src="info.media.src")
+
+    .container(v-if="info.gallery")
+      mu-grid-list.gallery
+        mu-grid-tile(v-for='image, index in info.gallery', :key='index')
+          img(:src='image.src')
+          span(slot='title') {{ image.title }}
+          span(slot='subTitle') {{ image.subtitle }}
+          mu-icon-button(icon='edit', slot='action')
 
     template(v-for="block in info.content")
       mu-card-title(:title="block.title", :subTitle="block.subtitle")
@@ -26,6 +34,15 @@
   .info-card
     .mu-avatar
       background-color transparent
+    .container
+      display flex
+      flex-wrap wrap
+      justify-content space-around
+      .gallery
+        margin 0 !important
+        display flex
+        flex-wrap nowrap
+        overflow-x auto
     .metadata
       display flex
       flex-direction row
