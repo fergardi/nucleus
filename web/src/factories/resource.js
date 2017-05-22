@@ -60,6 +60,22 @@ const factory = {
           ]
         },
         {
+          title: 'Histórico',
+          subtitle: 'Últimos movimientos conocidos',
+          positions: [
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates(),
+            factory.coordinates()
+          ]
+        },
+        {
           title: 'Galería',
           subtitle: 'Imágenes adjuntas',
           gallery: [

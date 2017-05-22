@@ -1,20 +1,32 @@
 <template lang="pug">
   mu-card.info-card
+    // HEADER
     mu-card-header(:title="info.avatar.title", :subTitle="info.avatar.subtitle")
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
+    // MEDIA
     mu-card-media(:title="info.media.title", :subTitle="info.media.subtitle")
       img(:src="info.media.src")
 
+    // BLOCKS
     template(v-for="block in info.content")
       mu-card-title(:title="block.title", :subTitle="block.subtitle")
       
+      // METADATA
       mu-card-text(v-if="block.metadata")
         .metadata
           mu-chip.chip(v-for="data in block.metadata")
             span.key {{ data.key }}
             span.value {{ data.value }}
 
+      // MAP POSITIONS
+      v-map.positions(v-if="block.positions", :zoom="10", :center="[42.58, -5.60]")
+        v-tilelayer(url="http://{s}.tile.osm.org/{z}/{x}/{y}.png")
+        v-marker(v-for="position in block.positions", :lat-lng="position")
+        v-polyline(:lat-lngs="block.positions", color="steelblue")
+        v-icondefault(image-path="/img/")
+
+      // GALLERY
       .container(v-if="block.gallery")
         mu-grid-list.gallery
           mu-grid-tile(v-for='image, index in block.gallery', :key='index')
@@ -23,6 +35,7 @@
             span(slot='subTitle') {{ image.subtitle }}
             mu-icon-button(icon='remove_red_eye', slot='action')
 
+      // FILES
       .container(v-if="block.files")
         mu-grid-list.files
           mu-grid-tile(v-for='image, index in block.files', :key='index')
@@ -31,6 +44,7 @@
             span(slot='subTitle') {{ image.subtitle }}
             mu-icon-button(icon='remove_red_eye', slot='action')
 
+      // WEATHER
       mu-card.weather-card(v-if="block.weather")
         mu-card-media(:title="block.weather.title", :subTitle="block.weather.subtitle")
           img.weather(:src="block.weather.src")
@@ -43,9 +57,18 @@
 </template>
 
 <script>
+  import Vue2Leaflet from 'vue2-leaflet'
+
   export default {
     name: 'InfoCard',
-    props: ['info']
+    props: ['info'],
+    components: {
+      'v-map': Vue2Leaflet.Map,
+      'v-tilelayer': Vue2Leaflet.TileLayer,
+      'v-marker': Vue2Leaflet.Marker,
+      'v-icondefault': Vue2Leaflet.IconDefault,
+      'v-polyline': Vue2Leaflet.Polyline
+    }
   }
 </script>
 
@@ -65,12 +88,14 @@
         overflow-x auto
         .mu-grid-tile-titlebar
           background-color rgba(0, 0, 0, 0.6) !important
+    .positions
+      height 250px
     .weather-card
       img.weather
         padding 0 50px
     .metadata
       display flex
-      flex-direction column
+      flex-direction row
       justify-content flex-start
       align-items left
       flex-wrap wrap
