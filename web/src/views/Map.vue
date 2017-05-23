@@ -2,7 +2,7 @@
   .leaflet-map
     loading-progress(:loading="loading")
 
-    v-map#map(:zoom="map.zoom", :center="map.center")
+    v-map#map(:zoom="map.zoom", :center="map.center", ref="map")
       v-tilelayer(:url="map.url")
 
       v-group(v-for="category in layers", v-if="category.checked")
@@ -36,15 +36,7 @@
     data () {
       return {
         loading: true,
-        timeout: 2000,
-        popup: true,
-        selected: null,
-        map: {
-          url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-          center: [42.58, -5.60],
-          zoom: 13,
-          iconSize: 40 // px, even
-        }
+        timeout: 2000
       }
     },
     mounted () {
@@ -53,6 +45,7 @@
         this.loading = false
         store.commit('setMessage', 'Ready!')
       }, this.timeout)
+      store.commit('setMap', this.$refs.map)
     },
     methods: {
       select (marker) {
@@ -78,6 +71,9 @@
       },
       layers () {
         return store.state.layers
+      },
+      map () {
+        return store.state.map
       }
     }
   }

@@ -1,6 +1,6 @@
 <template lang="pug">
   .tool-box
-    mu-icon-button(icon="home")
+    mu-icon-button(icon="home", @click="goHome")
     mu-icon-button(icon="fast_rewind", @click="previousTour")
     mu-icon-button(icon="play_arrow", v-if="!tour", @click="toggleTour")
     mu-icon-button.progress(v-if="tour", @click="toggleTour")
@@ -29,6 +29,7 @@
         if (!store.state.info) {
           store.commit('toggleRight')
           store.commit('setInfo', this.layers[0].layers[0].layers[0].items[this.index])
+          store.commit('setCenter', this.layers[0].layers[0].layers[0].items[this.index].coordinates)
         }
         if (this.tour) {
           this.timer = setInterval(() => {
@@ -37,6 +38,7 @@
               this.value = 0
               this.index = this.index + 1 >= this.layers[0].layers[0].layers[0].items.length ? 0 : this.index + 1
               store.commit('setInfo', this.layers[0].layers[0].layers[0].items[this.index])
+              store.commit('setCenter', this.layers[0].layers[0].layers[0].items[this.index].coordinates)
             }
           }, this.tick)
         } else {
@@ -52,11 +54,16 @@
         if (this.tour) store.commit('toggleTour')
         this.index = this.index - 1 < 0 ? this.layers[0].layers[0].layers[0].items.length - 1 : this.index - 1
         store.commit('setInfo', this.layers[0].layers[0].layers[0].items[this.index])
+        store.commit('setCenter', this.layers[0].layers[0].layers[0].items[this.index].coordinates)
       },
       nextTour () {
         if (this.tour) store.commit('toggleTour')
         this.index = this.index + 1 >= this.layers[0].layers[0].layers[0].items.length ? 0 : this.index + 1
         store.commit('setInfo', this.layers[0].layers[0].layers[0].items[this.index])
+        store.commit('setCenter', this.layers[0].layers[0].layers[0].items[this.index].coordinates)
+      },
+      goHome () {
+        store.commit('setCenter', this.map.center)
       }
     },
     computed: {
@@ -65,6 +72,9 @@
       },
       layers () {
         return store.state.layers
+      },
+      map () {
+        return store.state.map
       }
     }
   }

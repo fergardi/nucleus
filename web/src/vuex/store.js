@@ -16,6 +16,13 @@ const vuex = new Vuex.Store({
     right: false,
     checked: true,
     tour: false,
+    map: {
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      center: [42.58, -5.60],
+      zoom: 13,
+      iconSize: 40, // px, even
+      L: null // leaflet
+    },
     layers: [
       { name: 'Capas Operacionales', radio: false, checked: true, layers: [
         { name: 'Incidentes', radio: false, checked: true, layers: [
@@ -52,6 +59,12 @@ const vuex = new Vuex.Store({
     },
     toggleRight (state) {
       state.right = !state.right
+    },
+    setMap (state, map) {
+      state.map.L = map
+    },
+    setCenter (state, center) {
+      state.map.L.setCenter(center)
     }
   }
 })
