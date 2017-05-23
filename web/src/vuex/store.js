@@ -12,7 +12,7 @@ const vuex = new Vuex.Store({
     message: null,
     dialog: {},
     info: null,
-    left: true,
+    left: false,
     right: false,
     checked: true,
     tour: false,
@@ -26,7 +26,7 @@ const vuex = new Vuex.Store({
     layers: [
       { name: 'Capas Operacionales', radio: false, checked: true, layers: [
         { name: 'Incidentes', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: incident.array(2) },
+          { name: 'Activos', radio: false, checked: true, items: incident.array(5) },
           { name: 'Inactivos', radio: false, checked: true, items: incident.array(5) }
         ] },
         { name: 'Recursos', radio: false, checked: true, layers: [
@@ -64,7 +64,7 @@ const vuex = new Vuex.Store({
       state.map.L = map
     },
     setCenter (state, center) {
-      state.map.L.setCenter(center)
+      state.map.L.panTo(center)
     }
   }
 })

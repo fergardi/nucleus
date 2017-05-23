@@ -44,14 +44,14 @@
       setTimeout(() => {
         this.loading = false
         store.commit('setMessage', 'Ready!')
+        store.commit('setMap', this.$refs.map.mapObject) // store the leaflet map into vuex
       }, this.timeout)
-      store.commit('setMap', this.$refs.map)
     },
     methods: {
       select (marker) {
         store.commit('setInfo', marker)
         if (!store.state.right) store.commit('toggleRight')
-        // this.map.center = [marker.coordinates[0], marker.coordinates[1]]
+        store.commit('setCenter', marker.coordinates)
       },
       icon (url, className) {
         return L.icon({ // eslint-disable-line
