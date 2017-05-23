@@ -15,10 +15,11 @@ const vuex = new Vuex.Store({
     left: true,
     right: false,
     checked: true,
+    tour: false,
     layers: [
       { name: 'Capas Operacionales', radio: false, checked: true, layers: [
         { name: 'Incidentes', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: incident.array(5) },
+          { name: 'Activos', radio: false, checked: true, items: incident.array(2) },
           { name: 'Inactivos', radio: false, checked: true, items: incident.array(5) }
         ] },
         { name: 'Recursos', radio: false, checked: true, layers: [
@@ -42,6 +43,9 @@ const vuex = new Vuex.Store({
     setDialog (state, dialog) {
       state.dialog = null // to force a change for watchers
       state.dialog = dialog
+    },
+    toggleTour (state) {
+      state.tour = !state.tour
     },
     toggleLeft (state) {
       state.left = !state.left
