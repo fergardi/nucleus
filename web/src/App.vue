@@ -3,7 +3,7 @@
     mu-appbar
       mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
       tool-box(slot="default")
-      mu-icon-button(icon="menu", slot="right", @click="toggleRight")
+      mu-icon-button(icon="menu", slot="right", @click="toggleRight", :class="{'hidden' : !info}")
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
       mu-appbar Capas
@@ -13,7 +13,7 @@
 
     mu-drawer.sidebar(:open="right", :docked="docked", @close="toggleRight", right)
       mu-appbar Detalles
-        mu-icon-button(icon="chevron_left", slot="left", @click="clearInfo")
+        mu-icon-button(icon="close", slot="left", @click="clearInfo")
         mu-icon-button(icon="menu", slot="right", @click="toggleRight")
       right-side-bar
 
@@ -48,6 +48,7 @@
       },
       clearInfo () {
         store.commit('setInfo', null)
+        store.commit('toggleRight')
       },
       i18n (string) {
         return string // TODO
@@ -62,6 +63,9 @@
       },
       dialog () {
         return store.state.dialog
+      },
+      info () {
+        return store.state.info
       }
     }
   }

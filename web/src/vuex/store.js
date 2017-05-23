@@ -12,20 +12,21 @@ const vuex = new Vuex.Store({
     message: null,
     dialog: {},
     info: null,
-    left: false,
+    left: true,
     right: false,
+    checked: true,
     layers: [
       { name: 'Capas Operacionales', radio: false, checked: true, layers: [
         { name: 'Incidentes', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: incident.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, items: incident.array(100) }
+          { name: 'Activos', radio: false, checked: true, items: incident.array(5) },
+          { name: 'Inactivos', radio: false, checked: true, items: incident.array(5) }
         ] },
         { name: 'Recursos', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: resource.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, items: resource.array(100) }
+          { name: 'Activos', radio: false, checked: true, items: resource.array(5) },
+          { name: 'Inactivos', radio: false, checked: true, items: resource.array(5) }
         ] },
         { name: 'Infraestructuras', radio: false, checked: true, layers: [
-          { name: 'Bases', radio: false, checked: true, items: infrastructure.array(100) }
+          { name: 'Bases', radio: false, checked: true, items: infrastructure.array(5) }
         ] }
       ] }
     ]
