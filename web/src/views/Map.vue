@@ -13,19 +13,25 @@
 
           v-group(v-for="layer in subcategory.layers", v-if="layer.checked")
             v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
+
+    mu-float-button.float-button(icon="add", @click="panel")
+    overlay-panel
 </template>
 
 <script>
+  import L from 'leaflet'
   import Vue2Leaflet from 'vue2-leaflet'
   import store from '../vuex/store'
   import LoadingProgress from '../components/LoadingProgress.vue'
   import InfoCard from '../components/InfoCard.vue'
+  import OverlayPanel from '../components/OverlayPanel.vue'
 
   export default {
     name: 'Map',
     components: {
       LoadingProgress,
       InfoCard,
+      OverlayPanel,
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
       'v-marker': Vue2Leaflet.Marker,
@@ -43,6 +49,8 @@
         this.loading = false
         store.commit('setMessage', 'Ready!')
         store.commit('setMap', this.$refs.map.mapObject) // store the leaflet map into vuex
+        store.state.map.L.zoomControl.remove()
+        L.control.zoom({ position: 'topright' }).addTo(store.state.map.L)
       }, this.timeout)
     },
     methods: {
@@ -61,6 +69,9 @@
       },
       i18n (string) {
         return string // TODO
+      },
+      panel () {
+        store.commit('togglePanel')
       }
     },
     computed: {
@@ -80,8 +91,6 @@
 <style src="../../node_modules/leaflet/dist/leaflet.css"></style>
 
 <style lang="stylus">
-  .leaflet-control-zoom
-    display none
   .marker
   .avatar
     border-radius 50%
@@ -113,4 +122,9 @@
   #map
     width 100%
     height 100%
+  .float-button
+    position absolute
+    bottom 10px
+    right 10px
+    z-index 5000
 </style>

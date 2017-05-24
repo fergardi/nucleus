@@ -9,7 +9,9 @@ Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
   state: {
+    panel: false,
     message: null,
+    form: {},
     dialog: {},
     info: null,
     left: false,
@@ -26,15 +28,15 @@ const vuex = new Vuex.Store({
     layers: [
       { name: 'Capas Operacionales', radio: false, checked: true, layers: [
         { name: 'Incidentes', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: incident.array(5) },
-          { name: 'Inactivos', radio: false, checked: true, items: incident.array(5) }
+          { name: 'Activos', radio: false, checked: true, items: incident.array(100) },
+          { name: 'Inactivos', radio: false, checked: true, items: incident.array(100) }
         ] },
         { name: 'Recursos', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: resource.array(5) },
-          { name: 'Inactivos', radio: false, checked: true, items: resource.array(5) }
+          { name: 'Activos', radio: false, checked: true, items: resource.array(100) },
+          { name: 'Inactivos', radio: false, checked: true, items: resource.array(100) }
         ] },
         { name: 'Infraestructuras', radio: false, checked: true, layers: [
-          { name: 'Bases', radio: false, checked: true, items: infrastructure.array(5) }
+          { name: 'Bases', radio: false, checked: true, items: infrastructure.array(100) }
         ] }
       ] }
     ]
@@ -59,6 +61,9 @@ const vuex = new Vuex.Store({
     },
     toggleRight (state) {
       state.right = !state.right
+    },
+    togglePanel (state) {
+      state.panel = !state.panel
     },
     setMap (state, map) {
       state.map.L = map

@@ -21,7 +21,6 @@
       snack-bar
       pop-up(v-if="dialog")
       router-view.animation.fadeIn
-      mu-float-button.float-button(icon="add")
 </template>
 
 <script>
@@ -97,16 +96,12 @@
     align-items center
   .mu-drawer
     overflow hidden
+    z-index 9999
     .side-bar
       height calc(100% - 64px)
       overflow-y auto
   .mu-grid-tile-titlebar
     background-color rgba(0, 0, 0, 0.6) !important
-  .float-button
-    position absolute
-    bottom 10px
-    right 10px
-    z-index 9999
 </style>
 
 <style lang="stylus">
