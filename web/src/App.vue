@@ -21,6 +21,7 @@
       snack-bar
       pop-up(v-if="dialog")
       router-view.animation.fadeIn
+      mu-float-button.float-button(icon="add")
 </template>
 
 <script>
@@ -101,6 +102,14 @@
       overflow-y auto
   .mu-grid-tile-titlebar
     background-color rgba(0, 0, 0, 0.6) !important
+  .float-button
+    position absolute
+    bottom 10px
+    right 10px
+    z-index 9999
+</style>
+
+<style lang="stylus">
   /* ANIMATION TRANSITION */
   /*base code*/
   .animation
@@ -126,6 +135,9 @@
   .fadeIn
     -webkit-animation-name fadeIn
     animation-name fadeIn
+</style>
+
+<style lang="stylus">
   /* MEDIA QUERIES */
   @media (min-width 769px)
     .sidebar

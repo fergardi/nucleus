@@ -13,8 +13,6 @@
 
           v-group(v-for="layer in subcategory.layers", v-if="layer.checked")
             v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
-
-    mu-float-button.float-button(icon="add")
 </template>
 
 <script>
@@ -115,9 +113,4 @@
   #map
     width 100%
     height 100%
-  .float-button
-    position absolute
-    bottom 10px
-    right 10px
-    z-index 9999
 </style>

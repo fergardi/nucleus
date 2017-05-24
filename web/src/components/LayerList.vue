@@ -1,10 +1,10 @@
 <template lang="pug">
   .layer-list
-    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested")
+    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true")
       mu-switch(v-if="category.radio", v-model="category.checked", slot="right", @change="toggle(category)")
       mu-checkbox(v-else, v-model="category.checked", slot="right", @change="toggle(category)")
 
-      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested")
+      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true")
         mu-switch(v-if="subcategory.radio", v-model="subcategory.checked", slot="right", @change="toggle(subcategory)")
         mu-checkbox(v-else, v-model="subcategory.checked", slot="right", @change="toggle(subcategory)")
         
@@ -33,7 +33,12 @@
   .category
     padding-left 0px
     .subcategory
-      padding-left 10px
+      padding-left 20px
       .layer
         padding-left 20px
+  .mu-item
+    .mu-item-right
+      .mu-icon-button
+        position absolute
+        right 30px
 </style>
