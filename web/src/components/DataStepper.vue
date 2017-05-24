@@ -6,10 +6,10 @@
         mu-step-label
           span Seleccione el tipo del nuevo elemento a agregar
         mu-step-content
-          mu-select-field(v-model="selected")
+          mu-select-field(v-model="selected", label="Tipo")
             mu-menu-item(v-for="element in elements", :title="element.title", :value="element")
           .buttons
-            mu-flat-button.demo-step-button(label="Cancelar", @click="close", secondary)
+            mu-raised-button.demo-step-button(label="Cancelar", @click="close", secondary)
             mu-raised-button.demo-step-button(label="Siguiente", @click="next", primary, :disabled="!selected")
 
       mu-step
@@ -21,7 +21,7 @@
             v-marker(:lat-lng="coordinates")
             v-icondefault(image-path="/img/")
           .buttons
-            mu-flat-button.demo-step-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button.demo-step-button(label="Anterior", @click="previous", secondary)
             mu-raised-button.demo-step-button(label="Siguiente", @click="next", primary, :disabled="!coordinates")
 
       mu-step
@@ -32,12 +32,15 @@
             template(v-for="field in selected.data")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :required="field.required")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :required="field.required", multiLine, :rows="5")
+              mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
+              mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
+              mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           .buttons
-            mu-flat-button.demo-step-button(label="Anterior", @click="previous", secondary)
-            mu-raised-button.demo-step-button(label="Finalizar", @click="next", primary)
+            mu-raised-button.demo-step-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button.demo-step-button(label="Finalizar", @click="next", primary, :disabled="validate")
 
     .buttons(v-if="finished")
-      mu-flat-button.demo-step-button(label="Reiniciar", @click="reset", secondary)
+      mu-raised-button.demo-step-button(label="Reiniciar", @click="reset", secondary)
       mu-raised-button.demo-step-button(label="Guardar", @click="send", primary)
 </template>
 
@@ -65,7 +68,9 @@
           ] },
           { type: 'resource', title: 'Recurso', data: [
             { name: 'Nombre completo', type: 'text', required: true, value: null },
-            { name: 'Activo', type: 'checkbox', required: true, value: true }
+            { name: 'Checkbox', type: 'checkbox', required: true, value: true },
+            { name: 'Radio', type: 'radio', required: true, value: true },
+            { name: 'Switch', type: 'radio', required: true, value: true }
           ] },
           { type: 'infrastructure', title: 'Infraestructura', data: [
             { name: 'Nombre', type: 'text', required: true, value: null },
@@ -85,7 +90,13 @@
         this.step = 0
         this.selected = null
       },
+      send () {
+        // TODO
+        this.close()
+        store.commit('setMessage', 'Saved succesfully')
+      },
       close () {
+        this.reset()
         store.commit('togglePanel')
       },
       point (ev) {
@@ -93,6 +104,9 @@
       }
     },
     computed: {
+      validation () {
+        return true // TODO
+      },
       finished () {
         return this.step > 2
       }

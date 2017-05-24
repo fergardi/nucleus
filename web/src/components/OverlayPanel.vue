@@ -31,6 +31,7 @@
   .mu-bottom-sheet.info-panel
     height calc(100% - 64px)
     padding 16px
+    background-color rgba(255,255,255,0.95)
     .form
       display flex
       flex-direction row

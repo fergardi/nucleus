@@ -13,7 +13,7 @@
 
     mu-drawer.sidebar(:open="right", :docked="true", @close="toggleRight", right)
       mu-appbar Detalles
-        mu-icon-button(icon="close", slot="left", @click="clearInfo")
+        mu-icon-button.hidden(icon="close", slot="left", @click="clearInfo")
         mu-icon-button(icon="visibility_off", slot="right", @click="toggleRight")
       right-side-bar
 

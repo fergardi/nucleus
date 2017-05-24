@@ -91,6 +91,8 @@
 <style src="../../node_modules/leaflet/dist/leaflet.css"></style>
 
 <style lang="stylus">
+  .leaflet-control-zoom
+    display none
   .marker
   .avatar
     border-radius 50%
