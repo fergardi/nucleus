@@ -14,7 +14,8 @@
           v-group(v-for="layer in subcategory.layers", v-if="layer.checked")
             v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
 
-    mu-float-button.float-button(icon="add", @click="panel")
+    mu-float-button.fab.right(icon="add", @click="add")
+
     overlay-panel
 </template>
 
@@ -71,7 +72,7 @@
       i18n (string) {
         return string // TODO
       },
-      panel () {
+      add () {
         store.commit('togglePanel')
       }
     },
@@ -125,9 +126,12 @@
   #map
     width 100%
     height 100%
-  .float-button
+  .fab
     position absolute
-    bottom 10px
-    right 10px
     z-index 5000
+    bottom 10px
+    &.right
+      right 10px
+    &.left
+      left 10px
 </style>
