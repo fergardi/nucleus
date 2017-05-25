@@ -5,7 +5,7 @@
     v-map#map(:zoom="map.zoom", :center="map.center", ref="map")
       v-tilelayer(:url="map.url")
 
-      v-group(v-for="category in layers", v-if="category.checked")
+      v-group(v-for="category in filtered", v-if="category.checked")
         v-marker(v-for="marker1 in category.items", :lat-lng="marker1.coordinates", :icon="icon(marker1.avatar.src, marker1.avatar.color)", @l-click="select(marker1)")
 
         v-group(v-for="subcategory in category.layers", v-if="subcategory.checked")
@@ -79,8 +79,8 @@
       info () {
         return store.state.info
       },
-      layers () {
-        return store.state.layers
+      filtered () {
+        return store.getters.filtered
       },
       map () {
         return store.state.map

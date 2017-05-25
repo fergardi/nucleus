@@ -5,6 +5,10 @@ import incident from '../factories/incident'
 import resource from '../factories/resource'
 import infrastructure from '../factories/infrastructure'
 
+var copy = function (object) {
+  return Object.assign({}, object)
+}
+
 Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
@@ -13,6 +17,7 @@ const vuex = new Vuex.Store({
     message: null,
     form: {},
     dialog: {},
+    search: '',
     info: null,
     left: false,
     right: false,
@@ -41,9 +46,19 @@ const vuex = new Vuex.Store({
       ] }
     ]
   },
+  getters: {
+    filtered: (state) => {
+      return state.search.toLowerCase() === '' ? state.layers : state.layers.map(copy).filter(function recursive (item) {
+        return item.name && item.name.toLowerCase().includes(state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(state.search.toLowerCase()) || item.layers && (item.layers = item.layers.map(copy).filter(recursive)).length || item.items && (item.items = item.items.map(copy).filter(recursive)).length
+      })
+    }
+  },
   mutations: {
     setInfo (state, info) {
       state.info = info
+    },
+    updateSearch (state, search) {
+      state.search = search
     },
     resetMessage (state) {
       state.message = null // to force a change for watchers

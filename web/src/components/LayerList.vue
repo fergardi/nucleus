@@ -1,6 +1,6 @@
 <template lang="pug">
   .layer-list
-    mu-list-item(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true", :open="category.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+    mu-list-item(v-for="category in filtered", :title="category.name", slot="nested", :toggleNested="true", :open="category.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
       mu-badge(:content="count(category)", slot="right")
       mu-switch(v-if="category.radio", v-model="category.checked", slot="right", @change="toggle(category)")
       mu-checkbox(v-else, v-model="category.checked", slot="right", @change="toggle(category)")
@@ -25,7 +25,6 @@
 
   export default {
     name: 'LayerList',
-    props: ['layers'],
     methods: {
       toggle (layer, parent = true) {
         if (!parent) layer.checked = !layer.checked
@@ -50,6 +49,9 @@
     computed: {
       info () {
         return store.state.info
+      },
+      filtered () {
+        return store.getters.filtered
       }
     }
   }
