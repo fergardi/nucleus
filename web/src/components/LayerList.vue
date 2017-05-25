@@ -1,21 +1,28 @@
 <template lang="pug">
   .layer-list
-    mu-list-item.category(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true")
+    mu-list-item(v-for="category in layers", :title="category.name", slot="nested", :toggleNested="true", :open="category.opened")
       mu-badge(:content="count(category)", slot="right")
       mu-switch(v-if="category.radio", v-model="category.checked", slot="right", @change="toggle(category)")
       mu-checkbox(v-else, v-model="category.checked", slot="right", @change="toggle(category)")
 
-      mu-list-item.subcategory(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true")
+      mu-list-item.nested(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true", :open="subcategory.opened")
         mu-badge(:content="count(subcategory)", slot="right")
         mu-switch(v-if="subcategory.radio", v-model="subcategory.checked", slot="right", @change="toggle(subcategory)")
         mu-checkbox(v-else, v-model="subcategory.checked", slot="right", @change="toggle(subcategory)")
         
-        mu-list-item.layer(v-for="layer in subcategory.layers", :title="layer.name", slot="nested")
+        mu-list-item.nested(v-for="layer in subcategory.layers", :title="layer.name", slot="nested", :toggleNested="true", :open="layer.opened")
+          mu-badge(:content="count(layer)", slot="right")
           mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right")
           mu-checkbox(v-else, v-model="layer.checked", slot="right")
+
+          mu-list-item.nested(v-for="item in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item)", :class="item === info ? 'selected' : ''")
+            mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
+            mu-icon(value="place", slot="right")
 </template>
 
 <script>
+  import store from '../vuex/store'
+
   export default {
     name: 'LayerList',
     props: ['layers'],
@@ -28,25 +35,37 @@
         return string // TODO
       },
       count (layer) {
-        return layer.layers ? layer.layers.length.toString() : '0'
+        return layer.layers
+          ? layer.layers.length.toString()
+          : layer.items
+            ? layer.items.length.toString()
+            : '0'
+      },
+      select (marker) {
+        store.commit('setInfo', marker)
+        if (!store.state.right) store.commit('toggleRight')
+        store.commit('setCenter', marker.coordinates)
+      }
+    },
+    computed: {
+      info () {
+        return store.state.info
       }
     }
   }
 </script>
 
 <style lang="stylus">
-  .category
-    padding-left 0px
-    .subcategory
-      padding-left 20px
-      .layer
-        padding-left 20px
+  .nested
+    margin-left 20px
+    &.selected
+      background-color rgba(0,0,0,0.12)
   .mu-item
     .mu-item-right
       .mu-badge-container
         position absolute
-        right 37px
+        right 35px
       .mu-icon-button
         position absolute
-        right 50px
+        right 60px
 </style>

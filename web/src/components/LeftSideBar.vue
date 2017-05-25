@@ -1,6 +1,6 @@
 <template lang="pug">
   .side-bar
-    mu-list.padding
+    mu-list
       layer-list(:layers="filtered")
 </template>
 

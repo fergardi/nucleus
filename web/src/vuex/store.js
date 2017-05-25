@@ -26,17 +26,17 @@ const vuex = new Vuex.Store({
       L: null // leaflet
     },
     layers: [
-      { name: 'Capas Operacionales', radio: false, checked: true, layers: [
-        { name: 'Incidentes', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: incident.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, items: incident.array(100) }
+      { name: 'Capas Operacionales', radio: false, checked: true, opened: true, layers: [
+        { name: 'Incidentes', radio: false, checked: true, opened: true, layers: [
+          { name: 'Activos', radio: false, checked: true, opened: false, items: incident.array(100) },
+          { name: 'Inactivos', radio: false, checked: true, opened: false, items: incident.array(100) }
         ] },
-        { name: 'Recursos', radio: false, checked: true, layers: [
-          { name: 'Activos', radio: false, checked: true, items: resource.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, items: resource.array(100) }
+        { name: 'Recursos', radio: false, checked: true, opened: true, layers: [
+          { name: 'Activos', radio: false, checked: true, opened: false, items: resource.array(100) },
+          { name: 'Inactivos', radio: false, checked: true, opened: false, items: resource.array(100) }
         ] },
-        { name: 'Infraestructuras', radio: false, checked: true, layers: [
-          { name: 'Bases', radio: false, checked: true, items: infrastructure.array(100) }
+        { name: 'Infraestructuras', radio: false, checked: true, opened: true, layers: [
+          { name: 'Bases', radio: false, checked: true, opened: false, items: infrastructure.array(100) }
         ] }
       ] }
     ]
