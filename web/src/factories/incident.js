@@ -54,7 +54,7 @@ const factory = {
       coordinates: factory.coordinates(),
       avatar: {
         color: factory.color(),
-        title: type.name,
+        title: 'Incidente ' + Math.floor(Math.random() * 100),
         subtitle: factory.status(),
         src: type.icon
       },
