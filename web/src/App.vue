@@ -42,7 +42,7 @@
         store.commit('toggleRight')
       },
       clearInfo () {
-        store.commit('setInfo', null)
+        store.commit('resetInfo')
         store.commit('toggleRight')
       },
       i18n (string) {

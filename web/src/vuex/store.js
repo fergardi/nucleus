@@ -45,12 +45,16 @@ const vuex = new Vuex.Store({
     setInfo (state, info) {
       state.info = info
     },
-    setMessage (state, message) {
+    resetMessage (state) {
       state.message = null // to force a change for watchers
+    },
+    setMessage (state, message) {
       state.message = message
     },
-    setDialog (state, dialog) {
+    resetDialog (state) {
       state.dialog = null // to force a change for watchers
+    },
+    setDialog (state, dialog) {
       state.dialog = dialog
     },
     toggleTour (state) {

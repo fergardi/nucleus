@@ -17,24 +17,27 @@
         popup: false
       }
     },
-    created () {
-      store.watch((state) => state.dialog, () => {
-        this.alert()
-      })
+    watch: {
+      dialog () {
+        if (this.dialog) this.alert()
+      }
     },
     methods: {
       alert () {
         this.popup = true
       },
       close () {
+        store.commit('resetDialog')
         this.popup = false
       },
       download () {
         window.open(this.dialog.src, '_blank')
+        store.commit('resetDialog')
         this.popup = false
       },
       open () {
         window.open(this.dialog.src, '_blank')
+        store.commit('resetDialog')
         this.popup = false
       }
     },

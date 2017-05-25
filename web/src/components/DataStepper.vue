@@ -31,7 +31,7 @@
           form.form(v-if="selected")
             template(v-for="field in selected.data")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :required="field.required")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :required="field.required", multiLine, :rows="5")
+              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :required="field.required", :multiLine="true", :rows="5")
               mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
               mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
@@ -93,7 +93,7 @@
       send () {
         // TODO
         this.close()
-        store.commit('setMessage', 'Saved succesfully')
+        store.commit('setMessage', 'Saved succesfully!')
       },
       close () {
         this.reset()
