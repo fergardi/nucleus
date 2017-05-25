@@ -39,7 +39,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
           mu-card-text
             .buttons
-              mu-raised-button(label="Limpiar", @click="clear", secondary)
+              mu-raised-button(label="Cancelar", @click="cancel", secondary)
               mu-raised-button(label="Terminar", @click="save", primary, :disabled="validate")
 </template>
 
@@ -83,18 +83,32 @@
         ]
       }
     },
+    created () {
+      this.selected = this.elements[0]
+    },
+    watch: {
+      panel () {
+        this.$refs.location.mapObject.invalidateSize(false)
+      }
+    },
     methods: {
       point (ev) {
         this.coordinates = { lat: ev.latlng.lat.toFixed(5), lng: ev.latlng.lng.toFixed(5) }
       },
-      clear () {
+      cancel () {
         // TODO
+        store.commit('togglePanel')
       },
       save () {
         // TODO
         store.commit('resetMessage')
         store.commit('setMessage', 'Guardado')
         store.commit('togglePanel')
+      }
+    },
+    computed: {
+      panel () {
+        return store.state.panel
       }
     }
   }
