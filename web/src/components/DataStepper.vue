@@ -6,23 +6,26 @@
         mu-step-label
           span Seleccione el tipo del nuevo elemento a agregar
         mu-step-content
-          mu-select-field(v-model="selected", label="Tipo")
+          mu-select-field(v-model="selected", label="Tipo", :icon="selected ? 'done' : 'close'")
             mu-menu-item(v-for="element in elements", :title="element.title", :value="element")
           .buttons
-            mu-raised-button.demo-step-button(label="Cancelar", @click="close", secondary)
-            mu-raised-button.demo-step-button(label="Siguiente", @click="next", primary, :disabled="!selected")
+            mu-raised-button(label="Cancelar", @click="close", secondary)
+            mu-raised-button(label="Siguiente", @click="next", primary, :disabled="!selected")
 
       mu-step
         mu-step-label
           span Seleccione la posición actual del nuevo elemento
         mu-step-content
-          v-map.location(:zoom="10", :center="[42.58, -5.60]", ref="location", @l-click="point($event)")
-            v-tilelayer(url="http://{s}.tile.osm.org/{z}/{x}/{y}.png")
-            v-marker(:lat-lng="coordinates")
+          v-map.location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
+            v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
+            v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
             v-icondefault(image-path="/img/")
+          form.coordinates
+            mu-text-field(type="number" label="Latitud", v-model="coordinates.lat", required)
+            mu-text-field(type="number" label="Longitud", v-model="coordinates.lng", required)
           .buttons
-            mu-raised-button.demo-step-button(label="Anterior", @click="previous", secondary)
-            mu-raised-button.demo-step-button(label="Siguiente", @click="next", primary, :disabled="!coordinates")
+            mu-raised-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button(label="Siguiente", @click="next", primary, :disabled="!coordinates")
 
       mu-step
         mu-step-label
@@ -30,18 +33,18 @@
         mu-step-content
           form.form(v-if="selected")
             template(v-for="field in selected.data")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :required="field.required")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :required="field.required", :multiLine="true", :rows="5")
+              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :required="field.required", :icon="field.value ? 'done' : 'close'")
+              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :required="field.required", :multiLine="true", :rows="5", :icon="field.value ? 'done' : 'close'")
               mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
               mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           .buttons
-            mu-raised-button.demo-step-button(label="Anterior", @click="previous", secondary)
-            mu-raised-button.demo-step-button(label="Finalizar", @click="next", primary, :disabled="validate")
+            mu-raised-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button(label="Finalizar", @click="next", primary, :disabled="validate")
 
     .buttons(v-if="finished")
-      mu-raised-button.demo-step-button(label="Reiniciar", @click="reset", secondary)
-      mu-raised-button.demo-step-button(label="Guardar", @click="send", primary)
+      mu-raised-button(label="Reiniciar", @click="reset", secondary)
+      mu-raised-button(label="Guardar", @click="send", primary)
 </template>
 
 <script>
@@ -60,7 +63,10 @@
       return {
         step: 0,
         selected: null,
-        coordinates: [42.58, -5.60],
+        coordinates: {
+          lat: 42.58,
+          lng: -5.60
+        },
         elements: [
           { type: 'incident', title: 'Incidente', data: [
             { name: 'Nombre', type: 'text', required: true, value: null },
@@ -70,7 +76,7 @@
             { name: 'Nombre completo', type: 'text', required: true, value: null },
             { name: 'Checkbox', type: 'checkbox', required: true, value: true },
             { name: 'Radio', type: 'radio', required: true, value: true },
-            { name: 'Switch', type: 'radio', required: true, value: true }
+            { name: 'Switch', type: 'switch', required: true, value: true }
           ] },
           { type: 'infrastructure', title: 'Infraestructura', data: [
             { name: 'Nombre', type: 'text', required: true, value: null },
@@ -101,7 +107,7 @@
         store.commit('togglePanel')
       },
       point (ev) {
-        this.coordinates = [ev.latlng.lat, ev.latlng.lng]
+        this.coordinates = { lat: ev.latlng.lat, lng: ev.latlng.lng }
       }
     },
     computed: {
@@ -132,7 +138,12 @@
         align-items flex-start
       .location
         width 100%
-        height 50vh
+        height 250px
+      .coordinates
+        display flex
+        flex-direction row
+        .mu-text-field
+          width 50%
     .buttons
       margin-top 20px
       width 100%
