@@ -28,7 +28,7 @@
         return string // TODO
       },
       count (layer) {
-        return layer.layers ? layer.layers.length : 0
+        return layer.layers ? layer.layers.length.toString() : '0'
       }
     }
   }

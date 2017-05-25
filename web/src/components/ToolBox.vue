@@ -26,7 +26,7 @@
     created () {
       store.watch((state) => state.tour, () => {
         this.value = 0
-        if (!store.state.right) store.commit('toggleRight')
+        if (this.tour && !store.state.right) store.commit('toggleRight')
         if (!store.state.info) {
           store.commit('setInfo', this.layers[0].layers[0].layers[0].items[this.index])
           store.commit('setCenter', this.layers[0].layers[0].layers[0].items[this.index].coordinates)

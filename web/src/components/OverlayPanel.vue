@@ -1,15 +1,16 @@
 <template lang="pug">
   mu-bottom-sheet(:open="panel", @close="close", sheetClass="info-panel")
-    data-stepper
+    //data-stepper
+    abstract-form
 </template>
 
 <script>
   import store from '../vuex/store'
-  import DataStepper from './DataStepper.vue'
+  import AbstractForm from './AbstractForm.vue'
 
   export default {
     name: 'OverlayPanel',
-    components: { DataStepper },
+    components: { AbstractForm },
     data () {
       return {
       }
@@ -30,8 +31,11 @@
 <style lang="stylus">
   .mu-bottom-sheet.info-panel
     height calc(100% - 64px)
-    padding 16px
+    padding 8px
     background-color rgba(255,255,255,0.95)
+    width 100%
+    overflow-y auto
+    overflow-x hidden
     .form
       display flex
       flex-direction row

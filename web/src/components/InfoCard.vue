@@ -20,7 +20,7 @@
             span.value {{ data.value }}
 
       // POSITIONS
-      v-map.positions(v-if="block.positions", :zoom="10", :center="[42.58, -5.60]", ref="positions")
+      v-map#positions(v-if="block.positions", :zoom="10", :center="[42.58, -5.60]", ref="positions")
         v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
         v-marker(v-for="position in block.positions", :lat-lng="position")
         v-polyline(:lat-lngs="block.positions", color="steelblue")
@@ -96,7 +96,8 @@
         display flex
         flex-wrap nowrap
         overflow-x auto
-    .positions
+    #positions
+      width 100%
       height 250px
     .weather-card
       img.weather

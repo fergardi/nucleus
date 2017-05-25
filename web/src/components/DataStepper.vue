@@ -16,7 +16,7 @@
         mu-step-label
           span Seleccione la posición actual del nuevo elemento
         mu-step-content
-          v-map.location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
+          v-map.location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", "@l-click="point($event)")
             v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
             v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
             v-icondefault(image-path="/img/")
@@ -84,6 +84,9 @@
           ] }
         ]
       }
+    },
+    mounted () {
+      console.log(this)
     },
     methods: {
       next () {
