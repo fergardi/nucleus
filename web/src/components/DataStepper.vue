@@ -93,6 +93,7 @@
       send () {
         // TODO
         this.close()
+        store.commit('resetMessage')
         store.commit('setMessage', 'Saved succesfully!')
       },
       close () {

@@ -5,7 +5,7 @@
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
-    mu-card-media(:title="info.media.title", :subTitle="info.media.subtitle")
+    mu-card-media(:title="info.media.title", :subTitle="date(info.media.timestamp)")
       img(:src="info.media.src")
 
     // BLOCKS
@@ -58,6 +58,7 @@
 
 <script>
   import store from '../vuex/store'
+  import moment from 'moment'
   import Vue2Leaflet from 'vue2-leaflet'
 
   export default {
@@ -73,6 +74,9 @@
     methods: {
       show (item) {
         store.commit('setDialog', item)
+      },
+      date (timestamp) {
+        return moment.unix(timestamp).format('DD/MM/YYYY HH:mm:ss')
       }
     }
   }

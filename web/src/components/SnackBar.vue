@@ -25,13 +25,11 @@
         if (this.snackTimer) clearTimeout(this.snackTimer)
         this.snackTimer = setTimeout(() => {
           this.snackbar = false
-          store.commit('resetMessage')
         }, this.timeout)
       },
       close () {
         this.snackbar = false
         if (this.snackTimer) clearTimeout(this.snackTimer)
-        store.commit('resetMessage')
       }
     },
     computed: {

@@ -32,7 +32,7 @@ const factory = {
     return factory.colors[Math.floor(Math.random() * factory.colors.length)]
   },
   date () {
-    return new Date(+(new Date()) - Math.floor(Math.random() * 10000000000)).toString()
+    return Date.now() / 1000 // generate timestamp
   },
   build () {
     var type = factory.type()
@@ -46,7 +46,7 @@ const factory = {
       },
       media: {
         title: factory.status(),
-        subtitle: factory.date(),
+        timestamp: factory.date(),
         src: type.image
       },
       content: [
