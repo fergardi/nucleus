@@ -53,7 +53,7 @@
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           mu-card-text
             .buttons
-              mu-raised-button(label="Cancelar", @click="cancel", secondary)
+              mu-raised-button(label="Cancelar", @click="cancel")
               mu-raised-button(label="Terminar", @click="save", primary, :disabled="validate")
 </template>
 

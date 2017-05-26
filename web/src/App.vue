@@ -69,7 +69,7 @@
 <style src="../css/font.css"></style>
 <style src="../css/icon.css"></style>
 <style src="../node_modules/muse-ui/dist/muse-ui.css"></style>
-<style src="../node_modules/muse-ui/dist/theme-carbon.css"></style>
+<style src="../node_modules/muse-ui/dist/theme-teal.css"></style>
 
 <style lang="stylus">
   html

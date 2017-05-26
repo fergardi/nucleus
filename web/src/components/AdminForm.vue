@@ -23,7 +23,7 @@
                 mu-menu-item(v-for="t in types", :title="t.name", :value="t.type")
           mu-card-text
             .buttons
-              mu-raised-button(label="Eliminar", @click="remove(index)", secondary)
+              mu-raised-button(label="Eliminar", @click="remove(index)")
               mu-raised-button(label="Añadir", @click="add", primary)
       mu-flexbox-item
         mu-card
@@ -31,7 +31,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             .buttons
-              mu-raised-button(label="Cancelar", @click="cancel", secondary)
+              mu-raised-button(label="Cancelar", @click="cancel")
               mu-raised-button(label="Terminar", @click="save", primary, :disabled="validate")
 </template>
 

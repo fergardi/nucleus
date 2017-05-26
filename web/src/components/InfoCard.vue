@@ -5,7 +5,8 @@
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
-    mu-card-media(:title="info.media.title", :subTitle="date(info.media.timestamp)")
+    mu-card-media.media(:title="info.media.title", :subTitle="date(info.media.timestamp)")
+      mu-float-button.fab(icon="edit", @click="edit", mini="true")
       img(:src="info.media.src")
 
     // BLOCKS
@@ -101,6 +102,11 @@
         display flex
         flex-wrap nowrap
         overflow-x auto
+    .media
+      .fab
+        position absolute
+        right 10px
+        top 10px
     #positions
       width 100%
       height 250px

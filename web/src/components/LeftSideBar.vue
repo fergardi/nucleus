@@ -2,7 +2,7 @@
   .side-bar
     .padding
       mu-text-field(:fullWidth="true", label="Buscar", icon="search", :value="search", @input="find")
-      mu-raised-button(label="Limpiar", :fullWidth="true", secondary, @click="clear")
+      mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
     mu-list
       layer-list(:layers="filtered")
 </template>

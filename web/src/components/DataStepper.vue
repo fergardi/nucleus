@@ -9,7 +9,7 @@
           mu-select-field(v-model="selected", label="Tipo", :icon="selected ? 'done' : 'close'")
             mu-menu-item(v-for="element in elements", :title="element.title", :value="element")
           .buttons
-            mu-raised-button(label="Cancelar", @click="close", secondary)
+            mu-raised-button(label="Cancelar", @click="close")
             mu-raised-button(label="Siguiente", @click="next", primary, :disabled="!selected")
 
       mu-step
@@ -24,7 +24,7 @@
             mu-text-field(type="number" label="Latitud", v-model="coordinates.lat", required)
             mu-text-field(type="number" label="Longitud", v-model="coordinates.lng", required)
           .buttons
-            mu-raised-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button(label="Anterior", @click="previous")
             mu-raised-button(label="Siguiente", @click="next", primary, :disabled="!coordinates")
 
       mu-step
@@ -39,11 +39,11 @@
               mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           .buttons
-            mu-raised-button(label="Anterior", @click="previous", secondary)
+            mu-raised-button(label="Anterior", @click="previous")
             mu-raised-button(label="Finalizar", @click="next", primary, :disabled="validate")
 
     .buttons(v-if="finished")
-      mu-raised-button(label="Reiniciar", @click="reset", secondary)
+      mu-raised-button(label="Reiniciar", @click="reset")
       mu-raised-button(label="Guardar", @click="send", primary)
 </template>
 
