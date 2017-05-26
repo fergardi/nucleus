@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
   state: {
-    add: true,
+    add: false,
     edit: false,
     message: null,
     form: {},
@@ -32,25 +32,15 @@ const vuex = new Vuex.Store({
       L: null // leaflet
     },
     layers: [
-      { name: 'Capas Operacionales', radio: false, checked: true, opened: true, layers: [
-        { name: 'Incidentes', radio: false, checked: true, opened: true, layers: [
-          { name: 'Activos', radio: false, checked: true, opened: false, items: incident.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, opened: false, items: incident.array(100) }
-        ] },
-        { name: 'Recursos', radio: false, checked: true, opened: true, layers: [
-          { name: 'Activos', radio: false, checked: true, opened: false, items: resource.array(100) },
-          { name: 'Inactivos', radio: false, checked: true, opened: false, items: resource.array(100) }
-        ] },
-        { name: 'Infraestructuras', radio: false, checked: true, opened: true, layers: [
-          { name: 'Bases', radio: false, checked: true, opened: false, items: infrastructure.array(100) }
-        ] }
-      ] }
+      { name: 'Incidentes', radio: false, checked: true, opened: false, items: incident.array(10) },
+      { name: 'Recursos', radio: false, checked: true, opened: false, items: resource.array(10) },
+      { name: 'Infraestructuras', radio: false, checked: true, opened: false, items: infrastructure.array(10) }
     ]
   },
   getters: {
     filtered: (state) => {
       return state.search.toLowerCase() === '' ? state.layers : state.layers.map(copy).filter(function recursive (item) {
-        return item.name && item.name.toLowerCase().includes(state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(state.search.toLowerCase()) || item.layers && (item.layers = item.layers.map(copy).filter(recursive)).length || item.items && (item.items = item.items.map(copy).filter(recursive)).length
+        return item.name && item.name.toLowerCase().includes(state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(state.search.toLowerCase()) || item.items && (item.items = item.items.map(copy).filter(recursive)).length
       })
     }
   },

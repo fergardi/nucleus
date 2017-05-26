@@ -1,23 +1,13 @@
 <template lang="pug">
   .layer-list
-    mu-list-item(v-for="category in filtered", :title="category.name", slot="nested", :toggleNested="true", :open="category.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
-      mu-badge(:content="count(category)", slot="right")
-      mu-switch(v-if="category.radio", v-model="category.checked", slot="right", @change="toggle(category)", :disabled="search")
-      mu-checkbox(v-else, v-model="category.checked", slot="right", @change="toggle(category)", :disabled="search")
+    mu-list-item(v-for="layer in filtered", :title="layer.name", slot="nested", :toggleNested="true", :open="layer.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+      mu-badge(:content="count(layer)", slot="right")
+      mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right", :disabled="search")
+      mu-checkbox(v-else, v-model="layer.checked", slot="right", :disabled="search")
 
-      mu-list-item.nested(v-for="subcategory in category.layers", :title="subcategory.name", slot="nested", :toggleNested="true", :open="subcategory.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
-        mu-badge(:content="count(subcategory)", slot="right")
-        mu-switch(v-if="subcategory.radio", v-model="subcategory.checked", slot="right", @change="toggle(subcategory)", :disabled="search")
-        mu-checkbox(v-else, v-model="subcategory.checked", slot="right", @change="toggle(subcategory)", :disabled="search")
-        
-        mu-list-item.nested(v-for="layer in subcategory.layers", :title="layer.name", slot="nested", :toggleNested="true", :open="layer.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
-          mu-badge(:content="count(layer)", slot="right")
-          mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right", :disabled="search")
-          mu-checkbox(v-else, v-model="layer.checked", slot="right", :disabled="search")
-
-          mu-list-item.nested(v-for="item in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
-            mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
-            mu-icon(value="place", slot="right")
+      mu-list-item.nested(v-for="item in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+        mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
+        mu-icon(value="place", slot="right")
 </template>
 
 <script>
