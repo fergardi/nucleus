@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
   state: {
-    add: false,
+    add: true,
     edit: false,
     message: null,
     form: {},

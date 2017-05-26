@@ -9,19 +9,11 @@
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Imagen del nuevo tipo", subTitle="Agregar imagen")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
-          mu-card-text
-            mu-text-field(v-model="src", label="URL", :fullWidth="true")
-          mu-card-media(:title="name", subTitle="Imagen asociada")
-            img(:src="src")
-      mu-flexbox-item
-        mu-card
           mu-card-header(title="Datos del nuevo tipo", subTitle="Información")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             .field(v-for="field in fields")
-              mu-text-field(v-model="field.name", label="Nombre", :fullWidth="true")
+              mu-text-field(v-model="field.name", label="Campo", :fullWidth="true")
               mu-select-field(v-model="field.type", label="Tipo", :fullWidth="true")
                 mu-menu-item(v-for="t in types", :title="t.name", :value="t.value")
           mu-card-text
@@ -45,7 +37,6 @@
     data () {
       return {
         name: '',
-        src: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         type: null,
         types: [
           { name: 'Texto corto', value: 'text' },
@@ -88,7 +79,6 @@
       align-items flex-start
       .mu-flexbox-item
         margin 0px 5px !important
-        width 100%
     .field
     .buttons
       display flex

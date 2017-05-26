@@ -15,6 +15,7 @@
     "electron": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../electron/js/build.js && cp -R img/* ../electron/img/ && cp -R fonts/* ../electron/fonts/ && cp -R css/* ../electron/css/ && cp node_modules/muse-ui/dist/muse-ui.css ../electron/css/"
   },
   "dependencies": {
+    "firebase": "^4.0.0",
     "leaflet": "^1.0.3",
     "moment": "^2.18.1",
     "muse-ui": "^2.0.2",
@@ -22,6 +23,7 @@
     "vue-loader": "^10.0.2",
     "vue-router": "^2.1.1",
     "vue2-leaflet": "^0.0.50",
+    "vuefire": "^1.4.3",
     "vuex": "^2.1.2"
   },
   "devDependencies": {

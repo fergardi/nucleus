@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MuseUI from 'muse-ui'
+import VueFire from 'vuefire'
 
 import moment from 'moment'
 
 import App from './App.vue'
 import Map from './views/Map.vue'
+
+// firebase
+Vue.use(VueFire)
 
 // router
 Vue.use(VueRouter)

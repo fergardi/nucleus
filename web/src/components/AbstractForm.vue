@@ -1,17 +1,29 @@
 <template lang="pug">
   form.abstract-form
-    mu-flexbox
+    mu-flexbox(wrap="wrap")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Seleccione el tipo del elemento", subTitle="Nuevo elemento")
+          mu-card-header(title="Tipo y nombre", subTitle="Nuevo elemento")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="type in types", :title="type.name", :value="type")
+            mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Seleccione la posición actual", subTitle="Coordenadas")
+          mu-card-header(title="Imagen e icono", subTitle="Agregar imágenes")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
+          mu-card-text
+            mu-text-field(v-model="icon", label="Icono", :fullWidth="true")
+            mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
+          mu-card-header(:title="name", subTitle="Icono asociado")
+            mu-avatar(:src="icon", slot="avatar")
+          mu-card-media(:title="name", subTitle="Imagen asociada")
+            img(:src="image")
+      mu-flexbox-item
+        mu-card
+          mu-card-header(title="Posición actual", subTitle="Coordenadas")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             v-map#location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
@@ -20,10 +32,11 @@
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat", required)
               mu-text-field(type="number" label="Longitud", v-model="coordinates.lng", required)
+            mu-text-field(v-model="coordinates.address", label="Buscar", :fullWidth="true")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Introduzca los datos asociados", subTitle="Información completa")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
+          mu-card-header(title="Datos asociados", subTitle="Información completa")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
           mu-card-text(v-if="selected")
             .data(v-for="field in selected.data")
               mu-select-field(v-model="field.value", :label="field.name", v-if="field.type === 'select'", :fullWidth="true")
@@ -33,19 +46,22 @@
               mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
               mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
-      mu-flexbox-item
-        mu-card
-          mu-card-header(title="Guardar y enviar", subTitle="Confirmar")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel", secondary)
               mu-raised-button(label="Terminar", @click="save", primary, :disabled="validate")
+      mu-flexbox-item
+        mu-card
+          mu-card-header(title="Firebase", subTitle="Firebase")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
+          mu-card-text
+            p(v-for="pokemon in pokemons") {{ pokemon['.key'] }}
 </template>
 
 <script>
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
+  import firebase from '../services/firebase'
 
   export default {
     name: 'AbstractForm',
@@ -58,9 +74,13 @@
     data () {
       return {
         selected: null,
+        name: 'Nombre',
+        icon: 'https://image.flaticon.com/icons/svg/234/234449.svg',
+        image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
           lat: 42.58,
-          lng: -5.60
+          lng: -5.60,
+          address: ''
         },
         types: [
           { name: 'Incidente', data: [
@@ -84,7 +104,10 @@
       }
     },
     created () {
-      this.selected = this.elements[0]
+      this.selected = this.types[0]
+    },
+    firebase: {
+      pokemons: firebase.ref('pokemon')
     },
     watch: {
       add () {
@@ -120,8 +143,7 @@
       flex-direction row
       align-items flex-start
       .mu-flexbox-item
-        margin 0px 5px !important
-        width 100%
+        margin 5px !important
     .coordinates
     .buttons
       display flex
