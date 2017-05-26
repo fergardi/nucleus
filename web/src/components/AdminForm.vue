@@ -3,26 +3,32 @@
     mu-flexbox
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Nuevo tipo de elemento", subTitle="Crear un tipo")
+          mu-card-header(title="Nuevo tipo de elemento", subTitle="Crear un nuevo tipo")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
+          mu-card-header(title="Editar un elemento existente", subTitle="Escoger un tipo")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
+          mu-card-text
+            mu-select-field(v-model="selected", label="Tipo", :fullWidth="true", @change="select")
+              mu-menu-item(v-for="type in collections", :title="type.name", :value="type")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Datos del nuevo tipo", subTitle="Información")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
+          mu-card-header(title="Datos del tipo", subTitle="Información adicional")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
           mu-card-text
-            .field(v-for="field in fields")
+            .field(v-for="field, index in fields")
               mu-text-field(v-model="field.name", label="Campo", :fullWidth="true")
               mu-select-field(v-model="field.type", label="Tipo", :fullWidth="true")
-                mu-menu-item(v-for="t in types", :title="t.name", :value="t.value")
+                mu-menu-item(v-for="t in types", :title="t.name", :value="t.type")
           mu-card-text
             .buttons
+              mu-raised-button(label="Eliminar", @click="remove(index)", secondary)
               mu-raised-button(label="Añadir", @click="add", primary)
       mu-flexbox-item
         mu-card
           mu-card-header(title="Guardar y enviar", subTitle="Confirmar")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel", secondary)
@@ -31,39 +37,53 @@
 
 <script>
   import store from '../vuex/store'
+  import firebase from '../services/firebase'
 
   export default {
     name: 'AdminForm',
     data () {
       return {
+        selected: null,
         name: '',
         type: null,
         types: [
-          { name: 'Texto corto', value: 'text' },
-          { name: 'Texto largo', value: 'textarea' },
-          { name: 'Selección', value: 'select' },
-          { name: 'Número', value: 'number' },
-          { name: 'Email', value: 'mail' },
-          { name: 'Contraseña', value: 'password' },
-          { name: 'Checkbox', value: 'checkbox' },
-          { name: 'Radio', value: 'radio' },
-          { name: 'Switch', value: 'switch' }
+          { name: 'Texto corto', type: 'text' },
+          { name: 'Texto largo', type: 'textarea' },
+          { name: 'Selección', type: 'select' },
+          { name: 'Número', type: 'number' },
+          { name: 'Email', type: 'mail' },
+          { name: 'Contraseña', type: 'password' },
+          { name: 'Checkbox', type: 'checkbox' },
+          { name: 'Radio', type: 'radio' },
+          { name: 'Switch', type: 'switch' }
         ],
         fields: [
-          { name: '', value: null }
+          { name: '', type: '', value: null, options: [] }
         ]
       }
     },
+    firebase: {
+      collections: firebase.ref('collections')
+    },
     methods: {
       add () {
-        this.fields.push({ name: '', value: null })
+        this.fields.push({ name: '', type: '', value: null, options: [] })
+      },
+      remove (index) {
+        this.fields.splice(index, 1)
+      },
+      select (item) {
+        this.fields = item.data
       },
       cancel () {
         // TODO
         store.commit('toggleEdit')
       },
       save () {
-        // TODO
+        this.$firebaseRefs.collections.push({
+          name: this.selected.name || this.name,
+          data: this.fields
+        })
         store.commit('resetMessage')
         store.commit('setMessage', 'Creado correctamente')
         store.commit('toggleEdit')
