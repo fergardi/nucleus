@@ -25,7 +25,7 @@ const vuex = new Vuex.Store({
     checked: true,
     tour: false,
     map: {
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
       center: [42.58, -5.60],
       zoom: 13,
       iconSize: 40, // px, even

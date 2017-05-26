@@ -20,8 +20,8 @@
             span.value {{ data.value }}
 
       // POSITIONS
-      v-map#positions(v-if="block.positions", :zoom="10", :center="[42.58, -5.60]", ref="positions")
-        v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
+      v-map#positions(v-if="block.positions", :zoom="map.zoom", :center="map.center", ref="positions")
+        v-tilelayer(:url="map.url")
         v-marker(v-for="position in block.positions", :lat-lng="position")
         v-polyline(:lat-lngs="block.positions", color="steelblue")
         v-icondefault(image-path="/img/")
@@ -77,6 +77,11 @@
       },
       date (timestamp) {
         return moment.unix(timestamp).format('DD/MM/YYYY HH:mm:ss')
+      }
+    },
+    computed: {
+      map () {
+        return store.state.map
       }
     }
   }

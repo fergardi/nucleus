@@ -1,6 +1,7 @@
 <template lang="pug">
   form.abstract-form
     mu-flexbox(wrap="wrap")
+
       mu-flexbox-item
         mu-card
           mu-card-header(title="Tipo y nombre", subTitle="Nuevo elemento")
@@ -9,6 +10,7 @@
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="type in collections", :title="type.name", :value="type")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
+
       mu-flexbox-item
         mu-card
           mu-card-header(title="Imagen e icono", subTitle="Agregar imágenes")
@@ -20,19 +22,21 @@
             mu-avatar(:src="icon", slot="avatar")
           mu-card-media(:title="name", subTitle="Imagen asociada")
             img(:src="image")
+
       mu-flexbox-item
         mu-card
           mu-card-header(title="Posición actual", subTitle="Coordenadas")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             v-map#location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
-              v-tilelayer(url="//{s}.tile.osm.org/{z}/{x}/{y}.png")
+              v-tilelayer(:url="map.url")
               v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
               v-icondefault(image-path="/img/")
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
               mu-text-field(type="number" label="Longitud", v-model="coordinates.lng")
             mu-text-field(v-model="coordinates.address", label="Buscar", :fullWidth="true")
+
       mu-flexbox-item
         mu-card
           mu-card-header(title="Datos asociados", subTitle="Información completa")
@@ -87,6 +91,10 @@
         this.$refs.location.mapObject.invalidateSize(false)
       }
     },
+    created () {
+      this.coordinates.lat = this.map.coordinates[0]
+      this.coordinates.lng = this.map.coordinates[1]
+    },
     methods: {
       point (ev) {
         this.coordinates = { lat: ev.latlng.lat.toFixed(5), lng: ev.latlng.lng.toFixed(5) }
@@ -105,6 +113,9 @@
     computed: {
       add () {
         return store.state.add
+      },
+      map () {
+        return store.state.map
       }
     }
   }

@@ -4,15 +4,8 @@
 
     v-map#map(:zoom="map.zoom", :center="map.center", ref="map")
       v-tilelayer(:url="map.url")
-
       v-group(v-for="category in filtered", v-if="category.checked")
-        v-marker(v-for="marker1 in category.items", :lat-lng="marker1.coordinates", :icon="icon(marker1.avatar.src, marker1.avatar.color)", @l-click="select(marker1)")
-
-        v-group(v-for="subcategory in category.layers", v-if="subcategory.checked")
-          v-marker(v-for="marker2 in subcategory.items", :lat-lng="marker2.coordinates", :icon="icon(marker2.avatar.src, marker2.avatar.color)", @l-click="select(marker2)")
-
-          v-group(v-for="layer in subcategory.layers", v-if="layer.checked")
-            v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
+        v-marker(v-for="marker in category.items", :lat-lng="marker.coordinates", :icon="icon(marker.avatar.src, marker.avatar.color)", @l-click="select(marker)")
 
     mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
