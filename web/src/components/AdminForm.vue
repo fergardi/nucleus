@@ -13,11 +13,11 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="src", label="URL", :fullWidth="true")
-          mu-card-media(title="Imagen", subtitle="Agregar imagen")
+          mu-card-media(:title="name", subTitle="Imagen asociada")
             img(:src="src")
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Atributos del nuevo tipo", subTitle="Información")
+          mu-card-header(title="Datos del nuevo tipo", subTitle="Información")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
             .field(v-for="field in fields")
