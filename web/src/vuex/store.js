@@ -13,7 +13,8 @@ Vue.use(Vuex)
 
 const vuex = new Vuex.Store({
   state: {
-    panel: false,
+    add: false,
+    edit: false,
     message: null,
     form: {},
     dialog: {},
@@ -81,8 +82,13 @@ const vuex = new Vuex.Store({
     toggleRight (state) {
       state.right = !state.right
     },
-    togglePanel (state) {
-      state.panel = !state.panel
+    toggleEdit (state) {
+      state.add = false
+      state.edit = !state.edit
+    },
+    toggleAdd (state) {
+      state.edit = false
+      state.add = !state.add
     },
     setMap (state, map) {
       state.map.L = map

@@ -1,7 +1,7 @@
 <template lang="pug">
-  mu-bottom-sheet(:open="panel", @close="close", sheetClass="info-panel")
+  mu-bottom-sheet(:open="add || edit", @close="close", sheetClass="info-panel")
     //data-stepper
-    abstract-form
+    abstract-form(v-if="add")
 </template>
 
 <script>
@@ -17,12 +17,16 @@
     },
     methods: {
       close () {
-        store.commit('togglePanel')
+        if (this.add) store.commit('toggleAdd')
+        if (this.edit) store.commit('toggleEdit')
       }
     },
     computed: {
-      panel () {
-        return store.state.panel
+      add () {
+        return store.state.add
+      },
+      edit () {
+        return store.state.edit
       }
     }
   }

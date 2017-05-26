@@ -87,7 +87,7 @@
       this.selected = this.elements[0]
     },
     watch: {
-      panel () {
+      add () {
         this.$refs.location.mapObject.invalidateSize(false)
       }
     },
@@ -97,18 +97,18 @@
       },
       cancel () {
         // TODO
-        store.commit('togglePanel')
+        store.commit('toggleAdd')
       },
       save () {
         // TODO
         store.commit('resetMessage')
-        store.commit('setMessage', 'Guardado')
-        store.commit('togglePanel')
+        store.commit('setMessage', 'Guardado correctamente')
+        store.commit('toggleAdd')
       }
     },
     computed: {
-      panel () {
-        return store.state.panel
+      add () {
+        return store.state.add
       }
     }
   }

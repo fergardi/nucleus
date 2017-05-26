@@ -14,6 +14,7 @@
           v-group(v-for="layer in subcategory.layers", v-if="layer.checked")
             v-marker(v-for="marker3 in layer.items", :lat-lng="marker3.coordinates", :icon="icon(marker3.avatar.src, marker3.avatar.color)", @l-click="select(marker3)")
 
+    mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
 
     overlay-panel
@@ -73,7 +74,10 @@
         return string // TODO
       },
       add () {
-        store.commit('togglePanel')
+        store.commit('toggleAdd')
+      },
+      edit () {
+        store.commit('toggleEdit')
       }
     },
     computed: {
