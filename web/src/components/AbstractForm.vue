@@ -7,7 +7,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
-              mu-menu-item(v-for="element in elements", :title="element.title", :value="element")
+              mu-menu-item(v-for="type in types", :title="type.name", :value="type")
       mu-flexbox-item
         mu-card
           mu-card-header(title="Seleccione la posición actual", subTitle="Coordenadas")
@@ -62,21 +62,21 @@
           lat: 42.58,
           lng: -5.60
         },
-        elements: [
-          { type: 'incident', title: 'Incidente', data: [
+        types: [
+          { name: 'Incidente', data: [
             { name: 'Texto', type: 'text', required: true, value: null },
             { name: 'Selección', type: 'select', required: true, value: null, options: [
               { name: 'Primera', value: 'primera' },
               { name: 'Segunda', value: 'segunda' }
             ] }
           ] },
-          { type: 'resource', title: 'Recurso', data: [
+          { name: 'Recurso', data: [
             { name: 'Texto', type: 'text', required: true, value: null },
             { name: 'Checkbox', type: 'checkbox', required: true, value: true },
             { name: 'Radio', type: 'radio', required: true, value: true },
             { name: 'Switch', type: 'switch', required: true, value: true }
           ] },
-          { type: 'infrastructure', title: 'Infraestructura', data: [
+          { name: 'Infraestructura', data: [
             { name: 'Texto', type: 'text', required: true, value: null },
             { name: 'Textarea', type: 'textarea', required: true, value: null }
           ] }
@@ -125,10 +125,10 @@
     .coordinates
     .buttons
       display flex
-      justify-content center
+      justify-content flex-end
       align-items center
-      .mu-raised-button
-        margin 0 5px
+      .mu-raised-button + .mu-raised-button
+        margin-left 5px
   #location
     height 250px
     width auto

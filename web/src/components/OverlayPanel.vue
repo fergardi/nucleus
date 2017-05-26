@@ -2,15 +2,17 @@
   mu-bottom-sheet(:open="add || edit", @close="close", sheetClass="info-panel")
     //data-stepper
     abstract-form(v-if="add")
+    admin-form(v-if="edit")
 </template>
 
 <script>
   import store from '../vuex/store'
   import AbstractForm from './AbstractForm.vue'
+  import AdminForm from './AdminForm.vue'
 
   export default {
     name: 'OverlayPanel',
-    components: { AbstractForm },
+    components: { AbstractForm, AdminForm },
     data () {
       return {
       }
