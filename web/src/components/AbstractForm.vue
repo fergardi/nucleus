@@ -8,7 +8,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
-              mu-menu-item(v-for="type in collections", :title="type.name", :value="type")
+              mu-menu-item(v-for="collection in collections", :title="collection['.key']", :value="collection")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
 
       mu-flexbox-item
@@ -84,7 +84,7 @@
       }
     },
     firebase: {
-      collections: firebase.ref('collections')
+      layers: firebase.ref('layers')
     },
     watch: {
       add () {
@@ -92,19 +92,21 @@
       }
     },
     created () {
-      this.coordinates.lat = this.map.coordinates[0]
-      this.coordinates.lng = this.map.coordinates[1]
+      this.coordinates.lat = this.map.center[0]
+      this.coordinates.lng = this.map.center[1]
     },
     methods: {
       point (ev) {
         this.coordinates = { lat: ev.latlng.lat.toFixed(5), lng: ev.latlng.lng.toFixed(5) }
       },
       cancel () {
-        // TODO
         store.commit('toggleAdd')
       },
       save () {
-        this.$firebaseRefs.collections.push()
+        this.$firebaseRefs.layers.child(this.selected['.key']).child('list').push({
+          name: this.name,
+          data: this.selected.data
+        })
         store.commit('resetMessage')
         store.commit('setMessage', 'Guardado correctamente')
         store.commit('toggleAdd')

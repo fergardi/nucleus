@@ -4,8 +4,8 @@
 
     v-map#map(:zoom="map.zoom", :center="map.center", ref="map")
       v-tilelayer(:url="map.url")
-      v-group(v-for="category in filtered", v-if="category.checked")
-        v-marker(v-for="marker in category.items", :lat-lng="marker.coordinates", :icon="icon(marker.avatar.src, marker.avatar.color)", @l-click="select(marker)")
+      v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
+        v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, item.avatar.color)", @l-click="select(item, index1, index2)")
 
     mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import firebase from '../services/firebase'
   import L from 'leaflet'
   import Vue2Leaflet from 'vue2-leaflet'
   import store from '../vuex/store'
@@ -50,10 +51,10 @@
       }, this.timeout)
     },
     methods: {
-      select (marker) {
-        store.commit('setInfo', marker)
+      select (item, index1, index2) {
+        store.commit('setInfo', { collection: index1, item: index2 })
         if (!store.state.right) store.commit('toggleRight')
-        store.commit('setCenter', marker.coordinates)
+        store.commit('setCenter', item.coordinates)
       },
       icon (url, className) {
         return L.icon({ // eslint-disable-line
@@ -71,14 +72,23 @@
       },
       edit () {
         store.commit('toggleEdit')
+      },
+      copy (object) {
+        return Object.assign({}, object)
       }
+    },
+    firebase: {
+      layers: firebase.ref('layers')
     },
     computed: {
       info () {
         return store.state.info
       },
       filtered () {
-        return store.getters.filtered
+        const self = this
+        return store.state.search.toLowerCase() === '' ? this.layers : this.layers.map(self.copy).filter(function recursive (item) {
+          return item.name && item.name.toLowerCase().includes(store.state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(store.state.search.toLowerCase()) || item.items && (item.items = item.items.map(self.copy).filter(recursive)).length
+        })
       },
       map () {
         return store.state.map

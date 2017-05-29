@@ -1,10 +1,9 @@
 <template lang="pug">
   .side-bar
-    info-card(v-if="info", :info="info")
+    info-card
 </template>
 
 <script>
-  import store from '../vuex/store'
   import InfoCard from './InfoCard.vue'
 
   export default {
@@ -16,11 +15,6 @@
     methods: {
       i18n (string) {
         return string // TODO
-      }
-    },
-    computed: {
-      info () {
-        return store.state.info
       }
     }
   }

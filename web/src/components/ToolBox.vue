@@ -53,7 +53,8 @@
       },
       getRandom () {
         var layer = Math.floor(Math.random() * this.layers.length)
-        return this.layers[layer].items[Math.floor(Math.random() * this.layers[layer].items.length)]
+        var item = Math.floor(Math.random() * this.layers[layer].items.length)
+        return 'layers/' + this.layers[layer].name + '/items/' + item
       }
     },
     computed: {

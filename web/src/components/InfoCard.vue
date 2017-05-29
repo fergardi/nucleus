@@ -1,12 +1,12 @@
 <template lang="pug">
-  mu-card.info-card
+  mu-card.info-card(v-if="collection && index")
     // HEADER
     mu-card-header(:title="info.avatar.title", :subTitle="info.avatar.subtitle")
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
     mu-card-media.media(:title="info.media.title", :subTitle="date(info.media.timestamp)")
-      mu-float-button.fab(icon="edit", @click="edit", mini="true")
+      //mu-float-button.fab(icon="edit", @click="edit", :mini="true")
       img(:src="info.media.src")
 
     // BLOCKS
@@ -16,9 +16,9 @@
       // METADATA
       mu-card-text(v-if="block.metadata")
         .metadata
-          mu-chip.chip(v-for="data in block.metadata")
+          mu-chip.chip(v-for="data in block.metadata", :class="boolean(data.value)")
             span.key {{ data.key }}
-            span.value {{ data.value }}
+            span.value {{ data.value | boolean }}
 
       // POSITIONS
       v-map#positions(v-if="block.positions", :zoom="map.zoom", :center="map.center", ref="positions")
@@ -44,27 +44,16 @@
             span(slot='title') {{ file.title }}
             span(slot='subTitle') {{ file.subtitle }}
             mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
-
-      // WEATHER
-      mu-card.weather-card(v-if="block.weather")
-        mu-card-media(:title="block.weather.title", :subTitle="block.weather.subtitle")
-          img.weather(:src="block.weather.src")
-
-        mu-card-text
-          .metadata
-            mu-chip.chip(v-for="data in block.weather.metadata")
-              span.key {{ data.key }}
-              span.value {{ data.value }}
 </template>
 
 <script>
   import store from '../vuex/store'
   import moment from 'moment'
+  import firebase from '../services/firebase'
   import Vue2Leaflet from 'vue2-leaflet'
 
   export default {
     name: 'InfoCard',
-    props: ['info'],
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
@@ -72,17 +61,41 @@
       'v-icondefault': Vue2Leaflet.IconDefault,
       'v-polyline': Vue2Leaflet.Polyline
     },
+    filters: {
+      boolean (value) {
+        return (value === true || value === false)
+          ? value === true
+            ? '✓'
+            : '✗'
+          : value
+      }
+    },
+    firebase: {
+      layers: firebase.ref('layers')
+    },
     methods: {
       show (item) {
         store.commit('setDialog', item)
       },
       date (timestamp) {
         return moment.unix(timestamp).format('DD/MM/YYYY HH:mm:ss')
+      },
+      boolean (value) {
+        return (value === true || value === false) ? value.toString() : ''
       }
     },
     computed: {
       map () {
         return store.state.map
+      },
+      info () {
+        return this.layers ? this.layers[store.state.firebase.collection].items[store.state.firebase.item] : {}
+      },
+      collection () {
+        return store.state.firebase.collection !== null
+      },
+      index () {
+        return store.state.firebase.index !== null
       }
     }
   }
@@ -123,6 +136,13 @@
         margin 1px
         padding 0
         border-radius 20px
+        &:hover
+          background-color grey !important
+          color white
+        &.true
+          background-color green
+        &.false
+          background-color red
         .key
           background-color grey
           color white

@@ -29,6 +29,9 @@ Vue.use(MuseUI)
 Vue.filter('date', (timestamp) => {
   return moment(parseInt(timestamp)).format('D/M/YYYY HH:mm:ss')
 })
+Vue.filter('capitalize', (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+})
 Vue.filter('i18n', (string) => {
   return string // TODO
 })

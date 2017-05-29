@@ -85,9 +85,6 @@
         ]
       }
     },
-    mounted () {
-      console.log(this)
-    },
     methods: {
       next () {
         this.step++

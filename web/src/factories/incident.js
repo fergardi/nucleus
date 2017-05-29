@@ -45,6 +45,9 @@ const factory = {
   weather () {
     return factory.weathers[Math.floor(Math.random() * factory.weathers.length)]
   },
+  boolean () {
+    return Math.random() >= 0.5
+  },
   date () {
     return Date.now() / 1000 // generate timestamp
   },
@@ -72,7 +75,8 @@ const factory = {
             { key: 'Personas', value: factory.number(1000) },
             { key: 'Vehículos', value: factory.number(1000) },
             { key: 'Viviendas', value: factory.number(1000) },
-            { key: 'Árboles', value: factory.number(1000) }
+            { key: 'Árboles', value: factory.number(1000) },
+            { key: 'Activo', value: factory.boolean() }
           ]
         },
         {
@@ -94,20 +98,6 @@ const factory = {
             { src: 'https://image.flaticon.com/icons/svg/136/136545.svg', title: 'video.mp4', subtitle: '29/01/1523' },
             { src: 'https://image.flaticon.com/icons/svg/136/136543.svg', title: 'presentation.ppt', subtitle: '29/01/1523' }
           ]
-        },
-        {
-          title: 'Climatología',
-          subtitle: 'Datos en tiempo real',
-          weather: {
-            title: 'Tiempo',
-            subtitle: 'Datos actuales',
-            src: factory.weather(),
-            metadata: [
-              { key: 'Grados', value: factory.number(30) + ' ºC' },
-              { key: 'Viento', value: factory.number(250) + ' km/h' },
-              { key: 'Humedad', value: factory.number(100) + ' %' }
-            ]
-          }
         }
       ]
     }
