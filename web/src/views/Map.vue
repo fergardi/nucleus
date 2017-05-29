@@ -86,8 +86,8 @@
       },
       filtered () {
         const self = this
-        return store.state.search.toLowerCase() === '' ? this.layers : this.layers.map(self.copy).filter(function recursive (item) {
-          return item.name && item.name.toLowerCase().includes(store.state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(store.state.search.toLowerCase()) || item.items && (item.items = item.items.map(self.copy).filter(recursive)).length
+        return store.state.search.toLowerCase() === '' ? this.layers : Object.keys(this.layers).map(self.copy).filter(function recursive (item) {
+          return item.name && item.name.toLowerCase().includes(store.state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(store.state.search.toLowerCase()) || item.items && (item.items = Object.keys(item.items).map(self.copy).filter(recursive)).length
         })
       },
       map () {
