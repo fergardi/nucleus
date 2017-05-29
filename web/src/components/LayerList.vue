@@ -17,18 +17,15 @@
   export default {
     name: 'LayerList',
     methods: {
-      toggle (layer, parent = true) {
-        if (!parent) layer.checked = !layer.checked
-        if (layer.layers) layer.layers.forEach((children) => this.toggle(children, false))
-      },
       i18n (string) {
         return string // TODO
       },
       count (layer) {
+        console.log(layer)
         return layer.layers
           ? layer.layers.length.toString()
           : layer.items
-            ? layer.items.length.toString()
+            ? Object.keys(layer.items).length.toString()
             : '0'
       },
       select (item, index1, index2) {

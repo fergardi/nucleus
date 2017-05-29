@@ -91,7 +91,13 @@
         this.fields = [{ name: '', type: '', value: null, options: [] }]
       },
       save () {
-        this.$firebaseRefs.layers.child(this.name.toLowerCase()).child('data').set(this.fields)
+        this.$firebaseRefs.layers.child(this.name.toLowerCase()).set({
+          checked: true,
+          name: this.name.toLowerCase(),
+          opened: false,
+          radio: false,
+          data: this.fields
+        })
         store.commit('resetMessage')
         store.commit('setMessage', 'Creado correctamente')
         store.commit('toggleEdit')

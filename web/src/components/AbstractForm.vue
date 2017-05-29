@@ -8,7 +8,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
-              mu-menu-item(v-for="collection in collections", :title="collection['.key']", :value="collection")
+              mu-menu-item(v-for="layer in layers", :title="layer.name", :value="layer")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
 
       mu-flexbox-item
@@ -54,13 +54,14 @@
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel")
-              mu-raised-button(label="Terminar", @click="save", primary, :disabled="validate")
+              mu-raised-button(label="Terminar", @click="save", primary, :disabled="!name")
 </template>
 
 <script>
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
   import firebase from '../services/firebase'
+  import incident from '../factories/incident'
 
   export default {
     name: 'AbstractForm',
@@ -103,10 +104,7 @@
         store.commit('toggleAdd')
       },
       save () {
-        this.$firebaseRefs.layers.child(this.selected['.key']).child('list').push({
-          name: this.name,
-          data: this.selected.data
-        })
+        this.$firebaseRefs.layers.child(this.selected.name).child('items').push(incident.build())
         store.commit('resetMessage')
         store.commit('setMessage', 'Guardado correctamente')
         store.commit('toggleAdd')
