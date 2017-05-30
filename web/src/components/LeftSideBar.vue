@@ -1,10 +1,8 @@
 <template lang="pug">
   .side-bar
     .padding
-      mu-text-field(:fullWidth="true", label="Buscar", icon="search", :value="search", @input="find")
-      mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
-    .padding
-      mu-text-field(:fullWidth="true", label="Filtrar", icon="filter_list", :value="filter", @input="find")
+      mu-auto-complete(v-model="address", @input="find", :dataSource="addresses", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate", icon="search")
+      mu-text-field(:fullWidth="true", label="Filtrar elementos", icon="filter_list", :value="filter", @input="select")
       mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
     mu-list
       layer-list(:layers="filtered")
@@ -18,18 +16,32 @@
   export default {
     name: 'LeftSideBar',
     components: { LayerList, InfoCard },
+    data () {
+      return {
+        address: '',
+        places: []
+      }
+    },
     methods: {
       i18n (string) {
         return string // TODO
       },
-      find (string) {
+      select (string) {
         store.commit('updateSearch', string)
       },
-      geocode (address) {
-        store.commit('updateAddress', address)
+      find () {
+        if (!this.address || !this.address.length) this.places = []
+        this.map.G.geocode(this.address, matches => {
+          this.places = matches
+        })
+      },
+      locate (center) {
+        this.map.L.panTo(center.value)
       },
       clear () {
         store.commit('updateSearch', '')
+        this.address = ''
+        this.places = []
       }
     },
     computed: {
@@ -41,6 +53,12 @@
       },
       filter () {
         return store.state.filter
+      },
+      addresses () {
+        return this.places.map((p) => { return { text: p.name, value: p.center } })
+      },
+      map () {
+        return store.state.map
       }
     }
   }
