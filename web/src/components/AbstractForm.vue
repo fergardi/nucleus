@@ -28,14 +28,16 @@
           mu-card-header(title="Posición actual", subTitle="Coordenadas")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
-            v-map#location(:zoom="10", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
+            v-map#location(:zoom="16", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
               v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
               v-icondefault(image-path="/img/")
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
               mu-text-field(type="number" label="Longitud", v-model="coordinates.lng")
-            mu-text-field(v-model="coordinates.address", label="Buscar", :fullWidth="true")
+            mu-auto-complete(v-model="address", @input="find", :dataSource="names", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate")
+            .buttons
+              mu-raised-button(label="Reiniciar", @click="clear", primary, :fullWidth="true")
 
       mu-flexbox-item
         mu-card
@@ -54,7 +56,7 @@
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel")
-              mu-raised-button(label="Terminar", @click="save", primary, :disabled="!name")
+              mu-raised-button(label="Terminar", @click="save", primary, :disabled="!valid")
 </template>
 
 <script>
@@ -78,9 +80,10 @@
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
           lat: 42.58,
-          lng: -5.60,
-          address: ''
-        }
+          lng: -5.60
+        },
+        address: '',
+        places: []
       }
     },
     firebase: {
@@ -99,8 +102,23 @@
       point (ev) {
         this.coordinates = { lat: ev.latlng.lat.toFixed(5), lng: ev.latlng.lng.toFixed(5) }
       },
+      locate (center) {
+        this.coordinates = center.value
+      },
       cancel () {
         store.commit('toggleAdd')
+      },
+      clear () {
+        this.coordinates.lat = this.map.center[0]
+        this.coordinates.lng = this.map.center[1]
+        this.address = ''
+        this.places = []
+      },
+      find () {
+        if (!this.address || !this.address.length) this.places = []
+        this.map.G.geocode(this.address, matches => {
+          this.places = matches
+        })
       },
       save () {
         this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
@@ -140,6 +158,12 @@
       },
       map () {
         return store.state.map
+      },
+      names () {
+        return this.places.map((p) => { return { text: p.name, value: p.center } })
+      },
+      valid () {
+        return this.name !== '' && this.selected
       }
     }
   }

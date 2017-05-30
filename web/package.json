@@ -17,6 +17,7 @@
   "dependencies": {
     "firebase": "^4.0.0",
     "leaflet": "^1.0.3",
+    "leaflet-control-geocoder": "^1.5.4",
     "moment": "^2.18.1",
     "muse-ui": "^2.0.2",
     "vue": "^2.0.1",

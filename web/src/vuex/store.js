@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import incident from '../factories/incident'
-import resource from '../factories/resource'
-import infrastructure from '../factories/infrastructure'
+import L from 'leaflet'
+import 'leaflet-control-geocoder'
 
 Vue.use(Vuex)
 
@@ -28,13 +27,9 @@ const vuex = new Vuex.Store({
       center: [42.58, -5.60],
       zoom: 13,
       iconSize: 40, // px, even
-      L: null // leaflet
-    },
-    layers: [
-      { name: 'Incidentes', radio: false, checked: true, opened: false, items: incident.array(10) },
-      { name: 'Recursos', radio: false, checked: true, opened: false, items: resource.array(10) },
-      { name: 'Infraestructuras', radio: false, checked: true, opened: false, items: infrastructure.array(10) }
-    ]
+      L: null, // leaflet
+      G: null // geocoder
+    }
   },
   mutations: {
     setInfo (state, firebase) {
@@ -74,6 +69,11 @@ const vuex = new Vuex.Store({
     },
     setMap (state, map) {
       state.map.L = map
+      state.map.G = new L.Control.Geocoder.Nominatim({
+        geocodingQueryParams: {
+          countrycodes: 'ES'
+        }
+      })
     },
     setCenter (state, center) {
       state.map.L.panTo(center)

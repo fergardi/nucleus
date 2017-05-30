@@ -3,6 +3,9 @@
     .padding
       mu-text-field(:fullWidth="true", label="Buscar", icon="search", :value="search", @input="find")
       mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
+    .padding
+      mu-text-field(:fullWidth="true", label="Filtrar", icon="filter_list", :value="filter", @input="find")
+      mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
     mu-list
       layer-list(:layers="filtered")
 </template>
@@ -22,6 +25,9 @@
       find (string) {
         store.commit('updateSearch', string)
       },
+      geocode (address) {
+        store.commit('updateAddress', address)
+      },
       clear () {
         store.commit('updateSearch', '')
       }
@@ -32,6 +38,9 @@
       },
       search () {
         return store.state.search
+      },
+      filter () {
+        return store.state.filter
       }
     }
   }
