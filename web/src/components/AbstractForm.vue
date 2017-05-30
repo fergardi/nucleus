@@ -8,8 +8,10 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
-              mu-menu-item(v-for="layer in layers", :title="layer.name", :value="layer")
+              mu-menu-item(v-for="layer in layers", :title="layer.name | capitalize", :value="layer")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
+            mu-select-field(v-model="status", label="Estado", :fullWidth="true", :disabled="!selected.statuses.length")
+              mu-menu-item(v-for="status in selected.statuses", :title="status.name", :value="status")
 
       mu-flexbox-item
         mu-card
@@ -18,9 +20,9 @@
           mu-card-text
             mu-text-field(v-model="icon", label="Icono", :fullWidth="true")
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
-          mu-card-header(:title="name", subTitle="Icono asociado")
-            mu-avatar(:src="icon", slot="avatar")
-          mu-card-media(:title="name", subTitle="Imagen asociada")
+          mu-card-header(:title="name", :subTitle="status.name")
+            mu-avatar.avatar(:src="icon", slot="avatar", :class="status.color")
+          mu-card-media(:title="(selected.name || name) | capitalize", :subTitle="date")
             img(:src="image")
 
       mu-flexbox-item
@@ -35,9 +37,10 @@
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
               mu-text-field(type="number" label="Longitud", v-model="coordinates.lng")
-            mu-auto-complete(v-model="address", @input="find", :dataSource="names", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate")
+            mu-auto-complete(v-model="address", @input="find", :dataSource="addresses", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate")
             .buttons
-              mu-raised-button(label="Reiniciar", @click="clear", primary, :fullWidth="true")
+              mu-raised-button(label="Reiniciar", @click="clear")
+              mu-raised-button(label="Localizar", @click="geolocate", primary)
 
       mu-flexbox-item
         mu-card
@@ -60,6 +63,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
   import firebase from '../services/firebase'
@@ -74,7 +78,13 @@
     },
     data () {
       return {
-        selected: null,
+        selected: {
+          statuses: []
+        },
+        status: {
+          name: 'Estado asociado',
+          color: ''
+        },
         name: 'Nombre',
         icon: 'https://image.flaticon.com/icons/svg/234/234449.svg',
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
@@ -105,6 +115,9 @@
       locate (center) {
         this.coordinates = center.value
       },
+      geolocate () {
+        // this.coordinates =
+      },
       cancel () {
         store.commit('toggleAdd')
       },
@@ -124,13 +137,13 @@
         this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
           coordinates: { lat: this.coordinates.lat, lng: this.coordinates.lng },
           avatar: {
-            color: 'red',
+            color: this.status.color,
             title: this.name,
-            subtitle: this.name,
+            subtitle: this.status.name,
             src: this.icon
           },
           media: {
-            title: this.name,
+            title: this.selected.name,
             timestamp: Date.now() / 1000,
             src: this.image
           },
@@ -159,11 +172,14 @@
       map () {
         return store.state.map
       },
-      names () {
+      addresses () {
         return this.places.map((p) => { return { text: p.name, value: p.center } })
       },
       valid () {
-        return this.name !== '' && this.selected
+        return this.name !== '' && this.selected && this.status
+      },
+      date () {
+        return moment(parseInt(Date.now())).format('D/M/YYYY HH:mm:ss')
       }
     }
   }

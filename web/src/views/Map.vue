@@ -2,7 +2,7 @@
   .leaflet-map
     loading-progress(:loading="loading")
 
-    v-map#map(:zoom="map.zoom", :center="map.center", ref="map")
+    v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map")
       v-tilelayer(:url="map.url")
       v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
         v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, item.avatar.color)", @l-click="select(item, index1, index2)")
@@ -104,8 +104,8 @@
   .marker
   .avatar
     border-radius 50%
-    padding 2px
-    border 2px solid
+    padding 3px
+    border 3px solid
     &.red
       border-color red
     &.green

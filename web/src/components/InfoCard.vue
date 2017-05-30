@@ -5,7 +5,7 @@
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
-    mu-card-media.media(:title="info.media.title", :subTitle="date(info.media.timestamp)")
+    mu-card-media.media(:title="info.media.title | capitalize", :subTitle="date(info.media.timestamp)")
       //mu-float-button.fab(icon="edit", @click="edit", :mini="true")
       img(:src="info.media.src")
 
@@ -136,13 +136,14 @@
         margin 1px
         padding 0
         border-radius 20px
-        &:hover
-          background-color grey !important
-          color white
         &.true
           background-color green
+          &:hover
+            background-color darkgreen
         &.false
           background-color red
+          &:hover
+            background-color darkred
         .key
           background-color grey
           color white

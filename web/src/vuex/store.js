@@ -26,6 +26,8 @@ const vuex = new Vuex.Store({
       url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
       center: [42.58, -5.60],
       zoom: 13,
+      min: 0,
+      max: 18,
       iconSize: 40, // px, even
       L: null, // leaflet
       G: null // geocoder
