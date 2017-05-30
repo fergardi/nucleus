@@ -36,16 +36,12 @@
     data () {
       return {
         loading: true,
-        timeout: 2000
+        timeout: 1000
       }
     },
     mounted () {
-      store.commit('resetMessage')
-      store.commit('setMessage', 'Loading data...')
       setTimeout(() => {
         this.loading = false
-        store.commit('resetMessage')
-        store.commit('setMessage', 'Ready!')
         store.commit('setMap', this.$refs.map.mapObject) // store the leaflet map into vuex
         store.state.map.L.zoomControl.remove()
       }, this.timeout)

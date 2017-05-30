@@ -5,7 +5,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Tipo y nombre", subTitle="Nuevo elemento")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/337/337308.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="layer in layers", :title="layer.name | capitalize", :value="layer")
@@ -16,7 +16,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Imagen e icono", subTitle="Agregar imágenes")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/272/272881.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="icon", label="Icono", :fullWidth="true")
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
@@ -28,7 +28,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Posición actual", subTitle="Coordenadas")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/237/237150.svg", slot="avatar")
           mu-card-text
             v-map#location(:zoom="map.zoom", :min-zoom="map.min", :max-zoom="map.max", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
@@ -45,7 +45,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Datos asociados", subTitle="Información completa")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/235/235248.svg", slot="avatar")
           mu-card-text(v-if="selected")
             .data(v-for="field in selected.data")
               mu-select-field(v-model="field.value", :label="field.name", v-if="field.type === 'select'", :fullWidth="true")

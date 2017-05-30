@@ -18,7 +18,7 @@ const vuex = new Vuex.Store({
       collection: null,
       index: null
     },
-    left: true,
+    left: false,
     right: false,
     checked: true,
     tour: false,

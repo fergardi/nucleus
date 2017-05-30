@@ -5,7 +5,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Nuevo tipo de elemento", subTitle="Crear un nuevo tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/440/440709.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true", :disabled="selected !== null")
         //mu-card-header(title="Editar un elemento existente", subTitle="Escoger un tipo")
@@ -19,7 +19,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Estados del tipo", subTitle="Crear estados")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188235.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/216/216272.svg", slot="avatar")
           mu-card-text
             .field(v-for="status, index in statuses")
               mu-text-field(v-model="status.name", label="Estado", :fullWidth="true")
@@ -33,7 +33,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Datos del tipo", subTitle="Información adicional")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/235/235248.svg", slot="avatar")
           mu-card-text
             .field(v-for="field, index in fields")
               mu-text-field(v-model="field.name", label="Campo", :fullWidth="true")
@@ -47,7 +47,7 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Guardar y enviar", subTitle="Confirmar")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188237.svg", slot="avatar")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/234/234247.svg", slot="avatar")
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel")
