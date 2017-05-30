@@ -71,11 +71,7 @@ const vuex = new Vuex.Store({
     },
     setMap (state, map) {
       state.map.L = map
-      state.map.G = new L.Control.Geocoder.Nominatim({
-        geocodingQueryParams: {
-          countrycodes: 'ES'
-        }
-      })
+      state.map.G = new L.Control.Geocoder.Nominatim()
     },
     setCenter (state, center) {
       state.map.L.panTo(center)

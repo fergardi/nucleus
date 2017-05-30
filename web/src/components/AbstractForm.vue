@@ -1,6 +1,6 @@
 <template lang="pug">
   form.abstract-form
-    mu-flexbox(wrap="wrap")
+    mu-flexbox
 
       mu-flexbox-item
         mu-card
@@ -191,6 +191,7 @@
       flex-direction row
       align-items flex-start
       .mu-flexbox-item
+        width 100%
         margin 5px !important
     .coordinates
     .buttons
@@ -207,5 +208,6 @@
       .mu-flexbox
         flex-direction column !important
         .mu-flexbox-item
+          width 100%
           margin 5px 0px !important
 </style>

@@ -157,6 +157,7 @@
       flex-direction row
       align-items flex-start
       .mu-flexbox-item
+        width 100%
         margin 0px 5px !important
     .field
     .buttons
