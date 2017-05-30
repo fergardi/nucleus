@@ -32,11 +32,11 @@
         if (!store.state.right) store.commit('toggleRight')
         store.commit('setCenter', item.coordinates)
       },
-      copy (object) {
-        return Object.assign({}, object)
-      },
       update (name, value) {
         firebase.ref('layers').child(name).child('checked').set(value)
+      },
+      copy (object) {
+        return Object.assign({}, object)
       }
     },
     firebase: {
@@ -47,8 +47,8 @@
         return store.state.info
       },
       filtered () {
-        return store.state.search.toLowerCase() === '' ? this.layers : this.layers.filter(function recursive (item) {
-          return item.name && item.name.toLowerCase().includes(store.state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(store.state.search.toLowerCase()) || item.items && (item.items = Object.keys(item.items).filter(recursive)).length
+        return store.state.search.toLowerCase() === '' ? this.layers : this.layers.map(this.copy).filter(function recursive (item) {
+          return item.name && item.name.toLowerCase().includes(store.state.search.toLowerCase()) || item.avatar && item.avatar.title.toLowerCase().includes(store.state.search.toLowerCase()) || item.items && (item.items = Object.keys(item.items).map(key => item.items[key]).filter(recursive)).length
         })
       },
       search () {

@@ -9,6 +9,7 @@
 
 <script>
   import store from '../vuex/store'
+  import firebase from '../services/firebase'
 
   export default {
     name: 'ToolBox',
@@ -23,26 +24,24 @@
     created () {
       store.watch((state) => state.tour, () => {
         this.value = 0
-        var item = this.getRandom()
-        if (this.tour && !store.state.right) store.commit('toggleRight')
-        if (!store.state.info) {
-          store.commit('setInfo', item)
-          store.commit('setCenter', item.coordinates)
-        }
         if (this.tour) {
           this.timer = setInterval(() => {
             this.value += 100 / (this.timeout / this.tick)
             if (this.value > 100) {
               this.value = 0
               var item = this.getRandom()
+              if (!store.state.right) store.commit('toggleRight')
               store.commit('setInfo', item)
-              store.commit('setCenter', item.coordinates)
+              store.commit('setCenter', this.layers[item.collection].items[item.item].coordinates)
             }
           }, this.tick)
         } else {
           clearInterval(this.timer)
         }
       })
+    },
+    firebase: {
+      layers: firebase.ref('layers')
     },
     methods: {
       toggleTour () {
@@ -53,16 +52,13 @@
       },
       getRandom () {
         var layer = Math.floor(Math.random() * this.layers.length)
-        var item = Math.floor(Math.random() * this.layers[layer].items.length)
-        return 'layers/' + this.layers[layer].name + '/items/' + item
+        var item = Object.keys(this.layers[layer].items)[Math.floor(Math.random() * Object.keys(this.layers[layer].items).length)]
+        return { collection: layer, item: item }
       }
     },
     computed: {
       tour () {
         return store.state.tour
-      },
-      layers () {
-        return store.state.layers
       },
       map () {
         return store.state.map
