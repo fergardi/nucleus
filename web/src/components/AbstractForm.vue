@@ -30,7 +30,7 @@
           mu-card-header(title="Posición actual", subTitle="Coordenadas")
             mu-avatar(src="https://image.flaticon.com/icons/svg/188/188236.svg", slot="avatar")
           mu-card-text
-            v-map#location(:zoom="16", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
+            v-map#location(:zoom="map.zoom", :min-zoom="map.min", :max-zoom="map.max", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
               v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
               v-icondefault(image-path="/img/")
