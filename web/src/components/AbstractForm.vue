@@ -61,7 +61,6 @@
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
   import firebase from '../services/firebase'
-  import incident from '../factories/incident'
 
   export default {
     name: 'AbstractForm',
@@ -104,10 +103,35 @@
         store.commit('toggleAdd')
       },
       save () {
-        this.$firebaseRefs.layers.child(this.selected.name).child('items').push(incident.build())
-        store.commit('resetMessage')
-        store.commit('setMessage', 'Guardado correctamente')
-        store.commit('toggleAdd')
+        this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
+          coordinates: { lat: this.coordinates.lat, lng: this.coordinates.lng },
+          avatar: {
+            color: 'red',
+            title: this.name,
+            subtitle: this.name,
+            src: this.icon
+          },
+          media: {
+            title: this.name,
+            timestamp: Date.now() / 1000,
+            src: this.image
+          },
+          content: [
+            {
+              title: 'General',
+              subtitle: 'Información adicional',
+              metadata: this.selected.data
+            }
+          ]
+        })
+        .then((response) => {
+          store.commit('setInfo', { collection: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
+          if (!store.state.right) store.commit('toggleRight')
+          store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
+          store.commit('resetMessage')
+          store.commit('setMessage', 'Guardado correctamente')
+          store.commit('toggleAdd')
+        })
       }
     },
     computed: {

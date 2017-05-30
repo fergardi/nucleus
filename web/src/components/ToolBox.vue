@@ -4,7 +4,7 @@
     mu-icon-button(icon="play_arrow", v-if="!tour", @click="toggleTour")
     mu-icon-button.progress(v-if="tour", @click="toggleTour")
       mu-circular-progress(mode="determinate", :strokeWidth="2", :size="20", :value="value", color="white")
-    mu-icon-button(icon="border_clear")
+    mu-icon-button(icon="zoom_out_map", @click="fullScreen")
 </template>
 
 <script>
@@ -54,6 +54,10 @@
         var layer = Math.floor(Math.random() * this.layers.length)
         var item = Object.keys(this.layers[layer].items)[Math.floor(Math.random() * Object.keys(this.layers[layer].items).length)]
         return { collection: layer, item: item }
+      },
+      fullScreen () {
+        if (store.state.left) store.commit('toggleLeft')
+        if (store.state.right) store.commit('toggleRight')
       }
     },
     computed: {

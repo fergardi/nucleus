@@ -17,7 +17,7 @@
       mu-card-text(v-if="block.metadata")
         .metadata
           mu-chip.chip(v-for="data in block.metadata", :class="boolean(data.value)")
-            span.key {{ data.key }}
+            span.key {{ data.name }}
             span.value {{ data.value | boolean }}
 
       // POSITIONS
