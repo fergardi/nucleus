@@ -4,30 +4,30 @@
 
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Descripción", subTitle="Crear un nuevo tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/440/440709.svg", slot="avatar")
+          mu-card-header(title="Tipo", subTitle="Escoger tipo")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/337/337308.svg", slot="avatar")
           mu-card-text
             mu-select-field(v-model="shot.src", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="type in types", :title="type.name", :value="type.src")
 
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Nuevo disparo", subTitle="Crear un nuevo tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/440/440709.svg", slot="avatar")
+          mu-card-header(title="Descripción", subTitle="Datos del disparo")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/235/235248.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="shot.name", label="Nombre", :fullWidth="true")
             mu-text-field(v-model="shot.description", :multiLine="true", :rows="5", label="Descripción", :fullWidth="true")
 
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Descripción", subTitle="Crear un nuevo tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/440/440709.svg", slot="avatar")
+          mu-card-header(title="Cantidad", subTitle="Número de disparos")
+            mu-avatar(src="https://image.flaticon.com/icons/svg/308/308860.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="shot.quantity", type="number", label="Cantidad", :fullWidth="true")
 
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Guardar y enviar", subTitle="Confirmar")
+          mu-card-header(title="Confirmar", subTitle="Previsualizar y guardar")
             mu-avatar(src="https://image.flaticon.com/icons/svg/234/234247.svg", slot="avatar")
           mu-card-text
             mu-list.shots
