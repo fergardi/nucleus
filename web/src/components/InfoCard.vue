@@ -1,21 +1,14 @@
 <template lang="pug">
   mu-card.info-card(v-if="info")
     // HEADER
-    mu-card-header(v-if="info.avatar", :title="info.avatar.title", :subTitle="info.avatar.subtitle")
+    //mu-card-header(v-if="info.avatar", :title="info.avatar.title", :subTitle="info.avatar.subtitle")
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
-    mu-card-media.media(v-if="info.media", :title="info.media.title | capitalize", :subTitle="date(info.media.timestamp)")
-      //mu-float-button.fab(icon="edit", @click="edit", :mini="true")
+    mu-card-media.media(v-if="info.media", :title="info.avatar.title | capitalize", :subTitle="info.avatar.subtitle")
+      mu-float-button.fab(icon="gps_fixed", @click="shoot", :mini="true")
       img(:src="info.media.src")
-
-    // DATA
-    mu-card-text(v-if="info.data")
-      .metadata
-        mu-chip.chip(v-for="data in info.data", :class="boolean(data.value)")
-          span.key {{ data.name }}
-          span.value {{ data.value | boolean }}
-
+      
     // POSITIONS
     v-map#positions(v-if="info.positions", :zoom="map.zoom", :center="map.center", ref="positions")
       v-tilelayer(:url="map.url")
@@ -40,6 +33,20 @@
           span(slot='title') {{ file.title }}
           span(slot='subTitle') {{ file.subtitle }}
           mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
+
+    // SHOTS
+    mu-list.shots(v-if="info.shots")
+      mu-list-item(v-for="shot in info.shots", :title="shot.name", :describeText="shot.description")
+        mu-avatar(:src="shot.src", slot="leftAvatar")
+        mu-badge(:content="shot.quantity.toString()", slot="right", circle, secondary)
+
+  // DATA
+    mu-card-text(v-if="info.data")
+      .metadata
+        mu-chip.chip(v-for="data in info.data", :class="boolean(data.value)")
+          span.key {{ data.name }}
+          span.value {{ data.value | boolean }}
+
 
     // WEATHER
     mu-card-header(v-if="info.weather", :title="title(info.weather.degrees, info.weather.name)", :subTitle="date(info.weather.timestamp)")
@@ -93,6 +100,14 @@
       },
       boolean (value) {
         return (value === true || value === false) ? value.toString() : ''
+      },
+      shoot () {
+        firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push({
+          description: 'Description',
+          name: 'Name',
+          quantity: 100,
+          src: 'https://image.flaticon.com/icons/svg/330/330730.svg'
+        })
       },
       image (code) {
         switch (code) {
@@ -179,6 +194,9 @@
         position absolute
         right 10px
         top 10px
+    .shots
+      .mu-item .mu-item-right .mu-badge-container
+        right 0
     #positions
       width 100%
       height 250px

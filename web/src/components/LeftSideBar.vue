@@ -2,7 +2,7 @@
   .side-bar
     .padding
       mu-auto-complete(v-model="address", @input="find", :dataSource="addresses", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate", icon="search")
-      mu-text-field(:fullWidth="true", label="Filtrar elementos", icon="filter_list", :value="filter", @input="select")
+      mu-text-field(:fullWidth="true", label="Filtrar elementos", icon="filter_list", :value="search", @input="select")
       mu-raised-button(label="Limpiar", :fullWidth="true", primary, @click="clear")
     mu-list
       layer-list(:layers="filtered")
@@ -50,9 +50,6 @@
       },
       search () {
         return store.state.search
-      },
-      filter () {
-        return store.state.filter
       },
       addresses () {
         return this.places.map((p) => { return { text: p.name, value: p.center } })
