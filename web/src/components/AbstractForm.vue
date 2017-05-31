@@ -22,7 +22,7 @@
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
           mu-card-header(:title="name", :subTitle="status.name")
             mu-avatar.avatar(:src="icon", slot="avatar", :class="status.color")
-          mu-card-media(:title="(selected.name || name) | capitalize", :subTitle="date")
+          mu-card-media(:title="selected.name | capitalize", :subTitle="date")
             img(:src="image")
 
       mu-flexbox-item
@@ -67,6 +67,7 @@
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
   import firebase from '../services/firebase'
+  import openweathermap from '../services/openweathermap'
 
   export default {
     name: 'AbstractForm',
@@ -79,6 +80,7 @@
     data () {
       return {
         selected: {
+          name: '',
           statuses: []
         },
         status: {
@@ -134,34 +136,33 @@
         })
       },
       save () {
-        this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
-          coordinates: { lat: this.coordinates.lat, lng: this.coordinates.lng },
-          avatar: {
-            color: this.status.color,
-            title: this.name,
-            subtitle: this.status.name,
-            src: this.icon
-          },
-          media: {
-            title: this.selected.name,
-            timestamp: Date.now() / 1000,
-            src: this.image
-          },
-          content: [
-            {
-              title: 'General',
-              subtitle: 'Información adicional',
-              metadata: this.selected.data
-            }
-          ]
-        })
-        .then((response) => {
-          store.commit('setInfo', { collection: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
-          if (!store.state.right) store.commit('toggleRight')
-          store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
-          store.commit('resetMessage')
-          store.commit('setMessage', 'Guardado correctamente')
-          store.commit('toggleAdd')
+        const coordinates = { lat: this.coordinates.lat, lng: this.coordinates.lng }
+        openweathermap(coordinates)
+        .then((weather) => {
+          this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
+            coordinates: coordinates,
+            avatar: {
+              color: this.status.color,
+              title: this.name,
+              subtitle: this.status.name,
+              src: this.icon
+            },
+            media: {
+              title: this.selected.name,
+              timestamp: Date.now() / 1000,
+              src: this.image
+            },
+            data: this.selected.data,
+            weather: weather
+          })
+          .then((response) => {
+            store.commit('setInfo', { collection: this.selected.name, index: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
+            if (!store.state.right) store.commit('toggleRight')
+            store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
+            store.commit('resetMessage')
+            store.commit('setMessage', 'Guardado correctamente')
+            store.commit('toggleAdd')
+          })
         })
       }
     },
@@ -176,7 +177,7 @@
         return this.places.map((p) => { return { text: p.name, value: p.center } })
       },
       valid () {
-        return this.name !== '' && this.selected && this.status
+        return this.name !== '' && this.selected && this.status.color !== ''
       },
       date () {
         return moment(parseInt(Date.now())).format('D/M/YYYY HH:mm:ss')

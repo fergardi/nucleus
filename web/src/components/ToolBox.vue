@@ -32,7 +32,7 @@
               var item = this.getRandom()
               if (!store.state.right) store.commit('toggleRight')
               store.commit('setInfo', item)
-              store.commit('setCenter', this.layers[item.collection].items[item.item].coordinates)
+              store.commit('setCenter', this.layers[item.index].items[item.item].coordinates)
             }
           }, this.tick)
         } else {
@@ -53,7 +53,7 @@
       getRandom () {
         var layer = Math.floor(Math.random() * this.layers.length)
         var item = Object.keys(this.layers[layer].items)[Math.floor(Math.random() * Object.keys(this.layers[layer].items).length)]
-        return { collection: layer, item: item }
+        return { collection: this.layers[layer].name, index: layer, item: item }
       },
       fullScreen () {
         if (store.state.left) store.commit('toggleLeft')

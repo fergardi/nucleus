@@ -5,7 +5,7 @@
     v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map")
       v-tilelayer(:url="map.url")
       v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
-        v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, item.avatar.color)", @l-click="select(item, index1, index2)")
+        v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, item.avatar.color)", @l-click="select(item, index1, index2, layer)")
 
     mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
@@ -47,8 +47,8 @@
       }, this.timeout)
     },
     methods: {
-      select (item, index1, index2) {
-        store.commit('setInfo', { collection: index1, item: index2 })
+      select (item, index1, index2, layer) {
+        store.commit('setInfo', { collection: layer.name, index: index1, item: index2 })
         if (!store.state.right) store.commit('toggleRight')
         store.commit('setCenter', item.coordinates)
       },

@@ -15,6 +15,7 @@
     "electron": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > ../electron/js/build.js && cp -R img/* ../electron/img/ && cp -R fonts/* ../electron/fonts/ && cp -R css/* ../electron/css/ && cp node_modules/muse-ui/dist/muse-ui.css ../electron/css/"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "firebase": "^4.0.0",
     "leaflet": "^1.0.3",
     "leaflet-control-geocoder": "^1.5.4",

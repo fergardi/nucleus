@@ -5,7 +5,7 @@
       mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right", :disabled="search")
       mu-checkbox(v-else, v-model="layer.checked", slot="right", :disabled="search", @change="update(layer.name, layer.checked)")
 
-      mu-list-item.nested(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item, index1, index2)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+      mu-list-item.nested(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item, index1, index2, layer)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
         mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
         mu-icon(value="place", slot="right")
 </template>
@@ -27,8 +27,8 @@
             ? Object.keys(layer.items).length.toString()
             : '0'
       },
-      select (item, index1, index2) {
-        store.commit('setInfo', { collection: index1, item: index2 })
+      select (item, index1, index2, layer) {
+        store.commit('setInfo', { collection: layer.name, index: index1, item: index2 })
         if (!store.state.right) store.commit('toggleRight')
         store.commit('setCenter', item.coordinates)
       },

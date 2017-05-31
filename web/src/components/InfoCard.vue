@@ -1,55 +1,56 @@
 <template lang="pug">
-  mu-card.info-card(v-if="collection && index")
+  mu-card.info-card(v-if="info")
     // HEADER
-    mu-card-header(:title="info.avatar.title", :subTitle="info.avatar.subtitle")
+    mu-card-header(v-if="info.avatar", :title="info.avatar.title", :subTitle="info.avatar.subtitle")
       mu-avatar.avatar(:src="info.avatar.src", slot="avatar", :class="info.avatar.color")
 
     // MEDIA
-    mu-card-media.media(:title="info.media.title | capitalize", :subTitle="date(info.media.timestamp)")
+    mu-card-media.media(v-if="info.media", :title="info.media.title | capitalize", :subTitle="date(info.media.timestamp)")
       //mu-float-button.fab(icon="edit", @click="edit", :mini="true")
       img(:src="info.media.src")
 
-    // BLOCKS
-    template(v-for="block in info.content")
-      mu-card-title(:title="block.title", :subTitle="block.subtitle")
-      
-      // METADATA
-      mu-card-text(v-if="block.metadata")
-        .metadata
-          mu-chip.chip(v-for="data in block.metadata", :class="boolean(data.value)")
-            span.key {{ data.name }}
-            span.value {{ data.value | boolean }}
+    // DATA
+    mu-card-text(v-if="info.data")
+      .metadata
+        mu-chip.chip(v-for="data in info.data", :class="boolean(data.value)")
+          span.key {{ data.name }}
+          span.value {{ data.value | boolean }}
 
-      // POSITIONS
-      v-map#positions(v-if="block.positions", :zoom="map.zoom", :center="map.center", ref="positions")
-        v-tilelayer(:url="map.url")
-        v-marker(v-for="position in block.positions", :lat-lng="position")
-        v-polyline(:lat-lngs="block.positions", color="steelblue")
-        v-icondefault(image-path="/img/")
+    // POSITIONS
+    v-map#positions(v-if="info.positions", :zoom="map.zoom", :center="map.center", ref="positions")
+      v-tilelayer(:url="map.url")
+      v-marker(v-for="position in info.positions", :lat-lng="position")
+      v-polyline(:lat-lngs="info.positions", color="steelblue")
+      v-icondefault(image-path="/img/")
 
-      // GALLERY
-      .container(v-if="block.gallery")
-        mu-grid-list.gallery
-          mu-grid-tile(v-for='image, index in block.gallery', :key='index')
-            img(:src='image.src')
-            span(slot='title') {{ image.title }}
-            span(slot='subTitle') {{ image.subtitle }}
-            mu-icon-button(icon='remove_red_eye', slot='action', @click="show(image)")
+    // GALLERY
+    .container(v-if="info.gallery")
+      mu-grid-list.gallery
+        mu-grid-tile(v-for='image, index in info.gallery', :key='index')
+          img(:src='image.src')
+          span(slot='title') {{ image.title }}
+          span(slot='subTitle') {{ image.subtitle }}
+          mu-icon-button(icon='remove_red_eye', slot='action', @click="show(image)")
 
-      // FILES
-      .container(v-if="block.files")
-        mu-grid-list.files
-          mu-grid-tile(v-for='file, index in block.files', :key='index')
-            img(:src='file.src')
-            span(slot='title') {{ file.title }}
-            span(slot='subTitle') {{ file.subtitle }}
-            mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
+    // FILES
+    .container(v-if="info.files")
+      mu-grid-list.files
+        mu-grid-tile(v-for='file, index in info.files', :key='index')
+          img(:src='file.src')
+          span(slot='title') {{ file.title }}
+          span(slot='subTitle') {{ file.subtitle }}
+          mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
+
+    // WEATHER
+    mu-card-header(v-if="info.weather", :title="title(info.weather.degrees, info.weather.name)", :subTitle="date(info.weather.timestamp)")
+      mu-avatar(:src="image(info.weather.src)", slot="avatar")
 </template>
 
 <script>
   import store from '../vuex/store'
   import moment from 'moment'
   import firebase from '../services/firebase'
+  import openweathermap from '../services/openweathermap'
   import Vue2Leaflet from 'vue2-leaflet'
 
   export default {
@@ -70,6 +71,16 @@
           : value
       }
     },
+    created () {
+      store.watch((state) => state.right, () => {
+        if (store.state.right && parseInt(Date.now() / 1000) - this.info.weather.timestamp >= 7200) {
+          openweathermap(this.info.coordinates)
+          .then((weather) => {
+            firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('weather').set(weather)
+          })
+        }
+      })
+    },
     firebase: {
       layers: firebase.ref('layers')
     },
@@ -82,6 +93,51 @@
       },
       boolean (value) {
         return (value === true || value === false) ? value.toString() : ''
+      },
+      image (code) {
+        switch (code) {
+          case '01d':
+            return 'https://image.flaticon.com/icons/svg/136/136723.svg'
+          case '01n':
+            return 'https://image.flaticon.com/icons/svg/136/136756.svg'
+          case '02d':
+            return 'https://image.flaticon.com/icons/svg/136/136716.svg'
+          case '02n':
+            return 'https://image.flaticon.com/icons/svg/136/136719.svg'
+          case '03d':
+            return 'https://image.flaticon.com/icons/svg/136/136701.svg'
+          case '03n':
+            return 'https://image.flaticon.com/icons/svg/136/136701.svg'
+          case '04d':
+            return 'https://image.flaticon.com/icons/svg/136/136701.svg'
+          case '04n':
+            return 'https://image.flaticon.com/icons/svg/136/136701.svg'
+          case '09d':
+            return 'https://image.flaticon.com/icons/svg/136/136714.svg'
+          case '09n':
+            return 'https://image.flaticon.com/icons/svg/136/136717.svg'
+          case '10d':
+            return 'https://image.flaticon.com/icons/svg/136/136714.svg'
+          case '10n':
+            return 'https://image.flaticon.com/icons/svg/136/136717.svg'
+          case '11d':
+            return 'https://image.flaticon.com/icons/svg/136/136729.svg'
+          case '11n':
+            return 'https://image.flaticon.com/icons/svg/136/136730.svg'
+          case '13d':
+            return 'https://image.flaticon.com/icons/svg/136/136715.svg'
+          case '13n':
+            return 'https://image.flaticon.com/icons/svg/136/136718.svg'
+          case '50d':
+            return 'https://image.flaticon.com/icons/svg/136/136723.svg'
+          case '50n':
+            return 'https://image.flaticon.com/icons/svg/136/136723.svg'
+          default:
+            return 'https://image.flaticon.com/icons/svg/136/136723.svg'
+        }
+      },
+      title (degrees, name) {
+        return degrees + 'º, ' + name.charAt(0).toUpperCase() + name.slice(1)
       }
     },
     computed: {
@@ -89,17 +145,20 @@
         return store.state.map
       },
       info () {
-        return this.layers ? this.layers[store.state.firebase.collection].items[store.state.firebase.item] : {}
-      },
-      collection () {
-        return store.state.firebase.collection !== null
-      },
-      index () {
-        return store.state.firebase.index !== null
+        return this.layers
+          ? store.state.firebase.index !== null && store.state.firebase.item !== null
+            ? this.layers[store.state.firebase.index].items[store.state.firebase.item]
+            : null
+          : null
       }
     }
   }
 </script>
+
+<style lang="stylus">
+  .mu-card-header-title
+    padding-right 20px
+</style>
 
 <style lang="stylus" scoped>
   .info-card
@@ -123,15 +182,13 @@
     #positions
       width 100%
       height 250px
-    .weather-card
-      img.weather
-        padding 0 50px
     .metadata
       display flex
-      flex-direction row
+      flex-direction column
       justify-content flex-start
-      align-items left
+      align-items center
       flex-wrap wrap
+      align-content center
       .chip
         margin 1px
         padding 0

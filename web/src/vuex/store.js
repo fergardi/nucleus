@@ -16,7 +16,8 @@ const vuex = new Vuex.Store({
     search: '',
     firebase: {
       collection: null,
-      index: null
+      index: null,
+      item: null
     },
     left: false,
     right: false,
