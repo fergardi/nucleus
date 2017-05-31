@@ -23,6 +23,7 @@ const vuex = new Vuex.Store({
     left: false,
     right: false,
     checked: true,
+    docked: true,
     tour: false,
     map: {
       url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',

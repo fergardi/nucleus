@@ -1,17 +1,17 @@
 <template lang="pug">
   .app
-    mu-appbar
+    mu-appbar(title="Shots")
       mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
-      tool-box(slot="default")
+      // tool-box(slot="default")
       mu-icon-button(icon="visibility", slot="right", @click="toggleRight", :class="{'hidden' : !info}")
 
-    mu-drawer.sidebar(:open="left", :docked="true", @close="toggleLeft")
+    mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
       mu-appbar Capas
         mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
         mu-icon-button.hidden(icon="close", slot="right", @click="toggleLeft")
       left-side-bar
 
-    mu-drawer.sidebar(:open="right", :docked="true", @close="toggleRight", right)
+    mu-drawer.sidebar(:open="right", :docked="docked", @close="toggleRight", right)
       mu-appbar Detalles
         mu-icon-button.hidden(icon="close", slot="left", @click="clearInfo")
         mu-icon-button(icon="visibility_off", slot="right", @click="toggleRight")
@@ -61,6 +61,9 @@
       },
       info () {
         return store.state.info
+      },
+      docked () {
+        return store.state.docked
       }
     }
   }
