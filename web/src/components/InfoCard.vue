@@ -6,51 +6,35 @@
 
     // MEDIA
     mu-card-media.media(v-if="info.media", :title="info.avatar.title | capitalize", :subTitle="info.avatar.subtitle")
-      mu-float-button.fab(icon="gps_fixed", @click="shoot", :mini="true")
+      mu-float-button.fab(icon="gps_fixed", @click="open", :mini="true")
       img(:src="info.media.src")
-      
-    // POSITIONS
-    v-map#positions(v-if="info.positions", :zoom="map.zoom", :center="map.center", ref="positions")
-      v-tilelayer(:url="map.url")
-      v-marker(v-for="position in info.positions", :lat-lng="position")
-      v-polyline(:lat-lngs="info.positions", color="steelblue")
-      v-icondefault(image-path="/img/")
-
-    // GALLERY
-    .container(v-if="info.gallery")
-      mu-grid-list.gallery
-        mu-grid-tile(v-for='image, index in info.gallery', :key='index')
-          img(:src='image.src')
-          span(slot='title') {{ image.title }}
-          span(slot='subTitle') {{ image.subtitle }}
-          mu-icon-button(icon='remove_red_eye', slot='action', @click="show(image)")
-
-    // FILES
-    .container(v-if="info.files")
-      mu-grid-list.files
-        mu-grid-tile(v-for='file, index in info.files', :key='index')
-          img(:src='file.src')
-          span(slot='title') {{ file.title }}
-          span(slot='subTitle') {{ file.subtitle }}
-          mu-icon-button(icon='remove_red_eye', slot='action', @click="show(file)")
 
     // SHOTS
     mu-list.shots(v-if="info.shots")
       mu-list-item(v-for="shot in info.shots", :title="shot.name", :describeText="shot.description")
         mu-avatar(:src="shot.src", slot="leftAvatar")
-        mu-badge(:content="shot.quantity.toString()", slot="right", circle, secondary)
+        mu-badge(:content="shot.quantity.toString()", slot="right", circle, primary)
 
-  // DATA
+    // DATA
     mu-card-text(v-if="info.data")
       .metadata
         mu-chip.chip(v-for="data in info.data", :class="boolean(data.value)")
           span.key {{ data.name }}
           span.value {{ data.value | boolean }}
 
-
     // WEATHER
     mu-card-header(v-if="info.weather", :title="title(info.weather.degrees, info.weather.name)", :subTitle="date(info.weather.timestamp)")
       mu-avatar(:src="image(info.weather.src)", slot="avatar")
+
+    // SHOT
+    mu-dialog(:open="dialog.opened", :title="dialog.title", @close="close")
+      mu-select-field(v-model="shot.src", label="Tipo", :fullWidth="true")
+        mu-menu-item(v-for="type in dialog.types", :title="type.name | capitalize", :value="type.src")
+      mu-text-field(v-model="shot.name", label="Nombre", :fullWidth="true")
+      mu-text-field(v-model="shot.description", label="Descripción", :fullWidth="true")
+      mu-text-field(v-model="shot.quantity", type="number", label="Cantidad", :fullWidth="true")
+      mu-raised-button(slot="actions", label="Cancelar", @click="close")
+      mu-raised-button(slot="actions", label="Disparar", @click="add", primary, :disabled="!valid")
 </template>
 
 <script>
@@ -68,6 +52,24 @@
       'v-marker': Vue2Leaflet.Marker,
       'v-icondefault': Vue2Leaflet.IconDefault,
       'v-polyline': Vue2Leaflet.Polyline
+    },
+    data () {
+      return {
+        dialog: {
+          opened: false,
+          title: 'Nuevo disparo',
+          types: [
+            { name: 'Descuento', src: 'https://image.flaticon.com/icons/svg/444/444323.svg' },
+            { name: 'Gratis', src: 'https://image.flaticon.com/icons/svg/308/308860.svg' }
+          ]
+        },
+        shot: {
+          description: '',
+          name: '',
+          quantity: 0,
+          src: ''
+        }
+      }
     },
     filters: {
       boolean (value) {
@@ -92,21 +94,22 @@
       layers: firebase.ref('layers')
     },
     methods: {
-      show (item) {
-        store.commit('setDialog', item)
-      },
       date (timestamp) {
         return moment.unix(timestamp).format('DD/MM/YYYY HH:mm:ss')
       },
       boolean (value) {
         return (value === true || value === false) ? value.toString() : ''
       },
-      shoot () {
-        firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push({
-          description: 'Description',
-          name: 'Name',
-          quantity: 100,
-          src: 'https://image.flaticon.com/icons/svg/330/330730.svg'
+      open () {
+        this.dialog.opened = true
+      },
+      close () {
+        this.dialog.opened = false
+      },
+      add () {
+        firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push(this.shot)
+        .then((response) => {
+          this.close()
         })
       },
       image (code) {
@@ -165,6 +168,9 @@
             ? this.layers[store.state.firebase.index].items[store.state.firebase.item]
             : null
           : null
+      },
+      valid () {
+        return this.shot.name !== '' && this.shot.description !== '' && this.shot.quantity > 0 && this.shot.src !== ''
       }
     }
   }
@@ -173,10 +179,15 @@
 <style lang="stylus">
   .mu-card-header-title
     padding-right 20px
+  .shots
+    .mu-item-wrapper
+      border 2px dashed darkgrey
+      margin 5px
 </style>
 
 <style lang="stylus" scoped>
   .info-card
+    box-shadow none !important
     .mu-avatar
       background-color transparent
     .container

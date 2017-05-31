@@ -18,11 +18,11 @@
           mu-card-header(title="Imagen e icono", subTitle="Agregar imágenes")
             mu-avatar(src="https://image.flaticon.com/icons/svg/272/272881.svg", slot="avatar")
           mu-card-text
-            mu-text-field(v-model="icon", label="Icono", :fullWidth="true")
+            mu-text-field(v-model="marker", label="Icono", :fullWidth="true")
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
           mu-card-header(:title="name", :subTitle="status.name")
-            mu-avatar.avatar(:src="icon", slot="avatar", :class="status.color")
-          mu-card-media(:title="selected.name | capitalize", :subTitle="date")
+            mu-avatar.avatar(:src="marker", slot="avatar", :class="status.color")
+          mu-card-media(:title="name | capitalize", :subTitle="date")
             img(:src="image")
 
       mu-flexbox-item
@@ -32,7 +32,7 @@
           mu-card-text
             v-map#location(:zoom="map.zoom", :min-zoom="map.min", :max-zoom="map.max", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
-              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]")
+              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]", :icon="icon(marker, status.color)")
               v-icondefault(image-path="/img/")
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
@@ -84,11 +84,11 @@
           statuses: []
         },
         status: {
-          name: 'Estado asociado',
+          name: 'Escoge un estado',
           color: ''
         },
         name: 'Nombre',
-        icon: 'https://image.flaticon.com/icons/svg/234/234449.svg',
+        marker: 'https://image.flaticon.com/icons/svg/234/234449.svg',
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
           lat: 42.58,
@@ -145,7 +145,7 @@
               color: this.status.color,
               title: this.name,
               subtitle: this.status.name,
-              src: this.icon
+              src: this.marker
             },
             media: {
               title: this.selected.name,
@@ -163,6 +163,14 @@
             store.commit('setMessage', 'Guardado correctamente')
             store.commit('toggleAdd')
           })
+        })
+      },
+      icon (url, className) {
+        return L.icon({ // eslint-disable-line
+          iconUrl: url,
+          iconSize: [this.map.iconSize, this.map.iconSize],
+          iconAnchor: [this.map.iconSize / 2, this.map.iconSize / 2],
+          className: 'marker ' + className
         })
       }
     },
