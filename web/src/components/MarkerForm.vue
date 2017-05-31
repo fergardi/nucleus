@@ -1,5 +1,5 @@
 <template lang="pug">
-  form.abstract-form
+  form.marker-form
     mu-flexbox
 
       mu-flexbox-item
@@ -70,7 +70,7 @@
   import openweathermap from '../services/openweathermap'
 
   export default {
-    name: 'AbstractForm',
+    name: 'MarkerForm',
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
@@ -195,7 +195,7 @@
 </script>
 
 <style lang="stylus" scoped>
-  .abstract-form
+  .marker-form
     .mu-flexbox
       flex-direction row
       align-items flex-start
@@ -213,7 +213,7 @@
     height 250px
     width auto
   @media (max-width 768px)
-    .abstract-form
+    .marker-form
       .mu-flexbox
         flex-direction column !important
         .mu-flexbox-item

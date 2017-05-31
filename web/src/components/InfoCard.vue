@@ -6,7 +6,7 @@
 
     // MEDIA
     mu-card-media.media(v-if="info.media", :title="info.avatar.title | capitalize", :subTitle="info.avatar.subtitle")
-      mu-float-button.fab(icon="gps_fixed", @click="open", :mini="true")
+      mu-float-button.fab(icon="add", @click="shot", :mini="true")
       img(:src="info.media.src")
 
     // SHOTS
@@ -25,16 +25,6 @@
     // WEATHER
     mu-card-header(v-if="info.weather", :title="title(info.weather.degrees, info.weather.name)", :subTitle="date(info.weather.timestamp)")
       mu-avatar(:src="image(info.weather.src)", slot="avatar")
-
-    // SHOT
-    mu-dialog(:open="dialog.opened", :title="dialog.title", @close="close")
-      mu-select-field(v-model="shot.src", label="Tipo", :fullWidth="true")
-        mu-menu-item(v-for="type in dialog.types", :title="type.name | capitalize", :value="type.src")
-      mu-text-field(v-model="shot.name", label="Nombre", :fullWidth="true")
-      mu-text-field(v-model="shot.description", label="Descripción", :fullWidth="true")
-      mu-text-field(v-model="shot.quantity", type="number", label="Cantidad", :fullWidth="true")
-      mu-raised-button(slot="actions", label="Cancelar", @click="close")
-      mu-raised-button(slot="actions", label="Disparar", @click="add", primary, :disabled="!valid")
 </template>
 
 <script>
@@ -52,24 +42,6 @@
       'v-marker': Vue2Leaflet.Marker,
       'v-icondefault': Vue2Leaflet.IconDefault,
       'v-polyline': Vue2Leaflet.Polyline
-    },
-    data () {
-      return {
-        dialog: {
-          opened: false,
-          title: 'Nuevo disparo',
-          types: [
-            { name: 'Descuento', src: 'https://image.flaticon.com/icons/svg/444/444323.svg' },
-            { name: 'Gratis', src: 'https://image.flaticon.com/icons/svg/308/308860.svg' }
-          ]
-        },
-        shot: {
-          description: '',
-          name: '',
-          quantity: 0,
-          src: ''
-        }
-      }
     },
     filters: {
       boolean (value) {
@@ -100,17 +72,8 @@
       boolean (value) {
         return (value === true || value === false) ? value.toString() : ''
       },
-      open () {
-        this.dialog.opened = true
-      },
-      close () {
-        this.dialog.opened = false
-      },
-      add () {
-        firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push(this.shot)
-        .then((response) => {
-          this.close()
-        })
+      shot () {
+        store.commit('toggleShot')
       },
       image (code) {
         switch (code) {
@@ -168,9 +131,6 @@
             ? this.layers[store.state.firebase.index].items[store.state.firebase.item]
             : null
           : null
-      },
-      valid () {
-        return this.shot.name !== '' && this.shot.description !== '' && this.shot.quantity > 0 && this.shot.src !== ''
       }
     }
   }
@@ -183,6 +143,8 @@
     .mu-item-wrapper
       border 2px dashed darkgrey
       margin 5px
+    .mu-item .mu-item-right .mu-badge-container
+      right 0
 </style>
 
 <style lang="stylus" scoped>
@@ -205,9 +167,6 @@
         position absolute
         right 10px
         top 10px
-    .shots
-      .mu-item .mu-item-right .mu-badge-container
-        right 0
     #positions
       width 100%
       height 250px

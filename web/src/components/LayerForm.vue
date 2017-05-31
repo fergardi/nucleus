@@ -1,5 +1,5 @@
 <template lang="pug">
-  form.admin-form
+  form.layer-form
     mu-flexbox
 
       mu-flexbox-item
@@ -59,7 +59,7 @@
   import firebase from '../services/firebase'
 
   export default {
-    name: 'AdminForm',
+    name: 'LayerForm',
     data () {
       return {
         selected: null,
@@ -152,7 +152,7 @@
 </script>
 
 <style lang="stylus" scoped>
-  .admin-form
+  .layer-form
     .mu-flexbox
       flex-direction row
       align-items flex-start
@@ -168,7 +168,7 @@
       .mu-text-field + .mu-text-field
         margin-left 5px
   @media (max-width 768px)
-    .admin-form
+    .layer-form
       .mu-flexbox
         flex-direction column !important
         .mu-flexbox-item

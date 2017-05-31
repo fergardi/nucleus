@@ -10,6 +10,7 @@ const vuex = new Vuex.Store({
   state: {
     add: false,
     edit: false,
+    shot: false,
     message: null,
     form: {},
     dialog: {},
@@ -64,11 +65,18 @@ const vuex = new Vuex.Store({
     },
     toggleEdit (state) {
       state.add = false
+      state.shot = false
       state.edit = !state.edit
     },
     toggleAdd (state) {
       state.edit = false
+      state.shot = false
       state.add = !state.add
+    },
+    toggleShot (state) {
+      state.edit = false
+      state.add = false
+      state.shot = !state.shot
     },
     setMap (state, map) {
       state.map.L = map

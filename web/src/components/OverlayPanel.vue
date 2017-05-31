@@ -1,18 +1,19 @@
 <template lang="pug">
-  mu-bottom-sheet(:open="add || edit", @close="close", sheetClass="info-panel")
-    //data-stepper
-    abstract-form(v-if="add")
-    admin-form(v-if="edit")
+  mu-bottom-sheet(:open="add || edit || shot", @close="close", sheetClass="info-panel")
+    marker-form(v-if="add")
+    layer-form(v-if="edit")
+    shot-form(v-if="shot")
 </template>
 
 <script>
   import store from '../vuex/store'
-  import AbstractForm from './AbstractForm.vue'
-  import AdminForm from './AdminForm.vue'
+  import MarkerForm from './MarkerForm.vue'
+  import LayerForm from './LayerForm.vue'
+  import ShotForm from './ShotForm.vue'
 
   export default {
     name: 'OverlayPanel',
-    components: { AbstractForm, AdminForm },
+    components: { MarkerForm, LayerForm, ShotForm },
     data () {
       return {
       }
@@ -21,6 +22,7 @@
       close () {
         if (this.add) store.commit('toggleAdd')
         if (this.edit) store.commit('toggleEdit')
+        if (this.shot) store.commit('toggleShot')
       }
     },
     computed: {
@@ -29,6 +31,9 @@
       },
       edit () {
         return store.state.edit
+      },
+      shot () {
+        return store.state.shot
       }
     }
   }
