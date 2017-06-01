@@ -127,8 +127,8 @@
           store.commit('setInfo', { collection: this.selected.name, index: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
           if (!store.state.right) store.commit('toggleRight')
           store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
-          store.commit('resetMessage')
           store.commit('setMessage', 'Guardado correctamente')
+          store.commit('setToast', true)
           store.commit('toggleAdd')
         })
       },

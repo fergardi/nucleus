@@ -12,6 +12,7 @@ const vuex = new Vuex.Store({
     edit: false,
     shot: false,
     message: null,
+    toast: false,
     form: {},
     dialog: {},
     search: '',
@@ -32,7 +33,7 @@ const vuex = new Vuex.Store({
       zoom: 14,
       min: 5,
       max: 18,
-      iconSize: 40, // px, even
+      iconSize: 50, // px, even
       L: null, // leaflet
       G: null // geocoder
     }
@@ -44,17 +45,11 @@ const vuex = new Vuex.Store({
     updateSearch (state, search) {
       state.search = search
     },
-    resetMessage (state) {
-      state.message = null // to force a change for watchers
+    setToast (state, toast) {
+      state.toast = toast
     },
     setMessage (state, message) {
       state.message = message
-    },
-    resetDialog (state) {
-      state.dialog = null // to force a change for watchers
-    },
-    setDialog (state, dialog) {
-      state.dialog = dialog
     },
     toggleTour (state) {
       state.tour = !state.tour

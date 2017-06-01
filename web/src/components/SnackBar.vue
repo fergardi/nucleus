@@ -1,6 +1,6 @@
 <template lang="pug">
   .snack-bar
-    mu-snackbar(v-if="snackbar", :message="message", action="OK", @actionClick="close", @close="close")
+    mu-snackbar(v-if="toast", :message="message", action="OK", @actionClick="close", @close="close")
 </template>
 
 <script>
@@ -8,31 +8,27 @@
 
   export default {
     name: 'SnackBar',
-    data () {
-      return {
-        snackbar: false,
-        timeout: 2000
-      }
-    },
-    watch: {
-      message () {
-        if (this.message) this.alert()
-      }
+    created () {
+      store.watch((state) => state.toast, () => {
+        if (this.toast) this.alert()
+      })
     },
     methods: {
       alert () {
-        this.snackbar = true
         if (this.snackTimer) clearTimeout(this.snackTimer)
         this.snackTimer = setTimeout(() => {
-          this.snackbar = false
-        }, this.timeout)
+          store.commit('setToast', false)
+        }, 2000)
       },
       close () {
-        this.snackbar = false
         if (this.snackTimer) clearTimeout(this.snackTimer)
+        store.commit('setToast', false)
       }
     },
     computed: {
+      toast () {
+        return store.state.toast
+      },
       message () {
         return store.state.message
       }

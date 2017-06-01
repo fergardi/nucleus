@@ -41,6 +41,8 @@
     },
     mounted () {
       setTimeout(() => {
+        store.commit('setMessage', 'Datos cargados')
+        store.commit('setToast', true)
         this.loading = false
         store.commit('setMap', this.$refs.map.mapObject) // store the leaflet map into vuex
         store.state.map.L.zoomControl.remove()

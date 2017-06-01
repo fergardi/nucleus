@@ -46,8 +46,8 @@
           name: this.name.toLowerCase(),
           opened: false
         })
-        store.commit('resetMessage')
         store.commit('setMessage', 'Creado correctamente')
+        store.commit('setToast', true)
         store.commit('toggleEdit')
       }
     },
