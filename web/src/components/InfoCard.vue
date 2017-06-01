@@ -11,7 +11,7 @@
 
     // SHOTS
     mu-list.shots(v-if="info.shots")
-      mu-list-item(v-for="shot in info.shots", :title="shot.name", :describeText="shot.description")
+      mu-list-item(v-for="shot in shots", :title="shot.name", :describeText="shot.description", @click="decrease(shot)")
         mu-avatar(:src="shot.src", slot="leftAvatar")
         mu-badge(:content="shot.quantity.toString()", slot="right", circle, primary)
 
@@ -61,6 +61,9 @@
           })
         }
       })
+      store.watch((state) => state.firebase.item, () => {
+        this.$bindAsArray('shots', firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots'))
+      })
     },
     firebase: {
       layers: firebase.ref('layers')
@@ -74,6 +77,11 @@
       },
       shot () {
         store.commit('toggleShot')
+      },
+      decrease (shot) {
+        shot.quantity >= 1
+          ? this.$firebaseRefs.shots.child(shot['.key']).child('quantity').set(parseInt(shot.quantity) - 1)
+          : this.$firebaseRefs.shots.child(shot['.key']).remove()
       },
       image (code) {
         switch (code) {

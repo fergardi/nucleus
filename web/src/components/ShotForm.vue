@@ -75,9 +75,7 @@
       },
       save () {
         firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push(this.shot)
-        .then((response) => {
-          this.close()
-        })
+        this.close()
       }
     },
     computed: {
