@@ -10,8 +10,7 @@
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="layer in layers", :title="layer.name | capitalize", :value="layer")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
-            mu-select-field(v-model="status", label="Estado", :fullWidth="true", :disabled="!selected.statuses.length")
-              mu-menu-item(v-for="status in selected.statuses", :title="status.name", :value="status")
+            mu-text-field(v-model="description", label="Descripción", :fullWidth="true", :multiLine="true", :rows="3", :rowsMax="6")
 
       mu-flexbox-item
         mu-card
@@ -19,9 +18,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/272/272881.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
-          mu-card-header(:title="name", :subTitle="status.name")
-            mu-avatar.avatar(:src="selected.src", slot="avatar", :class="status.color")
-          mu-card-media(:title="name | capitalize", :subTitle="date")
+          mu-card-media(:title="name | capitalize", :subTitle="selected.name | capitalize")
             img(:src="image")
 
       mu-flexbox-item
@@ -31,28 +28,12 @@
           mu-card-text
             v-map#location(:zoom="map.zoom", :min-zoom="map.min", :max-zoom="map.max", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
-              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]", :icon="icon(selected.src, status.color)")
+              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]", :icon="icon(selected.src, 'red')")
               v-icondefault(image-path="/img/")
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
               mu-text-field(type="number" label="Longitud", v-model="coordinates.lng")
             mu-auto-complete(v-model="address", @input="find", :dataSource="addresses", :fullWidth="true", :openOnFocus="true", label="Buscar", :maxSearchResults="5", @select="locate")
-            .buttons
-              mu-raised-button(label="Reiniciar", @click="clear")
-              mu-raised-button(label="Localizar", @click="geolocate", primary)
-
-      mu-flexbox-item
-        mu-card
-          mu-card-header(title="Datos asociados", subTitle="Información completa")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/235/235248.svg", slot="avatar")
-          mu-card-text(v-if="selected")
-            .data(v-for="field in selected.data")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :fullWidth="true")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'number'", :fullWidth="true", type="number")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'mail'", :fullWidth="true", type="mail")
-              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :multiLine="true", :rows="5", :fullWidth="true")
-              mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
-              mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           mu-card-text
             .buttons
               mu-raised-button(label="Cancelar", @click="cancel")
@@ -64,7 +45,6 @@
   import store from '../vuex/store'
   import Vue2Leaflet from 'vue2-leaflet'
   import firebase from '../services/firebase'
-  import openweathermap from '../services/openweathermap'
 
   export default {
     name: 'MarkerForm',
@@ -78,14 +58,10 @@
       return {
         selected: {
           name: '',
-          statuses: [],
-          src: 'https://image.flaticon.com/icons/svg/234/234449.svg'
-        },
-        status: {
-          name: 'Escoge un estado',
-          color: ''
+          src: 'https://image.flaticon.com/icons/svg/148/148766.svg'
         },
         name: 'Nombre',
+        description: 'Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.',
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
           lat: 42.58,
@@ -114,9 +90,6 @@
       locate (center) {
         this.coordinates = center.value
       },
-      geolocate () {
-        // this.coordinates =
-      },
       cancel () {
         store.commit('toggleAdd')
       },
@@ -133,33 +106,28 @@
         })
       },
       save () {
-        const coordinates = { lat: this.coordinates.lat, lng: this.coordinates.lng }
-        openweathermap(coordinates)
-        .then((weather) => {
-          this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
-            coordinates: coordinates,
-            avatar: {
-              color: this.status.color,
-              title: this.name,
-              subtitle: this.status.name,
-              src: this.selected.src
-            },
-            media: {
-              title: this.selected.name,
-              timestamp: Date.now() / 1000,
-              src: this.image
-            },
-            data: this.selected.data,
-            weather: weather
-          })
-          .then((response) => {
-            store.commit('setInfo', { collection: this.selected.name, index: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
-            if (!store.state.right) store.commit('toggleRight')
-            store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
-            store.commit('resetMessage')
-            store.commit('setMessage', 'Guardado correctamente')
-            store.commit('toggleAdd')
-          })
+        this.$firebaseRefs.layers.child(this.selected.name).child('items').push({
+          coordinates: { lat: this.coordinates.lat, lng: this.coordinates.lng },
+          avatar: {
+            color: 'red',
+            title: this.name,
+            subtitle: this.selected.name,
+            src: this.selected.src
+          },
+          media: {
+            title: this.selected.name,
+            timestamp: Date.now() / 1000,
+            src: this.image
+          },
+          description: this.description
+        })
+        .then((response) => {
+          store.commit('setInfo', { collection: this.selected.name, index: this.layers.findIndex((layer) => layer.name === response.path.o[1]), item: response.path.o[3] })
+          if (!store.state.right) store.commit('toggleRight')
+          store.commit('setCenter', { lat: this.coordinates.lat, lng: this.coordinates.lng })
+          store.commit('resetMessage')
+          store.commit('setMessage', 'Guardado correctamente')
+          store.commit('toggleAdd')
         })
       },
       icon (url, className) {
@@ -182,7 +150,7 @@
         return this.places.map((p) => { return { text: p.name, value: p.center } })
       },
       valid () {
-        return this.name !== '' && this.selected && this.status.color !== ''
+        return this.name !== '' && this.selected.name !== ''
       },
       date () {
         return moment(parseInt(Date.now())).format('D/M/YYYY HH:mm:ss')
