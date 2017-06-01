@@ -5,7 +5,7 @@
     v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map")
       v-tilelayer(:url="map.url")
       v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
-        v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, item.avatar.color)", @l-click="select(item, index1, index2, layer)")
+        v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, color(item))", @l-click="select(item, index1, index2, layer)")
 
     mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
@@ -71,6 +71,13 @@
       },
       copy (object) {
         return Object.assign({}, object)
+      },
+      color (item) {
+        return item.shots
+          ? Object.keys(item.shots).map(x => item.shots[x]).reduce((total, i) => total + i.quantity, 0) >= 3
+            ? 'green'
+            : 'orange'
+          : 'red'
       }
     },
     firebase: {

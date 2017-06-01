@@ -10,6 +10,7 @@
             mu-select-field(v-model="selected", label="Tipo", :fullWidth="true")
               mu-menu-item(v-for="layer in layers", :title="layer.name | capitalize", :value="layer")
             mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
+            mu-text-field(v-model="home", label="Dirección", :fullWidth="true")
             mu-text-field(v-model="description", label="Descripción", :fullWidth="true", :multiLine="true", :rows="3", :rowsMax="6")
 
       mu-flexbox-item
@@ -18,7 +19,7 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/272/272881.svg", slot="avatar")
           mu-card-text
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
-          mu-card-media(:title="name | capitalize", :subTitle="selected.name | capitalize")
+          mu-card-media(:title="name", :subTitle="home")
             img(:src="image")
 
       mu-flexbox-item
@@ -61,6 +62,7 @@
           src: 'https://image.flaticon.com/icons/svg/148/148766.svg'
         },
         name: 'Nombre',
+        home: 'Dirección',
         description: 'Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.',
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
@@ -111,7 +113,7 @@
           avatar: {
             color: 'red',
             title: this.name,
-            subtitle: this.selected.name,
+            subtitle: this.home,
             src: this.selected.src
           },
           media: {

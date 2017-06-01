@@ -5,8 +5,8 @@
       mu-badge(:content="count(layer)", slot="right")
       mu-checkbox(v-model="layer.checked", slot="right", :disabled="search", @change="update(layer.name, layer.checked)")
 
-      mu-list-item.nested.list-item(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item, index1, index2, layer)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
-        mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
+      mu-list-item.nested.list-item(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="subtitle(item)", slot="nested", @click="select(item, index1, index2, layer)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+        mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="color(item)")
         mu-icon(value="place", slot="right")
 </template>
 
@@ -37,6 +37,20 @@
       },
       copy (object) {
         return Object.assign({}, object)
+      },
+      subtitle (item) {
+        return item.shots
+          ? Object.keys(item.shots).map(x => item.shots[x]).reduce((total, i) => total + i.quantity, 0) >= 3
+            ? 'Muchos'
+            : 'Pocos'
+          : 'Ninguno'
+      },
+      color (item) {
+        return item.shots
+          ? Object.keys(item.shots).map(x => item.shots[x]).reduce((total, i) => total + i.quantity, 0) >= 3
+            ? 'green'
+            : 'orange'
+          : 'red'
       }
     },
     firebase: {
