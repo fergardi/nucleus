@@ -1,8 +1,9 @@
 <template lang="pug">
-  mu-bottom-sheet(:open="add || edit || shot", @close="close", sheetClass="info-panel")
+  mu-bottom-sheet(:open="open", @close="close", sheetClass="info-panel")
     marker-form(v-if="add")
     layer-form(v-if="edit")
     shot-form(v-if="shot")
+    settings-form(v-if="settings")
 </template>
 
 <script>
@@ -10,10 +11,11 @@
   import MarkerForm from './MarkerForm.vue'
   import LayerForm from './LayerForm.vue'
   import ShotForm from './ShotForm.vue'
+  import SettingsForm from './SettingsForm.vue'
 
   export default {
     name: 'OverlayPanel',
-    components: { MarkerForm, LayerForm, ShotForm },
+    components: { MarkerForm, LayerForm, ShotForm, SettingsForm },
     data () {
       return {
       }
@@ -23,6 +25,7 @@
         if (this.add) store.commit('toggleAdd')
         if (this.edit) store.commit('toggleEdit')
         if (this.shot) store.commit('toggleShot')
+        if (this.settings) store.commit('toggleSettings')
       }
     },
     computed: {
@@ -34,6 +37,12 @@
       },
       shot () {
         return store.state.shot
+      },
+      settings () {
+        return store.state.settings
+      },
+      open () {
+        return store.state.add || store.state.edit || store.state.shot || store.state.settings
       }
     }
   }

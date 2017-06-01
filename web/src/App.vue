@@ -2,7 +2,7 @@
   .app
     mu-appbar(title="Shots")
       mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
-      // tool-box(slot="default")
+      tool-box(slot="default")
       mu-icon-button(icon="visibility", slot="right", @click="toggleRight", :class="{'hidden' : !info}")
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")

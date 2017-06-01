@@ -79,7 +79,7 @@
         store.commit('toggleShot')
       },
       decrease (shot) {
-        shot.quantity >= 1
+        shot.quantity > 1
           ? this.$firebaseRefs.shots.child(shot['.key']).child('quantity').set(parseInt(shot.quantity) - 1)
           : this.$firebaseRefs.shots.child(shot['.key']).remove()
       },

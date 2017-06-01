@@ -4,6 +4,7 @@
     mu-icon-button(icon="play_arrow", v-if="!tour", @click="toggleTour")
     mu-icon-button.progress(v-if="tour", @click="toggleTour")
       mu-circular-progress(mode="determinate", :strokeWidth="2", :size="20", :value="value", color="white")
+    mu-icon-button(icon="settings", @click="toggleSettings")
     mu-icon-button(icon="zoom_out_map", @click="fullScreen")
 </template>
 
@@ -46,6 +47,9 @@
     methods: {
       toggleTour () {
         store.commit('toggleTour')
+      },
+      toggleSettings () {
+        store.commit('toggleSettings')
       },
       goHome () {
         store.commit('setCenter', this.map.center)

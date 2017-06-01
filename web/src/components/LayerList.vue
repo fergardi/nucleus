@@ -1,11 +1,11 @@
 <template lang="pug">
   .layer-list
-    mu-list-item(v-for="layer, index1 in filtered", :title="layer.name", slot="nested", :toggleNested="true", :open="layer.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+    mu-list-item.list-item(v-for="layer, index1 in filtered", :title="layer.name", slot="nested", :toggleNested="true", :open="layer.opened", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true", :key="layer")
       mu-badge(:content="count(layer)", slot="right")
       mu-switch(v-if="layer.radio", v-model="layer.checked", slot="right", :disabled="search")
       mu-checkbox(v-else, v-model="layer.checked", slot="right", :disabled="search", @change="update(layer.name, layer.checked)")
 
-      mu-list-item.nested(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item, index1, index2, layer)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
+      mu-list-item.nested.list-item(v-for="item, index2 in layer.items", :title="item.avatar.title", :describeText="item.avatar.subtitle", slot="nested", @click="select(item, index1, index2, layer)", :class="item === info ? 'selected' : ''", :disableRipple="true", :disableTouchRipple="true", :disableFocusRipple="true")
         mu-avatar.avatar(:src="item.avatar.src", slot="leftAvatar", :class="item.avatar.color")
         mu-icon(value="place", slot="right")
 </template>

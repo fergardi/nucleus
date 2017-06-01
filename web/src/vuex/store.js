@@ -25,6 +25,7 @@ const vuex = new Vuex.Store({
     checked: true,
     docked: true,
     tour: false,
+    settings: false,
     map: {
       url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
       center: [42.58, -5.60],
@@ -65,19 +66,16 @@ const vuex = new Vuex.Store({
       state.right = !state.right
     },
     toggleEdit (state) {
-      state.add = false
-      state.shot = false
       state.edit = !state.edit
     },
     toggleAdd (state) {
-      state.edit = false
-      state.shot = false
       state.add = !state.add
     },
     toggleShot (state) {
-      state.edit = false
-      state.add = false
       state.shot = !state.shot
+    },
+    toggleSettings (state) {
+      state.settings = !state.settings
     },
     setMap (state, map) {
       state.map.L = map
