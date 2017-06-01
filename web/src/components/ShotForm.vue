@@ -75,6 +75,8 @@
       },
       save () {
         firebase.ref('layers').child(store.state.firebase.collection).child('items').child(store.state.firebase.item).child('shots').push(this.shot)
+        store.commit('setMessage', 'Disparo creado')
+        store.commit('setToast', true)
         this.close()
       }
     },
