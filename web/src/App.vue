@@ -60,7 +60,7 @@
         return store.state.dialog
       },
       info () {
-        return store.state.info
+        return store.state.firebase.item
       },
       docked () {
         return store.state.docked

@@ -1,6 +1,7 @@
 <template lang="pug">
   .tool-box
     mu-icon-button(icon="home", @click="goHome")
+    mu-icon-button(icon="gps_not_fixed", @click="setRandom")
     mu-icon-button(icon="play_arrow", v-if="!tour", @click="toggleTour")
     mu-icon-button.progress(v-if="tour", @click="toggleTour")
       mu-circular-progress(mode="determinate", :strokeWidth="2", :size="20", :value="value", color="white")
@@ -26,14 +27,12 @@
       store.watch((state) => state.tour, () => {
         this.value = 0
         if (this.tour) {
+          this.setRandom()
           this.timer = setInterval(() => {
             this.value += 100 / (this.timeout / this.tick)
             if (this.value > 100) {
               this.value = 0
-              var item = this.getRandom()
-              if (!store.state.right) store.commit('toggleRight')
-              store.commit('setInfo', item)
-              store.commit('setCenter', this.layers[item.index].items[item.item].coordinates)
+              this.setRandom()
             }
           }, this.tick)
         } else {
@@ -58,6 +57,12 @@
         var layer = Math.floor(Math.random() * this.layers.length)
         var item = Object.keys(this.layers[layer].items)[Math.floor(Math.random() * Object.keys(this.layers[layer].items).length)]
         return { collection: this.layers[layer].name, index: layer, item: item }
+      },
+      setRandom () {
+        var item = this.getRandom()
+        if (!store.state.right) store.commit('toggleRight')
+        store.commit('setInfo', item)
+        store.commit('setCenter', this.layers[item.index].items[item.item].coordinates)
       },
       fullScreen () {
         if (store.state.left) store.commit('toggleLeft')
