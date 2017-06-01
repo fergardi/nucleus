@@ -1,0 +1,1462 @@
+{
+  "layers" : {
+    "bares" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 496.82693429355095
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 820.3249447183621
+      } ],
+      "items" : {
+        "-KlXt_4_1miOsBLjMgZP" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235881.svg",
+            "subtitle" : "Abierto",
+            "title" : "Bar Épico"
+          },
+          "coordinates" : {
+            "lat" : "42.59246",
+            "lng" : "-5.58543"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 496.82693429355095
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 820.3249447183621
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1468072114808-903e572b8ead",
+            "timestamp" : 1.49630786415E9,
+            "title" : "bares"
+          },
+          "shots" : {
+            "-KlXu7BdSeCBSYqa_myD" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXu9DcUaMvN78CTQPp" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 19,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1021,
+            "src" : "01d",
+            "timestamp" : 1496304000,
+            "wind" : 2.1
+          }
+        },
+        "-KlXuKRLMAOeLXbGL3FO" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235881.svg",
+            "subtitle" : "Abierto",
+            "title" : "Otro Bar Épico"
+          },
+          "coordinates" : {
+            "lat" : "42.58251",
+            "lng" : "-5.59771"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 496.82693429355095
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 820.3249447183621
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1468072114808-903e572b8ead",
+            "timestamp" : 1.496308062225E9,
+            "title" : "bares"
+          },
+          "shots" : {
+            "-KlXuLGMpU5yH2X5sxjX" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 19,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1021,
+            "src" : "01d",
+            "timestamp" : 1496304000,
+            "wind" : 2.1
+          }
+        }
+      },
+      "name" : "bares",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/235/235881.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "carnicerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 336.3217446671576
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 707.2118618438825
+      } ],
+      "items" : {
+        "-KlXujImsGw5we0Zqu-R" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/360/360655.svg",
+            "subtitle" : "Abierto",
+            "title" : "Carnicería Épica"
+          },
+          "coordinates" : {
+            "lat" : "42.57950",
+            "lng" : "-5.60462"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 336.3217446671576
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 707.2118618438825
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1446847698474-a2db2756fe2a",
+            "timestamp" : 1.496308168172E9,
+            "title" : "carnicerías"
+          },
+          "shots" : {
+            "-KlXukGcKeUTIBe4LRQZ" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXul3NUoH2CCkvJ_Hj" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXulQUMRe9HlptLk7q" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 19,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1021,
+            "src" : "01d",
+            "timestamp" : 1496304000,
+            "wind" : 2.1
+          }
+        }
+      },
+      "name" : "carnicerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/360/360655.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "ferreterías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 576.4450740659597
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 75.76887157556911
+      } ],
+      "items" : {
+        "-KlXvgdh-WsEK0MrtsoN" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/264/264323.svg",
+            "subtitle" : "Abierto",
+            "title" : "Ferretería Legendaria"
+          },
+          "coordinates" : {
+            "lat" : "42.59126",
+            "lng" : "-5.61097"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 576.4450740659597
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 75.76887157556911
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1467139840664-96b244a66825",
+            "timestamp" : 1.496308419431E9,
+            "title" : "ferreterías"
+          },
+          "shots" : {
+            "-KlXvhK_qBSs1FLTHgcI" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 7,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "ferreterías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/264/264323.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "floristerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 335.1798597743312
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 373.8247138440764
+      } ],
+      "items" : {
+        "-KlXw2YbDo2dLrgcpvbt" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/435/435374.svg",
+            "subtitle" : "Abierto",
+            "title" : "Floristería Magnífica"
+          },
+          "coordinates" : {
+            "lat" : "42.58949",
+            "lng" : "-5.62393"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 335.1798597743312
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 373.8247138440764
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1494972308805-463bc619d34e",
+            "timestamp" : 1.496308513249E9,
+            "title" : "floristerías"
+          },
+          "shots" : {
+            "-KlXw4nhK3UEjOYV17eI" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXw8tKdjk7UKIhTTEo" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "floristerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/435/435374.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "fotografía" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 480.15237828930293
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 907.5731140374885
+      } ],
+      "items" : {
+        "-KlXwdgNNmADRDa0hNi4" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/426/426880.svg",
+            "subtitle" : "Abierto",
+            "title" : "Revelados Espléndidos"
+          },
+          "coordinates" : {
+            "lat" : "42.59233",
+            "lng" : "-5.58693"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 480.15237828930293
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 907.5731140374885
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1484781663516-4c4ca4b04a13",
+            "timestamp" : 1.496308669456E9,
+            "title" : "fotografía"
+          },
+          "shots" : {
+            "-KlXwfPDGqs3EWmKNvgK" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "fotografía",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/426/426880.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "fruterías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 630.7950496875343
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 320.01089333375467
+      } ],
+      "items" : {
+        "-KlXwvaxMRp9ndmy77Uw" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/289/289880.svg",
+            "subtitle" : "Abierto",
+            "title" : "Frutería Maravillosa"
+          },
+          "coordinates" : {
+            "lat" : "42.60816",
+            "lng" : "-5.59307"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 630.7950496875343
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 320.01089333375467
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1476837579993-f1d3948f17c2",
+            "timestamp" : 1.496308742839E9,
+            "title" : "fruterías"
+          },
+          "shots" : {
+            "-KlXww7V0V1vk2XsL6bk" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "fruterías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/289/289880.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "hoteles" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 548.7748675210493
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 145.83592229068555
+      } ],
+      "items" : {
+        "-KlXx8jkAxsCmuAWSdtq" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235889.svg",
+            "subtitle" : "Abierto",
+            "title" : "Hotel Estupendo"
+          },
+          "coordinates" : {
+            "lat" : "42.60956",
+            "lng" : "-5.56314"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 548.7748675210493
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 145.83592229068555
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1444201983204-c43cbd584d93",
+            "timestamp" : 1.496308800747E9,
+            "title" : "hoteles"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "hoteles",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/235/235889.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "kioscos" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 822.0383292794733
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 114.6475827702218
+      } ],
+      "items" : {
+        "-KlY0bi1RKpxvZe09xeq" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/321/321680.svg",
+            "subtitle" : "Abierto",
+            "title" : "Kiosko Estupendo"
+          },
+          "coordinates" : {
+            "lat" : "42.61132",
+            "lng" : "-5.61629"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 822.0383292794733
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 114.6475827702218
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1484451638740-e4bfa5fac525",
+            "timestamp" : 1.496309972103E9,
+            "title" : "kioscos"
+          },
+          "shots" : {
+            "-KlY0ce_qoTEUZ5QiGto" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "kioscos",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/321/321680.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "panaderías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 881.3422326836607
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 965.9757541260736
+      } ],
+      "items" : {
+        "-KlXz40qZhuavMntf0PR" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/201/201693.svg",
+            "subtitle" : "Abierto",
+            "title" : "Panadería Maravillosa"
+          },
+          "coordinates" : {
+            "lat" : "42.60080",
+            "lng" : "-5.60127"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 881.3422326836607
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 965.9757541260736
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5",
+            "timestamp" : 1.496309305712E9,
+            "title" : "panaderías"
+          },
+          "shots" : {
+            "-KlXz55yQJU5DG97LLKl" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 7,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXz5SKzc6zezzKnyiH" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 8,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        },
+        "-KlXzVsWulwlDxvX_VVN" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/201/201693.svg",
+            "subtitle" : "Abierto",
+            "title" : "Panadería Magnífica"
+          },
+          "coordinates" : {
+            "lat" : "42.59078",
+            "lng" : "-5.59333"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 881.3422326836607
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 965.9757541260736
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5",
+            "timestamp" : 1.496309419814E9,
+            "title" : "panaderías"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "panaderías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/201/201693.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "papelerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 594.6340782644304
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 916.4446353741955
+      } ],
+      "items" : {
+        "-KlY25Cz7wp2JSMZxaUb" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/199/199295.svg",
+            "subtitle" : "Abierto",
+            "title" : "Papelería Magnífica"
+          },
+          "coordinates" : {
+            "lat" : "42.58029",
+            "lng" : "-5.60552"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 594.6340782644304
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 916.4446353741955
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1422036306541-00138cae4dbc",
+            "timestamp" : 1.496310359173E9,
+            "title" : "papelerías"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "papelerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/199/199295.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "pastelerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 258.40524032551815
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 696.524105250139
+      } ],
+      "items" : {
+        "-KlXzhf3GZy7uGIj-tOu" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/290/290002.svg",
+            "subtitle" : "Abierto",
+            "title" : "Pastelería Deliciosa"
+          },
+          "coordinates" : {
+            "lat" : "42.59236",
+            "lng" : "-5.59466"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 258.40524032551815
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 696.524105250139
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1477040648049-a289a91626c1",
+            "timestamp" : 1.496309472204E9,
+            "title" : "pastelerías"
+          },
+          "shots" : {
+            "-KlXzi_JiwoGEJsmLYxy" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 1,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlXzksCNZCP4iNvX78B" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 5,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "pastelerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/290/290002.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "peluquerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 892.7311143254179
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 286.7358681745267
+      } ],
+      "items" : {
+        "-KlY-9HPkSKURODz14G3" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/314/314379.svg",
+            "subtitle" : "Abierto",
+            "title" : "Barbería Tremenda"
+          },
+          "coordinates" : {
+            "lat" : "42.60045",
+            "lng" : "-5.59165"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 892.7311143254179
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 286.7358681745267
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1493256338651-d82f7acb2b38",
+            "timestamp" : 1.496309589407E9,
+            "title" : "peluquerías"
+          },
+          "shots" : {
+            "-KlY-9y3xF01D5n_Sf4X" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "peluquerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/314/314379.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "perfumerías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 859.8826659348107
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 145.06069494778484
+      } ],
+      "items" : {
+        "-KlY-pmelhwnb7p7G5Dz" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/220/220008.svg",
+            "subtitle" : "Abierto",
+            "title" : "Perfumería Deliciosa"
+          },
+          "coordinates" : {
+            "lat" : "42.59164",
+            "lng" : "-5.57831"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 859.8826659348107
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 145.06069494778484
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1458538977777-0549b2370168",
+            "timestamp" : 1.4963097676E9,
+            "title" : "perfumerías"
+          },
+          "shots" : {
+            "-KlY-utgwdgm4yqJ2uZZ" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "perfumerías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/220/220008.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "pescaderías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 333.57936195670624
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 366.74260213941824
+      } ],
+      "items" : {
+        "-KlXyRksYYBIzDlHeYOP" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/444/444149.svg",
+            "subtitle" : "Abierto",
+            "title" : "Pescadería Espléndida"
+          },
+          "coordinates" : {
+            "lat" : "42.58443",
+            "lng" : "-5.58526"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 333.57936195670624
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 366.74260213941824
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1470181446350-2d7024be15be",
+            "timestamp" : 1.496309140785E9,
+            "title" : "pescaderías"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        },
+        "-KlXyaSdwh4HzwWiWT3c" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/444/444149.svg",
+            "subtitle" : "Abierto",
+            "title" : "Pescadería Increíble"
+          },
+          "coordinates" : {
+            "lat" : "42.60500",
+            "lng" : "-5.59483"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 333.57936195670624
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 366.74260213941824
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1470181446350-2d7024be15be",
+            "timestamp" : 1.496309180515E9,
+            "title" : "pescaderías"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        },
+        "-KlXykuTSJbK93ez9P2v" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/444/444149.svg",
+            "subtitle" : "Abierto",
+            "title" : "Pescadería Fantástica"
+          },
+          "coordinates" : {
+            "lat" : "42.60269",
+            "lng" : "-5.57136"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 333.57936195670624
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 366.74260213941824
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1470181446350-2d7024be15be",
+            "timestamp" : 1.496309223319E9,
+            "title" : "pescaderías"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "pescaderías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/444/444149.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "queserías" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 482.58252080392805
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 534.6576771844576
+      } ],
+      "items" : {
+        "-KlXvCBpzR9FATFRYwRr" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/360/360661.svg",
+            "subtitle" : "Abierto",
+            "title" : "Quesería Épica"
+          },
+          "coordinates" : {
+            "lat" : "42.58541",
+            "lng" : "-5.59732"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 482.58252080392805
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 534.6576771844576
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1482349988240-aa1f61e7bddf",
+            "timestamp" : 1.496308290609E9,
+            "title" : "queserías"
+          },
+          "shots" : {
+            "-KlXvCwyjrfs0ShTIJfr" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 19,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1021,
+            "src" : "01d",
+            "timestamp" : 1496304000,
+            "wind" : 2.1
+          }
+        }
+      },
+      "name" : "queserías",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/360/360661.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "restaurantes" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 212.26254397233313
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 584.3356135787665
+      } ],
+      "items" : {
+        "-KlY0BdbkSDA3Ky5Jw-7" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235834.svg",
+            "subtitle" : "Abierto",
+            "title" : "Restaurante Apetecible"
+          },
+          "coordinates" : {
+            "lat" : "42.61909",
+            "lng" : "-5.57522"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 212.26254397233313
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 584.3356135787665
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327",
+            "timestamp" : 1.496309861231E9,
+            "title" : "restaurantes"
+          },
+          "shots" : {
+            "-KlY0COJp_FcX43DYWSH" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlY0CshB85sZVXIHxlO" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlY0DDCedZiZDIbv0iC" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        },
+        "-KlY0MstEKC_rgz50NXe" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235834.svg",
+            "subtitle" : "Abierto",
+            "title" : "Restaurante Épico"
+          },
+          "coordinates" : {
+            "lat" : "42.58693",
+            "lng" : "-5.56921"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 212.26254397233313
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 584.3356135787665
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327",
+            "timestamp" : 1.496309907263E9,
+            "title" : "restaurantes"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        },
+        "-KlY0RQ-1Rj6Za4ZYCAp" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235834.svg",
+            "subtitle" : "Abierto",
+            "title" : "Restaurante Maravilloso"
+          },
+          "coordinates" : {
+            "lat" : "42.60048",
+            "lng" : "-5.56483"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 212.26254397233313
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 584.3356135787665
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327",
+            "timestamp" : 1.496309925831E9,
+            "title" : "restaurantes"
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "restaurantes",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/235/235834.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "tecnología" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 433.7874008937059
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 850.3674021959569
+      } ],
+      "items" : {
+        "-KlY1tBn8d0iCAAiH4y0" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/235/235309.svg",
+            "subtitle" : "Abierto",
+            "title" : "Ordenadores Estupendos"
+          },
+          "coordinates" : {
+            "lat" : "42.57991",
+            "lng" : "-5.59964"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 433.7874008937059
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 850.3674021959569
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1421757295538-9c80958e75b0",
+            "timestamp" : 1.496310305848E9,
+            "title" : "tecnología"
+          },
+          "shots" : {
+            "-KlY1uLRndye2T04YNED" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "tecnología",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/235/235309.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "tiendas" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 75.96920758583336
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 140.34189603472248
+      } ],
+      "items" : {
+        "-KlY18Iw1l23qASIylx7" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/237/237063.svg",
+            "subtitle" : "Abierto",
+            "title" : "Tienda Maravillosa"
+          },
+          "coordinates" : {
+            "lat" : "42.60194",
+            "lng" : "-5.57462"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 75.96920758583336
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 140.34189603472248
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1445205170230-053b83016050",
+            "timestamp" : 1.496310109699E9,
+            "title" : "tiendas"
+          },
+          "shots" : {
+            "-KlY197SuVei0QoqynZP" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "tiendas",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/237/237063.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    },
+    "ópticas" : {
+      "checked" : true,
+      "data" : [ {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 320.8516451703869
+      }, {
+        "name" : "Dato",
+        "type" : "number",
+        "value" : 355.6596040277169
+      } ],
+      "items" : {
+        "-KlY1WyOf2DMs_-88tMs" : {
+          "avatar" : {
+            "color" : "green",
+            "src" : "https://image.flaticon.com/icons/svg/195/195480.svg",
+            "subtitle" : "Abierto",
+            "title" : "Óptica Increíble"
+          },
+          "coordinates" : {
+            "lat" : "42.57154",
+            "lng" : "-5.56801"
+          },
+          "data" : [ {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 320.8516451703869
+          }, {
+            "name" : "Dato",
+            "type" : "number",
+            "value" : 355.6596040277169
+          } ],
+          "media" : {
+            "src" : "https://images.unsplash.com/photo-1438857621574-1fb23bc0be34",
+            "timestamp" : 1.496310210719E9,
+            "title" : "ópticas"
+          },
+          "shots" : {
+            "-KlY1XayOYZRIGh1EIMr" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 10,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
+          },
+          "weather" : {
+            "degrees" : 20,
+            "humidity" : 52,
+            "name" : "cielo claro",
+            "pressure" : 1020,
+            "src" : "01d",
+            "timestamp" : 1496307600,
+            "wind" : 1
+          }
+        }
+      },
+      "name" : "ópticas",
+      "opened" : false,
+      "src" : "https://image.flaticon.com/icons/svg/195/195480.svg",
+      "statuses" : [ {
+        "color" : "green",
+        "name" : "Abierto"
+      } ]
+    }
+  }
+}
