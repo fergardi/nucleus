@@ -42,6 +42,8 @@
         shot.quantity > 1
           ? this.$firebaseRefs.shots.child(shot['.key']).child('quantity').set(parseInt(shot.quantity) - 1)
           : this.$firebaseRefs.shots.child(shot['.key']).remove()
+        store.commit('resetMessage')
+        store.commit('setMessage', 'Bala gastada!')
       }
     },
     computed: {
