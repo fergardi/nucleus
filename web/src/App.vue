@@ -6,7 +6,7 @@
       mu-icon-button(icon="visibility", slot="right", @click="toggleRight", :class="{'hidden' : !info}")
 
     mu-drawer.sidebar(:open="left", :docked="docked", @close="toggleLeft")
-      mu-appbar Capas
+      mu-appbar Negocios
         mu-icon-button(icon="menu", slot="left", @click="toggleLeft")
         mu-icon-button.hidden(icon="close", slot="right", @click="toggleLeft")
       left-side-bar

@@ -15,13 +15,12 @@
 
       mu-flexbox-item
         mu-card
-          mu-card-header(title="Imagen e icono", subTitle="Agregar imágenes")
+          mu-card-header(title="Imagen", subTitle="Agregar imágen")
             mu-avatar(src="https://image.flaticon.com/icons/svg/272/272881.svg", slot="avatar")
           mu-card-text
-            mu-text-field(v-model="marker", label="Icono", :fullWidth="true")
             mu-text-field(v-model="image", label="Imagen", :fullWidth="true")
           mu-card-header(:title="name", :subTitle="status.name")
-            mu-avatar.avatar(:src="marker", slot="avatar", :class="status.color")
+            mu-avatar.avatar(:src="selected.src", slot="avatar", :class="status.color")
           mu-card-media(:title="name | capitalize", :subTitle="date")
             img(:src="image")
 
@@ -32,7 +31,7 @@
           mu-card-text
             v-map#location(:zoom="map.zoom", :min-zoom="map.min", :max-zoom="map.max", :center="[coordinates.lat, coordinates.lng]", ref="location", @l-click="point($event)")
               v-tilelayer(:url="map.url")
-              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]", :icon="icon(marker, status.color)")
+              v-marker(:lat-lng="[coordinates.lat, coordinates.lng]", :icon="icon(selected.src, status.color)")
               v-icondefault(image-path="/img/")
             .coordinates
               mu-text-field(type="number" label="Latitud", v-model="coordinates.lat")
@@ -48,13 +47,11 @@
             mu-avatar(src="https://image.flaticon.com/icons/svg/235/235248.svg", slot="avatar")
           mu-card-text(v-if="selected")
             .data(v-for="field in selected.data")
-              mu-select-field(v-model="field.value", :label="field.name", v-if="field.type === 'select'", :fullWidth="true")
-                mu-menu-item(v-for="option in field.options", :title="option.name", :value="option")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'text'", :fullWidth="true")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'number'", :fullWidth="true", type="number")
+              mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'mail'", :fullWidth="true", type="mail")
               mu-text-field(:label="field.name", v-model="field.value", v-if="field.type === 'textarea'", :multiLine="true", :rows="5", :fullWidth="true")
               mu-switch(:label="field.name", v-model="field.checked", v-if="field.type === 'switch'")
-              mu-radio(:label="field.name", v-model="field.checked", v-if="field.type === 'radio'")
               mu-checkbox(:label="field.name", v-model="field.checked", v-if="field.type === 'checkbox'")
           mu-card-text
             .buttons
@@ -81,14 +78,14 @@
       return {
         selected: {
           name: '',
-          statuses: []
+          statuses: [],
+          src: 'https://image.flaticon.com/icons/svg/234/234449.svg'
         },
         status: {
           name: 'Escoge un estado',
           color: ''
         },
         name: 'Nombre',
-        marker: 'https://image.flaticon.com/icons/svg/234/234449.svg',
         image: 'https://images.unsplash.com/photo-1474600056930-615c3d706456',
         coordinates: {
           lat: 42.58,
@@ -145,7 +142,7 @@
               color: this.status.color,
               title: this.name,
               subtitle: this.status.name,
-              src: this.marker
+              src: this.selected.src
             },
             media: {
               title: this.selected.name,

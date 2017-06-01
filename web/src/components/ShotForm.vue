@@ -48,10 +48,10 @@
     data () {
       return {
         shot: {
-          name: 'Nombre',
-          description: 'Descripción',
-          quantity: 0,
-          src: 'https://image.flaticon.com/icons/svg/148/148766.svg'
+          name: 'Descuento épico',
+          description: 'Un descuento de ejemplo del 20% en tu primera compra',
+          quantity: 10,
+          src: 'https://image.flaticon.com/icons/svg/330/330730.svg'
         },
         types: [
           { name: 'Regalo', src: 'https://image.flaticon.com/icons/svg/308/308860.svg' },

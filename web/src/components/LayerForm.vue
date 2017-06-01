@@ -5,16 +5,10 @@
       mu-flexbox-item
         mu-card
           mu-card-header(title="Nuevo tipo de elemento", subTitle="Crear un nuevo tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/440/440709.svg", slot="avatar")
+            mu-avatar(:src="src", slot="avatar")
           mu-card-text
-            mu-text-field(v-model="name", label="Nombre", :fullWidth="true", :disabled="selected !== null")
-        //mu-card-header(title="Editar un elemento existente", subTitle="Escoger un tipo")
-            mu-avatar(src="https://image.flaticon.com/icons/svg/188/188234.svg", slot="avatar")
-          mu-card-text
-            mu-select-field(v-model="selected", label="Tipo", :fullWidth="true", @change="select")
-              mu-menu-item(v-for="type in collections", :title="type.name", :value="type")
-            .buttons
-              mu-raised-button(label="Limpiar", @click="clear")
+            mu-text-field(v-model="name", label="Nombre", :fullWidth="true")
+            mu-text-field(v-model="src", label="Icono", :fullWidth="true")
 
       mu-flexbox-item
         mu-card
@@ -62,22 +56,20 @@
     name: 'LayerForm',
     data () {
       return {
-        selected: null,
-        name: '',
+        src: 'https://image.flaticon.com/icons/svg/235/235834.svg',
+        name: 'Restaurantes',
         type: null,
         types: [
-          { name: 'Texto', type: 'text' },
+          { name: 'Texto corto', type: 'text' },
           { name: 'Texto largo', type: 'textarea' },
-          { name: 'Selección', type: 'select' },
           { name: 'Número', type: 'number' },
           { name: 'Email', type: 'mail' },
           { name: 'Contraseña', type: 'password' },
           { name: 'Checkbox', type: 'checkbox' },
-          { name: 'Radio', type: 'radio' },
           { name: 'Switch', type: 'switch' }
         ],
         statuses: [
-          { name: '', color: '' }
+          { name: 'Abierto', color: 'green' }
         ],
         colors: [
           { name: 'Rojo', value: 'red' },
@@ -86,10 +78,14 @@
           { name: 'Naranja', value: 'orange' },
           { name: 'Morado', value: 'purple' },
           { name: 'Rosa', value: 'pink' },
-          { name: 'Azul', value: 'blue' }
+          { name: 'Azul', value: 'blue' },
+          { name: 'Marrón', value: 'brown' },
+          { name: 'Negro', value: 'black' },
+          { name: 'Gris', value: 'grey' }
         ],
         fields: [
-          { name: '', type: '', value: null, options: [] }
+          { name: 'Dato', type: 'number', value: Math.random() * 1000 },
+          { name: 'Dato', type: 'number', value: Math.random() * 1000 }
         ]
       }
     },
@@ -98,7 +94,7 @@
     },
     methods: {
       addData () {
-        this.fields.push({ name: '', type: '', value: null, options: [] })
+        this.fields.push({ name: '', type: '', value: null })
       },
       removeData () {
         this.fields.splice(this.fields.length - 1, 1)
@@ -118,17 +114,18 @@
         store.commit('toggleEdit')
       },
       clear () {
-        this.selected = null
+        this.status = null
         this.name = ''
-        this.fields = [{ name: '', type: '', value: null, options: [] }]
+        this.src = ''
+        this.fields = [{ name: '', type: '', value: null }]
         this.statuses = [{ name: '', color: '' }]
       },
       save () {
         this.$firebaseRefs.layers.child(this.name.toLowerCase()).set({
           checked: true,
+          src: this.src,
           name: this.name.toLowerCase(),
           opened: false,
-          radio: false,
           data: this.fields,
           statuses: this.statuses
         })

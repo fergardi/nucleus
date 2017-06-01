@@ -28,8 +28,8 @@ const vuex = new Vuex.Store({
     settings: false,
     map: {
       url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-      center: [42.58, -5.60],
-      zoom: 15,
+      center: [42.60, -5.59],
+      zoom: 14,
       min: 5,
       max: 18,
       iconSize: 40, // px, even
