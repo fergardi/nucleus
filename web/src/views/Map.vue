@@ -2,10 +2,12 @@
   .leaflet-map
     loading-progress(:loading="loading")
 
-    v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map")
+    v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map", @l-click="geo")
       v-tilelayer(:url="map.url")
       v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
         v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, color(item))", @l-click="select(item, index1, index2, layer)")
+    
+    #google
 
     mu-float-button.fab.left(icon="edit", @click="edit")
     mu-float-button.fab.right(icon="add", @click="add")
@@ -35,18 +37,45 @@
     },
     data () {
       return {
-        loading: true,
-        timeout: 1000
+        loading: true
       }
     },
     mounted () {
-      setTimeout(() => {
+      const initial = Date.now()
+      firebase.ref('layers').once('value', snapshot => {
+        console.log('loaded in ' + ((Date.now() - initial) / 1000) + ' seconds')
         store.commit('setMessage', 'Datos cargados')
         store.commit('setToast', true)
         this.loading = false
         store.commit('setMap', this.$refs.map.mapObject) // store the leaflet map into vuex
         store.state.map.L.zoomControl.remove()
-      }, this.timeout)
+      })
+
+      /* eslint-disable */
+      const map = new google.maps.Map(document.getElementById('google'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(42.5997032, -5.5688593),
+        zoom: 11
+      })
+
+      const service = new google.maps.places.PlacesService(map);
+
+      service.radarSearch({
+        location: new google.maps.LatLng(42.5997032, -5.5688593),
+        radius: 50000,
+        types: ['florist']
+      }, (results, status) => {
+        console.clear()
+        console.log(results)
+        results.forEach((result) => {
+          // console.log(result)
+          if (result) service.getDetails(result, (info, status) => {
+            console.log(info)
+            // if (info) console.log(info.name, info.formatted_address, info.formatted_phone_number)
+          })
+        })
+      })
+      /* eslint-enable */
     },
     methods: {
       select (item, index1, index2, layer) {
@@ -61,6 +90,9 @@
           iconAnchor: [this.map.iconSize / 2, this.map.iconSize / 2],
           className: 'marker ' + className
         })
+      },
+      geo (event) {
+        console.log(event.latlng)
       },
       i18n (string) {
         return string // TODO
