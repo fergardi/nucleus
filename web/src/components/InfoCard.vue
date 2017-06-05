@@ -1,7 +1,7 @@
 <template lang="pug">
   mu-card.info-card(v-if="info")
     // MEDIA
-    mu-card-media.media(v-if="info.media", :title="info.avatar.title | capitalize", :subTitle="info.avatar.subtitle")
+    mu-card-media.media(v-if="info.media", :title="info.media.title | capitalize", :subTitle="info.media.subtitle")
       mu-float-button.fab(icon="add", @click="shot", :mini="true")
       img(:src="info.media.src")
     

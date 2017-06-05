@@ -2,7 +2,7 @@
   .leaflet-map
     loading-progress(:loading="loading")
 
-    v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map", @l-click="geo")
+    v-map#map(:zoom="map.zoom", :center="map.center", :min-zoom="map.min", :max-zoom="map.max", ref="map")
       v-tilelayer(:url="map.url")
       v-group(v-for="layer, index1 in filtered", v-if="layer.checked")
         v-marker(v-for="item, index2 in layer.items", :lat-lng="item.coordinates", :icon="icon(item.avatar.src, color(item))", @l-click="select(item, index1, index2, layer)")
@@ -54,24 +54,70 @@
       /* eslint-disable */
       const map = new google.maps.Map(document.getElementById('google'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(42.5997032, -5.5688593),
+        center: new google.maps.LatLng(42.601822, -5.581515),
         zoom: 11
       })
 
       const service = new google.maps.places.PlacesService(map);
 
-      service.radarSearch({
-        location: new google.maps.LatLng(42.5997032, -5.5688593),
-        radius: 50000,
-        types: ['florist']
-      }, (results, status) => {
-        console.clear()
-        console.log(results)
-        results.forEach((result) => {
-          // console.log(result)
-          if (result) service.getDetails(result, (info, status) => {
-            console.log(info)
-            // if (info) console.log(info.name, info.formatted_address, info.formatted_phone_number)
+      const cities = [
+        { name: 'León', center: { lat: 42.601822, lng: -5.581515 } }
+      ]
+
+      const types = [
+        { name: 'Restaurantes', types: ['restaurant'], icon: 'https://image.flaticon.com/icons/svg/235/235834.svg', image: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327' },
+        { name: 'Panaderías', types: ['bakery'], icon: 'https://image.flaticon.com/icons/svg/201/201693.svg', image: 'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5' },
+        { name: 'Floristerías', types: ['florist'], icon: 'https://image.flaticon.com/icons/svg/435/435374.svg', image: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e' },
+        { name: 'Tiendas', types: ['clothing_store', 'shoe_store'], icon: 'https://image.flaticon.com/icons/svg/237/237063.svg', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050' },
+        { name: 'Carnicerías', types: ['food'], keyword: 'carnicería', icon: 'https://image.flaticon.com/icons/svg/201/201727.svg', image: 'https://images.unsplash.com/photo-1446847698474-a2db2756fe2a' },
+        { name: 'Pescaderías', types: ['food'], keyword: 'pescadería', icon: 'https://image.flaticon.com/icons/svg/444/444149.svg', image: 'https://images.unsplash.com/photo-1470181446350-2d7024be15be' },
+        { name: 'Quioscos', types: ['store'], keyword: 'quiosco', icon: 'https://image.flaticon.com/icons/svg/321/321680.svg', image: 'https://images.unsplash.com/photo-1484451638740-e4bfa5fac525' }
+      ]
+
+      var i = 0
+
+      types.forEach((type) => {
+        this.$firebaseRefs.layers.child(type.name.toLowerCase()).set({
+          checked: true,
+          src: type.icon,
+          name: type.name.toLowerCase(),
+          opened: false
+        })
+        cities.forEach((city) => {
+          service.radarSearch({
+            location: new google.maps.LatLng(city.center.lat, city.center.lng),
+            radius: 500,
+            types: type.types,
+            keyword: type.keyword,
+            name: type.keyword
+          }, (results, status) => {
+            results.forEach((result, index) => {
+              ((index) => {
+                setTimeout(() => {
+                  if (result) service.getDetails(result, (info, status) => {
+                    if (info) {
+                      this.$firebaseRefs.layers.child(type.name.toLowerCase()).child('items').push({
+                        coordinates: { lat: info.geometry.location.lat(), lng: info.geometry.location.lng() },
+                        avatar: {
+                          color: 'red',
+                          title: info.name,
+                          subtitle: info.formatted_address + ', (' + info.formatted_phone_number + ')',
+                          src: type.icon
+                        },
+                        media: {
+                          title: info.name,
+                          subtitle: info.formatted_address + ', (' + info.formatted_phone_number + ')',
+                          src: info.photos && info.photos.length ? info.photos[0].getUrl({ 'maxWidth': 800, 'maxHeight': 600 }) : type.image
+                        },
+                        description: 'Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas.'
+                      })
+                    } else {
+                      console.log('ERROR: ', status)
+                    }
+                  })
+                }, i++ * 1000)
+              })(index)
+            })
           })
         })
       })
@@ -167,6 +213,7 @@
 <style lang="stylus" scoped>
   .leaflet-map
   #map
+  #google
     width 100%
     height 100%
   .fab

@@ -21,7 +21,7 @@ const vuex = new Vuex.Store({
       index: null,
       item: null
     },
-    left: false,
+    left: true,
     right: false,
     checked: true,
     docked: true,

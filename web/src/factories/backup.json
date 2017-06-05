@@ -350,7 +350,7 @@
             "-KlXz55yQJU5DG97LLKl" : {
               "description" : "Un descuento de ejemplo del 20% en tu primera compra",
               "name" : "Descuento épico",
-              "quantity" : 7,
+              "quantity" : 5,
               "remaining" : 1,
               "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
             },
@@ -697,6 +697,26 @@
             "src" : "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327",
             "timestamp" : 1.496309925831E9,
             "title" : "restaurantes"
+          },
+          "shots" : {
+            "-KlZ67STwnCn0ZIFz2jK" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 9,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlZ6I_KRzTPm19f2L4E" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 9,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            },
+            "-KlZ6Kthugdzv2PJcWEw" : {
+              "description" : "Un descuento de ejemplo del 20% en tu primera compra",
+              "name" : "Descuento épico",
+              "quantity" : 9,
+              "src" : "https://image.flaticon.com/icons/svg/330/330730.svg"
+            }
           }
         }
       },
